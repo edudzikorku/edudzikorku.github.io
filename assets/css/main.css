@@ -3222,6 +3222,6 @@ input, select, textarea {
 	}
 
 .map-iframe {
-		float: right; /* or right, depending on which side you want the iframe to be on */
+		float: left; /* or right, depending on which side you want the iframe to be on */
 		margin-right: 20px; /* adjust as needed to create space between the iframe and text */
 	}
