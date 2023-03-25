@@ -1,8 +1,12 @@
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
-    font-size: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
 }
 
+div h1.display-4 {
+    font-size: 20px;
+}
 h1.display-1 {
     font-size: 20px;
 }
