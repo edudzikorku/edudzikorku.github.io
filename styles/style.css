@@ -25,6 +25,10 @@ p.lead {
     font-size: 18px;
 }
 
+p a {
+    color: steelblue;
+}
+
 div#cont h2 {
     font-size: 20px;
     font-weight: bold;
@@ -54,3 +58,77 @@ li.nav-item  {
 strong {
     font-weight: bold;
 }
+
+/* img {
+    border-radius: 30px;
+    box-shadow: 0 0 20px saddlebrown;
+} */
+
+img#img_1 {
+    border-radius: 5px;
+    box-shadow: 0 0 20px darkolivegreen;
+}
+
+img#img_2 {
+    border-radius: 30px;
+    box-shadow: 0 0 20px blue;
+}
+
+img#img_3 {
+    border-radius: 30px;
+    box-shadow: 0 0 20px brown;
+}
+
+
+
+/* Slideshow container */
+/* .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  } */
+  
+  /* Fade animation for images */
+  /* .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1s;
+    animation-name: fade;
+    animation-duration: 1s;
+  } */
+  
+  /* Previous and next buttons */
+  /* .prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  } */
+  
+  /* Position the next button to the right */
+  /* .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  } */
+  
+  /* On hover, add a black background color to the buttons */
+  /* .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  } */
+  
+  /* Animation for fading images */
+  /* @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+   */
+  /* @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+   */
