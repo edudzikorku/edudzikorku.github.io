@@ -52,8 +52,44 @@
     <div class="container my-3 my-sm-5">
       <div class="row mb-4 align-items-center flex-md-row-reverse">
         <div class="col-12 col-md-6 mb-3 mb-md-0">
-          <img src="images/web_scraping_ii.jpg" class="img-fluid">
-          <p>Image by <a href="https://www.istock.com">istock</a></p>
+          <div class="carousel slide" data-bs-ride="carousel" id="slideshow">
+            <div class="carousel-indicators">
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="0" class="active" aria-current="true"></button>
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="1"></button>
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="2"></button>
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="3"></button>
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="4"></button>
+              <button id="but1" type="button" data-bs-target="#slideshow" data-bs-slide-to="5"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item carousel-item-dimension active">
+                <img src="images/web_scraping_ii.jpg" class="img-fluid">
+              </div>
+              <div class="carousel-item carousel-item-dimension">
+                <img src="images/web_scraping_iii.jpg" class="img-fluid">
+              </div>
+              <div class="carousel-item carousel-item-dimension">
+                <img src="images/web_scraping_iv.jpg" class="img-fluid">
+              </div>
+              <div class="carousel-item carousel-item-dimension">
+                <img src="images/web_scraping_v.jpg" class="img-fluid">
+              </div>
+              <div class="carousel-item carousel-item-dimension">
+                <img src="images/web_scraping_vi.jpg" class="img-fluid">
+              </div>
+              <div class="carousel-item carousel-item-dimension">
+                <img src="images/web_scraping_vii.jpg" class="img-fluid">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
         <div class="col-12 col-md-6">
           <!-- <h2>Web Scraping</h2><hr> -->

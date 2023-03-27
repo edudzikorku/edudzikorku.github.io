@@ -8,13 +8,28 @@ div h1.display-4 {
     font-size: 20px;
 }
 h1.display-1 {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 h2.text-center.mb-sm-4 {
     font-size: 20px;
     color: #696969;
 }
+
+button#but  {
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    width: 10px;
+    height: 10px;
+  }
+
+  button#but1  {
+    border-radius: 50%;
+    background-color: darkblue;
+    width: 10px;
+    height: 10px;
+  }
+  
 
 p {
     text-align: justify;
@@ -82,5 +97,14 @@ img#img_3 {
 
 
 .carousel-item-dimensions {
-  height: 400px;
+  height:300px;
 }
+
+
+.carousel-item-dimension {
+    height: 350px;
+  }
+
+  .carousel-item-dim {
+    height: 250px;
+  }
