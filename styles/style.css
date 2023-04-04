@@ -26,6 +26,11 @@ h2.display-3 {
     color: #696969;
 }
 
+h2#mont_bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
 button#but  {
     border-radius: 50%;
     background-color: #f0f0f0;
@@ -52,6 +57,17 @@ p.lead {
 
 p a {
     color: steelblue;
+}
+
+/* p#mont {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+  } */
+
+h1#mont_bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 div#cont h2 {
