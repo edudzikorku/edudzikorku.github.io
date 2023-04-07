@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -48,7 +56,7 @@ button#but  {
 
 p {
     text-align: justify;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 p.lead {
@@ -75,6 +83,35 @@ div#cont h2 {
     font-weight: bold;
     color: #556b2f;
 }
+
+div.alert.alert-warning.mb-3.mb-sm-5 {
+    color: whitesmoke;
+    background-color: black;
+    /* padding: 0px 0px 16px 16px; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* .welcome-container {
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+} */
+
+/* .welcomeMessage {
+    color: whitesmoke;
+    background-color: black;
+    padding: 10px 4px 1px 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    text-align: center;
+} */
+
+/* welcomeMessage */
+
+
 
 a.nav-link:hover {
     font-weight: bold;
