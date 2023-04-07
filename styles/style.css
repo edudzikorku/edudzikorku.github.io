@@ -1,8 +1,9 @@
 @font-face {
     font-family: 'Montserrat';
     src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
-    font-weight: bold;
+    font-weight: 400;
     font-style: normal;
+    font-size: 24px;
 }
 
 
@@ -78,6 +79,12 @@ h1#mont_bold {
     font-weight: 600;
 }
 
+#mont_bold_head {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+}
+
 div#cont h2 {
     font-size: 20px;
     font-weight: bold;
@@ -89,11 +96,17 @@ div.alert.alert-warning.mb-3.mb-sm-5 {
     background-color: black;
     /* padding: 0px 0px 16px 16px; */
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 400;
     text-align: center;
-    font-size: 24px;
+    border-style: groove;
 }
 
+h2.welcome-message {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding: 0px 0px 0px 0px;
+    height: 20px;
+}
 /* .welcome-container {
     margin: 0;
     padding: 0;
