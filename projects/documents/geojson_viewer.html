@@ -20,8 +20,9 @@
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" href="../../js/leaflet-easybutton/src/easy-button.css"></link>
         <link rel="stylesheet" href="../../css/geojson_viewer.css">
-        <script src="../../js/tokml/tokml.js"></script>
+        <link rel="stylesheet" href="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.css"></link>
         <script src="../../js/jquery/dist/jquery.js"></script>
+        <script src="../../js/tokml/tokml.js"></script>
         <script defer src="../../js/fontawesome-all.min.js"></script>
         <style>
             body {
@@ -58,18 +59,6 @@
             </div>
         </nav>
         <div id="map"></div>
-        <!-- <div id="upload-div">
-          <label for="file-input">Upload:</label>
-          <input type="file" id="file-input" accept=".geojson,.json">
-          <button id="upload-btn">Upload</button>
-        </div> -->
-        <!-- <button id="export-btn">Export</button>
-        <ul id="export-options" class="export-options">
-          <li><a id="export-geojson" href="#">GeoJson</a></li>
-          <li><a id="export-csv" href="#">CSV</a></li>
-          <li><a id="export-kml" href="#">KML</a></li>
-          <li><a id="export-shapefile" href="#">Shapefile</a></li>
-        </ul> -->
         <div id="text">
             <textarea id="geojsontext" placeholder='Please enter your GeoJson String Here!
                 format: {
@@ -137,10 +126,13 @@
         <script src="../../js/leaflet/dist/leaflet.js"></script>
         <script src="../../js/leaflet/leaflet-draw/dist/leaflet.draw.js"></script>
         <script src="../../js/leaflet-bing-layer/leaflet-bing-layer.js"></script>
-        <script src="../../js/shp-write/shpwrite.js"></script>
         <script src="../../js/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+        <script src="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
         <script src="../../js/leaflet-easybutton/src/easy-button.js"></script>
         <script src="../../js/file-saver/dist/FileSaver.min.js"></script>
+        <script src="../../node_modules/jszip/dist/jszip.min.js"></script>
+        <script src="../../node_modules/shp-write/shpwrite.js"></script>
+        <script src="../../node_modules/shpjs/dist/shp.min.js"></script>
         <script src="../../js/geojson_viewer.js"></script>
     </body>
 </html>

@@ -6,7 +6,7 @@ function justType(type, TYPE) {
     return function(gj) {
         var oftype = gj.features.filter(isType(type));
         return {
-            geometries: (TYPE === 'POLYGON' || TYPE === 'POLYLINE') ? [oftype.map(justCoords)] : oftype.map(justCoords),
+            geometries: oftype.map(justCoords),
             properties: oftype.map(justProps),
             type: TYPE
         };

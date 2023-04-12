@@ -1,11 +1,15 @@
 {
   "dependencies": {
     "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
     "leaflet-ajax": "^2.1.0",
     "leaflet-draw": "^1.0.4",
     "leaflet-easybutton": "^2.4.0",
     "leaflet-heatmap": "^1.0.0",
-    "shp-write": "^0.3.2",
+    "leaflet.awesome-markers": "^2.0.5",
+    "shapefile": "^0.6.6",
+    "shp-write": "^0.2.8",
+    "shpjs": "^4.0.4",
     "tokml": "^0.4.0"
   }
 }

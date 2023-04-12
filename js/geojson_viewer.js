@@ -66,188 +66,234 @@ $(document).ready(function () {
     $("#clear").on("click", function () {
         $("#geojsontext").val("");
     });
-  // add draw control to the map
-  var drawnItems = new L.FeatureGroup();
-  map.addLayer(drawnItems);
-  var drawControl = new L.Control.Draw({
-    draw: {
-      polygon: true,
-      marker: true,
-      polyline: true,
-      rectangle: false, // Rectangles disabled
-      circle: false, // Circles disabled
-      circlemarker: false, //Circle markers disabled
+    // add draw control to the map
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
 
-    },
-    edit: {
-      featureGroup: drawnItems,
-      remove: true
+    // Define custom style options
+    var customStyle = {
+      color: 'red', // Specify the color you want
+      weight: 2, // Specify the weight of the stroke
+      opacity: 0.8, // Specify the opacity of the stroke
+      fill: true, // Specify if you want the shape to be filled or not
+      fillColor: 'yellow', // Specify the fill color if fill is set to true
+      fillOpacity: 0.4 // Specify the fill opacity if fill is set to true
+    };
+    // Define a custom marker icon
+    var customMarkerIcon = L.AwesomeMarkers.icon({
+      icon: 'fa-map-marker', // Specify the icon name
+      prefix: 'fa', // Specify the icon library (e.g., 'fa' for Font Awesome)
+      markerColor: 'red' // Specify the marker color
+      });
+    var drawControl = new L.Control.Draw({
+      draw: {
+        polygon: {
+          shapeOptions: customStyle 
+        },
+
+        polyline: {
+          shapeOptions: customStyle
+        },
+
+        marker: {
+          icon: customMarkerIcon, 
+          repeatMode: false
+        },
+
+        rectangle: false, // Rectangles disabled
+        circle: false, // Circles disabled
+        circlemarker: false // Circle markers disabled
+      },
+      edit: {
+        featureGroup: drawnItems,
+        remove: true
+      }
     }
-  }
-  );
-  map.addControl(drawControl); // add draw control to the map
+    );
+    map.addControl(drawControl); // add draw control to the map
 
-  // handle draw:created event
-  map.on('draw:created', function (e) {
-    var type = e.layerType;
-    var layer = e.layer;
-    var geojson = layer.toGeoJSON();
-    // format the GeoJSON string and add it to the text area
-    var str = JSON.stringify(geojson, null, 2);
-    $('#geojsontext').val(str);
-    drawnItems.addLayer(layer);
-  });
-
-  // handle submit button click event
-  $('#submit').click(function() {
-    var str = $('#geojsontext').val();
-    var geojson = JSON.parse(str);
-    // clear previous layers and add the new one
-    drawnItems.clearLayers();
-    var layer = L.geoJSON(geojson);
-    drawnItems.addLayer(layer);
-    map.fitBounds(layer.getBounds());
-  });
-
-  // handle clear button click event
-  $('#clear').click(function() {
-    $('#geojsontext').val('');
-    drawnItems.clearLayers();
-  });
-
-  var mapContainer = $("#map");
-  var uploadBtn = $("<button>").attr('id', 'upload-btn').text('Upload')
-  uploadBtn.appendTo(mapContainer);
-  uploadBtn.on("click", function () {
-    var outputText = $("#geojsontext");
-    var fileInput = $('<input>').attr({
-      type: 'file',
-      accept: '.geojson, .json'
-    }).css({
-      display: 'none'
+    // handle draw:created event
+    map.on('draw:created', function (e) {
+      var type = e.layerType;
+      var layer = e.layer;
+      var geojson = layer.toGeoJSON();
+      // format the GeoJSON string and add it to the text area
+      var str = JSON.stringify(geojson, null, 2);
+      $('#geojsontext').val(str);
+      drawnItems.addLayer(layer);
     });
-    fileInput.appendTo('body');
-    fileInput.on("change", function(e) {
-      var file = e.target.files[0];
-      if (!file) return;
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        var contents = e.target.result;
-        outputText.val(contents);
-        L.geoJSON(JSON.parse(contents), {
-          style: {
-            color: 'blue'
-          }
+
+    // handle submit button click event
+    $('#submit').click(function() {
+      var str = $('#geojsontext').val();
+      var geojson = JSON.parse(str);
+      // clear previous layers and add the new one
+      drawnItems.clearLayers();
+      var layer = L.geoJSON(geojson);
+      drawnItems.addLayer(layer);
+      map.fitBounds(layer.getBounds());
+    });
+
+    // handle clear button click event
+    $('#clear').click(function() {
+      $('#geojsontext').val('');
+      drawnItems.clearLayers();
+    });
+
+    // get the map container
+    var mapContainer = $("#map");
+    var uploadBtn = $("<button>").attr('id', 'upload-btn').text('Upload');
+    uploadBtn.appendTo(mapContainer);
+    // add event listener to be executed when the upload button is clicked
+    uploadBtn.on("click", function () {
+      var outputText = $("#geojsontext");
+      var fileInput = $('<input>').attr({
+        type: 'file',
+        accept: '.geojson, .json'
+      }).css({
+        display: 'none'
+      });
+      fileInput.appendTo('body');
+      fileInput.on("change", function(e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var contents = e.target.result;
+          outputText.val(contents);
+          L.geoJSON(JSON.parse(contents), {
+            style: {
+              color: 'red'
+            }
         }).addTo(map);
         var geojsonLayer = L.geoJSON(JSON.parse(contents));
         if (geojsonLayer.getLayers().length > 0) {
           map.fitBounds(geojsonLayer.getBounds());
         }
-      };
-      reader.readAsText(file);
-      fileInput.remove();
-    });
-    fileInput.click();
-    $('#clear').click(function() {
-      $('#geojsontext').val('');
-      map.eachLayer(function(layer) {
-        if (layer instanceof L.GeoJSON) {
-          map.removeLayer(layer);
-        }
+      }
+        reader.readAsText(file);
+        fileInput.remove();
+      });
+      fileInput.click();
+      $('#clear').click(function() {
+        $('#geojsontext').val('');
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.GeoJSON) {
+            map.removeLayer(layer);
+          }
+        });
       });
     });
-  });
 
   
-  // // Create an export button element
-  // const exportBtn = $("<button>").attr('id', 'export-btn').text('Export').on("click", function () {
-  //   // Toggle export options dropdown visibility
-  //   $(".export-options").toggle();
+    // Create an export button element
+    var exportBtn = $("<button>").attr('id', 'export-btn').text('Export').on("click", function () {
+        // Toggle export options dropdown visibility
+        $(".export-options").toggle().hide();
 
-  //   var mapContainer = $("#map");
+    // Append the export button to the map container
+      var mapContainer = $("#map");
+        
+      // Create export options dropdown
+      var optionsContainer = $("<div>").addClass('export-options'); //.hide(); // Hide the options container initially
 
-  //   // Append the export button to the map container
-      
-  //   // Create export options dropdown
-  //   const optionsContainer = $("<div>").addClass('export-options').hide(); // Hide the options container initially
+      // Create a list to hold the export options
+      var optionsList = $("<ul>");
 
-  // // Create a list to hold the export options
-  //   const optionsList = $("<ul>");
+      // Create list items for each export option
+      var csvOption = $("<li>").text("csv").on("click", exportCSV);
+      var kmlOption = $("<li>").text("kml").on("click", exportKML);
+      var geojsonOption = $("<li>").text("geojson").on("click", exportGeoJSON);
+      var shapefileOption = $("<li>").text("shapefile").on("click", exportShapefile);
 
-  //   // Create list items for each export option
-  //   const csvOption = $("<li>").text("CSV").on("click", exportCSV);
-  //   const kmlOption = $("<li>").text("KML").on("click", exportKML);
-  //   const geojsonOption = $("<li>").text("GeoJSON").on("click", exportGeoJSON);
-  //   const shapefileOption = $("<li>").text("Shapefile").on("click", exportShapefile);
+      // Append list items to the options list
+      optionsList.append(csvOption, kmlOption, geojsonOption, shapefileOption);
 
-  //     // Append list items to the options list
-  //   optionsList.append(csvOption, kmlOption, geojsonOption, shapefileOption);
+      // Append options list to the options container
+      optionsContainer.append(optionsList);
 
-  //   // Append options list to the options container
-  //   optionsContainer.append(optionsList);
+      // Append options container to the map container
+      optionsContainer.appendTo(mapContainer);
+      exportBtn.append(optionsContainer)
+      // Hide options container when its external is clicked
+      $(document).on("click", function(event) {
+        if (!$(event.target).closest("#export-btn, .export-options").length) {
+          $(".export-options").hide();
+        }
+      });
+    
+    // Export functions for different formats
 
-  //   // Append options container to the map container
-  //   mapContainer.append(optionsContainer);
+    // Function to export drawn features as CSV
+    function exportCSV() {
+      var data = drawnItems.toGeoJSON();
+      var csv = 'data:text/csv;charset=utf-8,';
+      csv += 'Latitude,Longitude\n';
+      data.features.forEach(function(feature) {
+          var coords = feature.geometry.coordinates;
+          csv += coords[1] + ',' + coords[0] + '\n';
+      });
+      var encodedURI = encodeURI(csv);
+      var link = document.createElement('a');
+      link.setAttribute('href', encodedURI);
+      link.setAttribute('download', 'export.csv');
+      document.body.appendChild(link);
+      link.click();
+      console.log("Exporting as csv");
+      $(".export-options").hide();
+    }
   
-  // });
-  //   // Function to export drawn items as CSV
-  //   function exportCSV() {
-  //     var csv = drawnItems.toCSV();
-  //     var dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
-  //     var downloadAnchorNode = document.createElement('a');
-  //     downloadAnchorNode.setAttribute("href", dataStr);
-  //     downloadAnchorNode.setAttribute("download", "drawn_items.csv");
-  //     document.body.appendChild(downloadAnchorNode); // required for firefox
-  //     downloadAnchorNode.click();
-  //     downloadAnchorNode.remove();
-  //   }
+    // Function to export drawn items as KML
+    function exportKML() {
+        var kml = tokml(drawnItems.toGeoJSON());
+        var dataStr = "data:text/xml;charset=utf-8," + encodeURIComponent(kml);
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "export.kml");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+        console.log("Exporting as kml");
+        $(".export-options").hide();
+      }
   
-  //   // Function to export drawn items as KML
-  // function exportKML() {
-  //     var kml = tokml(drawnItems.toGeoJSON());
-  //     var dataStr = "data:text/xml;charset=utf-8," + encodeURIComponent(kml);
-  //     var downloadAnchorNode = document.createElement('a');
-  //     downloadAnchorNode.setAttribute("href", dataStr);
-  //     downloadAnchorNode.setAttribute("download", "drawn_items.kml");
-  //     document.body.appendChild(downloadAnchorNode); // required for firefox
-  //     downloadAnchorNode.click();
-  //     downloadAnchorNode.remove();
-  //   }
-  
-  //     // Function to export drawn items as GeoJSON
-  // function exportGeoJSON() {
-  //       var geojson = drawnItems.toGeoJSON();
-  //       var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(geojson));
-  //       var downloadAnchorNode = document.createElement('a');
-  //       downloadAnchorNode.setAttribute("href", dataStr);
-  //       downloadAnchorNode.setAttribute("download", "drawn_items.geojson");
-  //       document.body.appendChild(downloadAnchorNode); // required for firefox
-  //       downloadAnchorNode.click();
-  //       downloadAnchorNode.remove();
-  //     }
-  
-  // function exportShapefile() {
-  //       // Check if shpwrite is available
-  //       if (typeof shpwrite === 'undefined') {
-  //         console.error('shpwrite.js library is not available. Please include the library and try again.');
-  //         return;
-  //       }
-      
-  //       // Check if drawnItems layer is available
-  //       if (!drawnItems) {
-  //         console.error('DrawnItems layer is not available. Please create the layer and add features to it before exporting as Shapefile.');
-  //         return;
-  //       }
-      
-  //       // Convert drawnItems to GeoJSON
-  //       const geojson = drawnItems.toGeoJSON();
-      
-  //       // Convert GeoJSON to Shapefile using shpwrite library
-  //       shpwrite.download(geojson, 'drawnItems', {
-  //         folder: true
-  //       });
-  //     }   
-  // mapContainer.append(exportBtn);
+    // Function to export drawn items as GeoJSON
+    function exportGeoJSON() {
+          var geojson = drawnItems.toGeoJSON();
+          var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(geojson));
+          var downloadAnchorNode = document.createElement('a');
+          downloadAnchorNode.setAttribute("href", dataStr);
+          downloadAnchorNode.setAttribute("download", "export.geojson");
+          document.body.appendChild(downloadAnchorNode); // required for firefox
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+          console.log("Exporting as geojson");
+          $(".export-options").hide();
+        }
 
+      // Function to export drawn features as shapefile
+      function exportShapefile() {
+          var geojson = drawnItems.toGeoJSON();
+        
+          // Convert the GeoJSON to a shapefile
+          var shpBlob = new Blob([shpwrite.download(geojson)], { type: 'application/zip' });
+        
+          // Create a JSZip object
+          var zip = new JSZip();
+          zip.file('drawn_items.shp', shpBlob);
+        
+          // Create a download link and trigger the download
+          zip.generateAsync({ type: 'blob' }).then(function(content) {
+            var downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(content);
+            downloadLink.download = 'export.zip';
+            document.body.appendChild(downloadLink); // required for Firefox
+            downloadLink.click();
+            downloadLink.remove();
+            console.log('Exporting as shapefile');
+            $('.export-options').hide();
+          });
+        }
+    });
+    exportBtn.appendTo(mapContainer);
 });
-

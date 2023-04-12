@@ -13,8 +13,8 @@
 }
 
 @font-face {
-    font-family:'Quicksand', sans-serif;
-    src: url("../fonts/quicksand/Quicksand-Regular.otf") format("truetype");
+    font-family:'Hanken', sans-serif;
+    src: url("../fonts/hanken_grotest/HankenGrotesk-Regular.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
 }
@@ -68,16 +68,6 @@ div#map {
     padding: 10px;
     margin-right: 10px;
 }
-
-/* #file-upload {
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 0px;
-    border: 1px solid #ccc;
-    padding: 0px;
-    /* margin-right: 5px; */
-    /* margin-left: 20px;
-} */ */
 
 #map {
     width: 100%;
@@ -153,29 +143,25 @@ div#map {
     z-index: 999;
 }
 
-/* #export-options {
-    display: none;
+.export-options {
     position: absolute;
-    background-color: #000;
-    color: #fff;
-    list-style: none;
-    padding: 5px;
+    background-color: #e4e6e7;
+    color: #000000;
+    padding: 15px 15px;
     margin: 0;
-    left: 90px;
-    top: 20px;
+    text-align: left;
+    top: 30px;
+    display: yes;
+    border-style: groove;
 }
 
 .export-options li {
     margin-bottom: 5px;
-} */
-
-.export-options a {
-    text-decoration: none;
-    color: #fff;
-    font-family:'Quicksand', sans-serif;
+    font-family:'Hanken', sans-serif;
     font-weight: 300;
-    font-size: 16;
+    font-size: 24;
 }
+
 
 .alert.alert-secondary.mb-3.mb-sm-5 {   
     background-color: black;
