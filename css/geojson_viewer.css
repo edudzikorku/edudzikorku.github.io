@@ -145,14 +145,14 @@ div#map {
 
 .export-options {
     position: absolute;
-    background-color: #e4e6e7;
+    background-color: ghostwhite;
     color: #000000;
     padding: 15px 15px;
     margin: 0;
     text-align: left;
     top: 30px;
     display: yes;
-    border-style: groove;
+    border-style: hidden;
 }
 
 .export-options li {
@@ -160,6 +160,11 @@ div#map {
     font-family:'Hanken', sans-serif;
     font-weight: 300;
     font-size: 24;
+}
+
+.export-options li:hover {
+    color: saddlebrown;
+    font-weight: bold;
 }
 
 

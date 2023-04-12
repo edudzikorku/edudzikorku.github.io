@@ -96,7 +96,10 @@ $(document).ready(function () {
         },
 
         marker: {
-          icon: customMarkerIcon, 
+          icon: new L.Icon({
+            iconUrl: '../images/marker_v.png',
+            iconSize: [30, 30]
+          }), 
           repeatMode: false
         },
 
@@ -201,10 +204,10 @@ $(document).ready(function () {
       var optionsList = $("<ul>");
 
       // Create list items for each export option
-      var csvOption = $("<li>").text("csv").on("click", exportCSV);
-      var kmlOption = $("<li>").text("kml").on("click", exportKML);
-      var geojsonOption = $("<li>").text("geojson").on("click", exportGeoJSON);
-      var shapefileOption = $("<li>").text("shapefile").on("click", exportShapefile);
+      var csvOption = $("<li>").text("CSV").on("click", exportCSV);
+      var kmlOption = $("<li>").text("KML").on("click", exportKML);
+      var geojsonOption = $("<li>").text("GeoJson").on("click", exportGeoJSON);
+      var shapefileOption = $("<li>").text("Shapefile").on("click", exportShapefile);
 
       // Append list items to the options list
       optionsList.append(csvOption, kmlOption, geojsonOption, shapefileOption);
@@ -272,27 +275,28 @@ $(document).ready(function () {
         }
 
       // Function to export drawn features as shapefile
-      function exportShapefile() {
+    function exportShapefile() {
           var geojson = drawnItems.toGeoJSON();
         
           // Convert the GeoJSON to a shapefile
           var shpBlob = new Blob([shpwrite.download(geojson)], { type: 'application/zip' });
         
           // Create a JSZip object
-          var zip = new JSZip();
-          zip.file('drawn_items.shp', shpBlob);
+          // var zip = new JSZip();
+          // zip.file('drawn_items.shp', shpBlob);
         
-          // Create a download link and trigger the download
-          zip.generateAsync({ type: 'blob' }).then(function(content) {
-            var downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(content);
-            downloadLink.download = 'export.zip';
-            document.body.appendChild(downloadLink); // required for Firefox
-            downloadLink.click();
-            downloadLink.remove();
-            console.log('Exporting as shapefile');
-            $('.export-options').hide();
-          });
+          // // Create a download link and trigger the download
+          // zip.generateAsync({ type: 'blob' }).then(function(content) {
+          //   var downloadLink = document.createElement('a');
+          //   downloadLink.href = URL.createObjectURL(content);
+          //   downloadLink.download = 'export.zip';
+          //   document.body.appendChild(downloadLink); // required for Firefox
+          //   downloadLink.click();
+          //   downloadLink.remove();
+         
+          // });
+          console.log('Exporting as shapefile');
+          $('.export-options').hide();
         }
     });
     exportBtn.appendTo(mapContainer);
