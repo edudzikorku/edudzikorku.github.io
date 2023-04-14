@@ -30,6 +30,7 @@ const arcsData = [...Array(N).keys()].map(() => ({
 
 const globe = new ThreeGlobe()
     .globeImageUrl('./img/nasa_night_lights.jpg')
+    .bumpImageUrl('./img/earth-topology.png')
     .arcsData(arcsData)
     .arcColor('color')
     .arcDashLength(0.4)
