@@ -1,15 +1,29 @@
 {
   "dependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "build": "^0.1.4",
+    "file-loader": "^6.2.0",
     "file-saver": "^2.0.5",
+    "globe.gl": "^2.27.3",
     "jszip": "^3.10.1",
     "leaflet-ajax": "^2.1.0",
     "leaflet-draw": "^1.0.4",
     "leaflet-easybutton": "^2.4.0",
     "leaflet-heatmap": "^1.0.0",
     "leaflet.awesome-markers": "^2.0.5",
+    "run": "^1.4.0",
     "shapefile": "^0.6.6",
     "shp-write": "^0.2.8",
     "shpjs": "^4.0.4",
-    "tokml": "^0.4.0"
+    "three": "^0.151.3",
+    "three-globe": "^2.25.4",
+    "tokml": "^0.4.0",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^4.13.2"
   }
 }

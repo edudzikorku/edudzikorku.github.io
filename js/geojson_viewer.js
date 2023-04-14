@@ -97,7 +97,7 @@ $(document).ready(function () {
 
         marker: {
           icon: new L.Icon({
-            iconUrl: '../images/marker_v.png',
+            iconUrl: '../images/marker_vii.png',
             iconSize: [30, 30]
           }), 
           repeatMode: false

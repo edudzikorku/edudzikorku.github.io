@@ -1,0 +1,32 @@
+#my_globe {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+#text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    z-index: 1;
+}
+
+#text h1 {
+    font-size: 24px;
+    color: white;
+}
+
+#globe-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: block;
+    z-index: -1;
+}
