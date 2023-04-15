@@ -147,8 +147,8 @@ div.alert.alert-warning.mb-3.mb-sm-5 {
 }
 
 div#globe_carousel {
-    background-color: black;
-    min-height: 600px;
+    background-color: light;
+    min-height: 500px;
     min-width: 300px;
 }
 
@@ -174,19 +174,19 @@ div#globe_carousel {
     #carousel_itm, #our_world {
         flex: 1 0 auto !important;
     }
-    /* #carousel_itm {
+    #carousel_itm {
         max-width: 40%
     }
 
      #our_world {
         max-width: 60%;
-    } */
+    }
 
    #my_globe {
         max-width: 50%;
         max-height: 50%;
     } 
-    #globe-canvas {
+    /* #globe-canvas {
         max-width: 150%;
         max-height: 100%;
         margin: 0;
@@ -194,7 +194,7 @@ div#globe_carousel {
 
     canvas {
         max-width: 120% !important
-    }
+    } */
 
     #gtext h1 {
         font-size: 24px;
