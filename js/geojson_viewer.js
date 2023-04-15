@@ -145,7 +145,7 @@ $(document).ready(function () {
 
     // get the map container
     var mapContainer = $("#map");
-    var uploadBtn = $("<button>").attr('id', 'upload-btn').text('Upload');
+    var uploadBtn = $("<button>").attr('id', 'upload_but').text('Upload');
     uploadBtn.appendTo(mapContainer);
     // add event listener to be executed when the upload button is clicked
     uploadBtn.on("click", function () {
@@ -190,7 +190,7 @@ $(document).ready(function () {
 
   
     // Create an export button element
-    var exportBtn = $("<button>").attr('id', 'export-btn').text('Export').on("click", function () {
+    var exportBtn = $("<button>").attr('id', 'export_but').text('Export').on("click", function () {
         // Toggle export options dropdown visibility
         $(".export-options").toggle().hide();
 
@@ -220,7 +220,7 @@ $(document).ready(function () {
       exportBtn.append(optionsContainer)
       // Hide options container when its external is clicked
       $(document).on("click", function(event) {
-        if (!$(event.target).closest("#export-btn, .export-options").length) {
+        if (!$(event.target).closest("#export_but, .export-options").length) {
           $(".export-options").hide();
         }
       });

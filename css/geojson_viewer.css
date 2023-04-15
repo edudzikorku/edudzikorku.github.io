@@ -110,7 +110,7 @@ div#map {
     font-weight: 300;
 }
 
-#upload-btn {
+#upload_but {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: white;
@@ -128,7 +128,7 @@ div#map {
     /* cursor: pointer; */
 }
 
-#export-btn {
+#export_but {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: white;
@@ -301,7 +301,7 @@ input#file-input {
         font-weight: 300;
     }
     
-    #upload-btn {
+    #upload_but {
         font-family: 'Roboto', sans-serif;
         font-weight: 300;
         color: white;
@@ -319,7 +319,7 @@ input#file-input {
         /* cursor: pointer; */
     }
     
-    #export-btn {
+    #export_but {
         font-family: 'Roboto', sans-serif;
         font-weight: 300;
         color: white;
