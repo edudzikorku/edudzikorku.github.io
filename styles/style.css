@@ -257,7 +257,7 @@ img#img_3 {
     text-align: center;
   }
 
-  @media (max-width: 767px) {
+  @media only screen and (max-width: 767px) {
     @font-face {
         font-family: 'Montserrat';
         src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
