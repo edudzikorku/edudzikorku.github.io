@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - esaLab</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" type="image/png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -60,12 +60,14 @@
         </div>
       </div>
     </nav>
-    <div class="bg-light py-3 py-sm-5">
+    <div id="globe_carousel">
+     <!-- class="bg-light py-3 py-sm-5" -->
       <div class="container">
         <div id="my_globe">  
           <canvas id="globe-canvas">......</canvas>
           <div  id="gtext" class="row align-items-center">
-            <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+            <!-- <div class="col-12 col-lg-6 mb-3 mb-lg-0"> -->
+            <div id="carousel_itm">  
               <!-- <img src="services/images/our_world.jpg" class="img-fluid" id="img_1"> -->
               <!-- <div class="col-12 col-lg-6"> -->
                 <div class="carousel slide" data-bs-ride="carousel" id="slideshow">
@@ -127,7 +129,9 @@
                   </button>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <!-- </div> -->
+            <!-- <div class="col-12 col-lg-6" id="our_world"> -->
+            <div id="our_world">
               <h1 class="display-1" id="mont_bold_head">Discovering our Earth, Through Geocomputing</h1>
               <p class="lead">
                 Geospatial technology has transformed the way we interact with our world. 
@@ -143,6 +147,7 @@
               <a href="https://onlinedegrees.kent.edu/geography/geographic-information-science/community/remote-sensing-applications-in-gis" class="btn btn-lg btn-primary me-2" target="_blank">Read more</a>
               <a href="contact.html" class="btn btn-lg btn-primary m-2" target="_blank">Contact me</a>
             </div>
+            <!-- </div> -->
           </div>  
         </div>
       </div>
