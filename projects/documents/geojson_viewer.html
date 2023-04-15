@@ -1,138 +1,130 @@
 <!DOCTYPE html>
 <html lan="eng">
-    <head>
-		  <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <title>GeoJson Inspector</title>    
-      <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" type="image/png">
-      <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
-      <link rel="icon" type="image/png" sizes="512x512" href="../../assets/android-chrome-512x512.png">
-      <link rel="icon" type="image/png" sizes="192x192" href="../../assets/android-chrome-192x192.png">
-      <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
-      <link rel="manifest" href="../../assets/site.webmanifest">
-      <meta name="msapplication-TileColor" content="#da532c">
-      <meta name="theme-color" content="#ffffff">
-      <link rel="stylesheet" href="../../styles/sass_style.css" type="text/css">
-      <link rel="stylesheet" href="../../styles/style.css" type="text/css">
-      <link rel="stylesheet" href="../../js/leaflet/dist/leaflet.css">
-      <link rel="stylesheet" href="../../js/leaflet/leaflet-draw/dist/leaflet.draw.css">
-      <link rel="stylesheet" href="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.css"></link>
-      <link rel="stylesheet" href="../../css/bootstrap.min.css">
-      <link rel="stylesheet" href="../../js/leaflet-easybutton/src/easy-button.css"></link>
-      <link rel="stylesheet" href="../../css/geojson_viewer.css">
-      <script src="../../js/jquery/dist/jquery.js"></script>
-      <script src="../../js/tokml/tokml.js"></script>
-      <script defer src="../../js/fontawesome-all.min.js"></script>
-      <style>
-          body {
-            padding-top: 57px;
-          }
-      </style>
-    </head>
-    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-blue-800 border-bottom fixed-top">
-        <div class="container">
-          <a class="navbar-brand">GeoJson Inspector</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../about.html" class="nav-link">About</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../services.html" class="nav-link">Services</a>
-              </li>
-              <li class="nav-item active">
-                <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../contact.html" class="nav-link">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div id="map"></div>
-      <div id="text">
-        <textarea id="geojsontext" placeholder='Please enter your GeoJson String Here!
-            format: {
-            "type": "Polygon",
-            "coordinates": [
-            [[35, 10], [45, 45], [15, 40], [10, 20],
-            [35, 10]],
-            [[20, 30], [35, 35], [30, 20], [20, 30]]
-            ]}'></textarea>
-        <input type="button" id="submit" value="Submit"  class="alert alert-warning mb-3 mb-sm-5">
-        <input type="button" id="clear" value="Clear" class="alert alert-secondary mb-3 mb-sm-5">    
-      </div>
-      <div>
-        <p>_</p>
-      </div>
-      <footer class="small bg-light" id="foot">
-        <div class="container py-3 py-sm-3">
-          <div class="row">
-            <div class="col-13 col-sm-7 col-md-4">
-              <h6>Quick links</h6>
-              <ul class="list-unstyled">
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../about.html">About</a></li>
-                <li><a href="../../services.html">Services</a></li>
-                <li><a href="../../projects.html">Projects</a></li>
-                <li><a href="../../contact.html">Contact</a></li>
-              </ul>
-            </div>
-            <!-- <div class="col-13 col-sm-7 col-md-4">
-              <h6>Information</h6>
-              <ul class="list-unstyled">
-                <li><a href="#0">Legal information</a></li>
-                <li><a href="#0">Job opportunities</a></li>
-                <li><a href="#0">Frequently Asked Questions</a></li>
-              </ul>
-            </div> -->
-            <div class="col-13 col-sm-7 col-md-4">
-              <h6>Connect</h6>
-              <ul class="list-unstyled">
-                <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank"><i class="fab fa-fw fa-facebook"></i> Facebook</a></li>
-                <li><a href="https://www.github.com/edudzikorku" target="_blank"><i class="fab fa-fw fa-github"></i> Github</a></li>              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-                <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-                <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank"><i class="fab fa-fw fa-youtube"></i> YouTube</a></li>
-                <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank"><i class="fab fa-fw fa-linkedin"></i> LinkedIn</a></li>
-              </ul>
-            </div>
-            <div class="col-13 col-sm-7 col-md-4">
-              <h6>My location</h6>
-              <address>
-                <strong>edudzi</strong><br>
-                Ex 286, Mango St.<br>
-                Digital Address:<br> VI-0507-0566<br>
-                Kpedze-V/R<br>
-                <i class="fas fa-fw fa-phone"></i> <a href="tel:+233540815367">(233) 540815367</a><br>
-                <i class="fas fa-fw fa-envelope"></i> <a href="mailto:kedudzi007@gmail.com">kedudzi007@gmail.com</a>
-              </address>
-            </div>
-          </div>
-          <ul class="list-inline mt-2 mb-0 text-center">
-            <li class="list-inline-item">&copy; 2023 Akpakli Edudzi.</li>
-            <li class="list-inline-item">All rights reserved.</li>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GeoJson Inspector</title>    
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" type="image/png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/android-chrome-192x192.png">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="../../assets/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="../../styles/sass_style.css" type="text/css">
+    <link rel="stylesheet" href="../../js/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="../../js/leaflet/leaflet-draw/dist/leaflet.draw.css">
+    <link rel="stylesheet" href="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.css"></link>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../js/leaflet-easybutton/src/easy-button.css"></link>
+    <link rel="stylesheet" href="../../css/geojson_viewer.css">
+    <!-- <link rel="stylesheet" href="../../styles/style.css" type="text/css"> -->
+    <script src="../../js/jquery/dist/jquery.js"></script>
+    <script src="../../js/tokml/tokml.js"></script>
+    <script defer src="../../js/fontawesome-all.min.js"></script>
+    <style>
+        body {
+          padding-top: 57px;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-800 border-bottom fixed-top">
+      <a class="navbar-brand">GeoJson Inspector</a>
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a href="../../index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../services.html" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item active">
+              <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../contact.html" class="nav-link">Contact</a>
+            </li>
           </ul>
         </div>
-      </footer>
-      <script src="../../js/leaflet/dist/leaflet.js"></script>
-      <script src="../../js/leaflet/leaflet-draw/dist/leaflet.draw.js"></script>
-      <script src="../../js/leaflet-bing-layer/leaflet-bing-layer.js"></script>
-      <script src="../../js/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
-      <script src="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
-      <script src="../../js/leaflet-easybutton/src/easy-button.js"></script>
-      <script src="../../js/file-saver/dist/FileSaver.min.js"></script>
-      <script src="../../node_modules/jszip/dist/jszip.min.js"></script>
-      <script src="../../node_modules/shp-write/shpwrite.js"></script>
-      <script src="../../node_modules/shpjs/dist/shp.min.js"></script>
-      <script src="../../js/geojson_viewer.js"></script>
-    </body>
+      </div>
+    </nav>
+    <div id="map"></div>
+    <div id="text">
+      <textarea id="geojsontext" placeholder='Please enter your GeoJson String Here!
+          format: {
+          "type": "Polygon",
+          "coordinates": [
+          [[35, 10], [45, 45], [15, 40], [10, 20],
+          [35, 10]],
+          [[20, 30], [35, 35], [30, 20], [20, 30]]
+          ]}'></textarea>
+      <input type="button" id="submit" value="Submit"  class="alert alert-warning mb-3 mb-sm-5">
+      <input type="button" id="clear" value="Clear" class="alert alert-secondary mb-3 mb-sm-5">    
+    </div>
+    <div>
+      <p>__</p>
+    </div>
+    <footer class="small bg-light" id="foot">
+      <div class="container py-3 py-sm-3">
+        <div class="row">
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>Quick links</h6>
+            <ul class="list-unstyled">
+              <li><a href="../../index.html">Home</a></li>
+              <li><a href="../../about.html">About</a></li>
+              <li><a href="../../services.html">Services</a></li>
+              <li><a href="../../projects.html">Projects</a></li>
+              <li><a href="../../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>Connect</h6>
+            <ul class="list-unstyled">
+              <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank"><i class="fab fa-fw fa-facebook"></i> Facebook</a></li>
+              <li><a href="https://www.github.com/edudzikorku" target="_blank"><i class="fab fa-fw fa-github"></i> Github</a></li>              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
+              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
+              <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank"><i class="fab fa-fw fa-youtube"></i> YouTube</a></li>
+              <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank"><i class="fab fa-fw fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+          </div>
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>My location</h6>
+            <address>
+              <strong>edudzi</strong><br>
+              Ex 286, Mango St.<br>
+              Digital Address:<br> VI-0507-0566<br>
+              Kpedze-V/R<br>
+              <i class="fas fa-fw fa-phone"></i> <a href="tel:+233540815367">(233) 540815367</a><br>
+              <i class="fas fa-fw fa-envelope"></i> <a href="mailto:kedudzi007@gmail.com">kedudzi007@gmail.com</a>
+            </address>
+          </div>
+        </div>
+        <ul class="list-inline mt-2 mb-0 text-center">
+          <li class="list-inline-item">&copy; 2023 Akpakli Edudzi.</li>
+          <li class="list-inline-item">All rights reserved.</li>
+        </ul>
+      </div>
+    </footer>
+    <script src="../../js/leaflet/dist/leaflet.js"></script>
+    <script src="../../js/leaflet/leaflet-draw/dist/leaflet.draw.js"></script>
+    <script src="../../js/leaflet-bing-layer/leaflet-bing-layer.js"></script>
+    <script src="../../js/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+    <script src="../../node_modules/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+    <script src="../../js/leaflet-easybutton/src/easy-button.js"></script>
+    <script src="../../js/file-saver/dist/FileSaver.min.js"></script>
+    <script src="../../node_modules/jszip/dist/jszip.min.js"></script>
+    <script src="../../node_modules/shp-write/shpwrite.js"></script>
+    <script src="../../node_modules/shpjs/dist/shp.min.js"></script>
+    <script src="../../js/geojson_viewer.js"></script>
+  </body>
 </html>

@@ -82,7 +82,7 @@ h1#mont_bold {
     position: relative;
 }
 
-#text {
+#g-text {
     position: absolute;
     top: 0;
     left: 0;
@@ -95,7 +95,7 @@ h1#mont_bold {
     z-index: 1;
 }
 
-#text h1 {
+#g-text h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 32px;
@@ -103,7 +103,7 @@ h1#mont_bold {
     z-index: 1;
 }
 
-#text p {
+#g-text p {
     font-size: 18px;
     color: white;
     z-index: 1;
