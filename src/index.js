@@ -37,10 +37,39 @@ const globe = new ThreeGlobe()
     .arcDashGap(3)
     .arcDashInitialGap(() => Math.random() * 5)
     .arcDashAnimateTime(1000)
+let globeSize = 100;
+if (window.innerWidth < 781) {
+  globeSize = 50;
+}
+else if (window.innerWidth >= 1200) {
+  globeSize = 150;
+}
 
-globe.scale.x = 1.5;
-globe.scale.y = 1.5;
-globe.scale.z = 1.5;
+const options = {
+  globeSize: globeSize,
+};
+
+globe.init(options);
+globe.render();
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth < 781) {
+    globeSize = 50;
+  } else if (window.innerWidth >= 1200) {
+    globeSize = 150;
+  }
+  else {
+    globeSize = 100;
+  }
+
+options.globeSize = globeSize;
+globe.updateGeometry(options)
+globe.render();
+});
+
+// globe.scale.x = 1.5;
+// globe.scale.y = 1.5;
+// globe.scale.z = 1.5;
 
 // Set up renderer
 

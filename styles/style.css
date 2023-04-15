@@ -168,7 +168,8 @@ div#globe_carousel {
 @media screen and (max-width: 780px) {
     div#globe_carousel {
         min-height: 500px;
-        min-width: 400px
+        min-width: 500px;
+        /* background-color: white; */
     }
 
     #carousel_itm {
@@ -180,10 +181,6 @@ div#globe_carousel {
         max-width: 100%;
     }
 
-   /* #my_globe {
-        max-width: 50%;
-        max-height: 50%;
-    }  */
 
     #globe-canvas {
         max-width: 50%;
@@ -208,6 +205,47 @@ div#globe_carousel {
         padding: 0;
     }
 }
+
+@media screen and (max-width: 320px) {
+    div#globe_carousel {
+        min-height: 500px;
+        min-width: 500px
+    }
+
+    #carousel_itm {
+        /* max-width: 40% */
+        display: none;
+    }
+
+     #our_world {
+        max-width: 100%;
+    }
+
+
+    #globe-canvas {
+        max-width: 50%;
+        max-height: 50%;
+        margin: 0;
+        padding: 0;
+    }
+
+    canvas {
+        max-width: 100% !important
+    }
+
+    #gtext h1 {
+        font-size: 24px;
+    }
+
+    #gtext p {
+        font-size: 16px;
+    }
+    #alrt {
+        font-size: 16px;
+        padding: 0;
+    }
+}
+
 
 
 h2.welcome-message {
