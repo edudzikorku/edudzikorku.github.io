@@ -209,11 +209,10 @@ div#globe_carousel {
 @media screen and (max-width: 320px) {
     div#globe_carousel {
         min-height: 500px;
-        min-width: 500px
+        /* min-width: 500px */
     }
 
     #carousel_itm {
-        /* max-width: 40% */
         display: none;
     }
 
@@ -229,9 +228,9 @@ div#globe_carousel {
         padding: 0;
     }
 
-    canvas {
+    /* canvas {
         max-width: 100% !important
-    }
+    } */
 
     #gtext h1 {
         font-size: 24px;
