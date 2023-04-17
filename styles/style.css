@@ -291,11 +291,7 @@ div#globe_carousel {
 
 
 
-h2.welcome-message {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    padding: 0px 0px 0px 0px;
-    height: 20px;
+div#salute {
     border-color: #222;
     border-style: outset;
     --angle: 120deg;
@@ -310,16 +306,21 @@ h2.welcome-message {
         var(--r1),
         var(--r8)
     );
+
     border-image-slice: 1;
     border-image-repeat: stretch;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    justify-content: center;
     transition: filter 0.3s;
     animation: borderRotate 3s linear infinite forwards;
-    width: clamp(300px, 100%, 500px);
+    /* width: clamp(300px, 100%, 500px); */
 }
+
+h2.welcome-message {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding: 0px 0px 0px 0px;
+    height: 20px;
+}
+
 
 a.nav-link:hover {
     font-weight: bold;
