@@ -168,12 +168,11 @@ div#globe_carousel {
 @media screen and (max-width: 780px) {
     div#globe_carousel {
         min-height: 500px;
-        min-width: 500px;
+        /* min-width: 500px; */
         /* background-color: white; */
     }
 
     #carousel_itm {
-        /* max-width: 40% */
         display: none;
     }
 
