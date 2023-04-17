@@ -245,7 +245,7 @@ div#globe_carousel {
 }
 
 @media screen and (orientation: landscape) and (max-width: 780px) {
-    .spec {
+    .spec.col-12.col-sm-6.text-center {
         text-align: justify !important;
     }
 }
