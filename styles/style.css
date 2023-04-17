@@ -189,9 +189,9 @@ div#globe_carousel {
         padding: 0;
     }
 
-    canvas {
+    /* canvas {
         max-width: 100% !important
-    }
+    } */
 
     #gtext h1 {
         font-size: 24px;
