@@ -203,6 +203,12 @@ div#globe_carousel {
     }
 }
 
+@media screen and (orientation: landscape) and (max-width: 780px) {
+    .spec.col-12.col-sm-6.text-center {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 320px) {
     div#globe_carousel {
         min-height: 500px;
