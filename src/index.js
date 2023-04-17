@@ -132,5 +132,18 @@ function animate() {
 }
 animate();
 
+var ourWorldDiv = document.getElementById("our_world");
+var portrait = window.matchMedia("(orientation: portrait)");
 
+function handleOrientation(e) {
+  if (window.innerWidth < 781 && e.matches) {
+    ourWorldDiv.classList.add("col-12 col-sm-6 text-center");
+  } else {
+    ourWorldDiv.classList.remove("col-12 col-sm-6 text-center");
+  }
+}
+
+portrait.addEventListener("change", handleOrientation);
+
+handleOrientation(portrait);
 

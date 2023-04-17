@@ -291,37 +291,18 @@ div#globe_carousel {
 
 
 
-div#salute {
-    border-color: #222;
-    border-style: outset;
-    --angle: 120deg;
-    border-image: conic-gradient(
-        from var(--angle),
-        var(--r7),
-        var(--r6),
-        var(--r5),
-        var(--r4),
-        var(--r3),
-        var(--r2),
-        var(--r1),
-        var(--r8)
-    );
-
-    border-image-slice: 1;
-    border-image-repeat: stretch;
-    transition: filter 0.3s;
-    animation: borderRotate 3s linear infinite forwards;
-    /* width: clamp(300px, 100%, 500px); */
-}
+/* div#salute {
+    
+} */
 
 
 h2.welcome-message {
+    color: white;
     display: flex;
     align-items: center;
     min-height: 65px;
     padding: 0 15px;
     border-radius: 33px;
-    /* border: 1px solid #089df4; */
     border-width: 3px;
     border-color: #222;
     border-style: outset;
@@ -345,6 +326,7 @@ h2.welcome-message {
     height: clamp(300px, 100%, 300px);
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    /* background-color: #222; */
     /* padding: 10px; */
     /* padding: 0px 0px 0px 0px; */
     /* height: 20px; */
@@ -353,7 +335,7 @@ h2.welcome-message {
 
 @keyframes borderRotate {
     100% {
-        --angle:  30deg;
+        --angle:  90deg;
     }
 }
 
