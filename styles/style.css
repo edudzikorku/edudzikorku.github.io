@@ -204,8 +204,8 @@ div#globe_carousel {
 }
 
 @media screen and (orientation: landscape) and (max-width: 780px) {
-    .spec.col-12.col-sm-6.text-center {
-        display: none;
+    .spec {
+        text-align: justify !important;
     }
 }
 
@@ -256,6 +256,32 @@ h2.welcome-message {
     padding: 0px 0px 0px 0px;
     height: 20px;
 }
+
+/* .rwd-Hero_JumpLink {
+    border-color: #222;
+    border-style: outset;
+    --angle: 120deg;
+    border-image: conic-gradient(
+        from var(--angle),
+        var(--r7),
+        var(--r6),
+        var(--r5),
+        var(--r4),
+        var(--r3),
+        var(--r2),
+        var(--r1),
+        var(--r8)
+    );
+    border-image-slice: 1;
+    border-image-repeat: stretch;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    justify-content: center;
+    transition: filter 0.3s;
+    animation: borderRotate 3s linear infinite forwards;
+    width: clamp(300px, 100%, 500px);
+} */
 
 
 a.nav-link:hover {
