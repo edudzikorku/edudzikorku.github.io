@@ -47,6 +47,38 @@
     }
 }
 
+/* #loading-spinner {
+    display:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+} */
+
+/* #spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #007bff;
+    border-top-color: transparent;
+    animation: spinnerRotate 1s infinite linear;
+    margin: auto;
+    margin-top: calc(50% - 25px);
+} */
+
+@keyframes spinnerRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -206,7 +238,47 @@ div#globe_carousel {
     max-width: 60%;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 320px) {
+    div#globe_carousel {
+        min-height: 500px;
+        /* min-width: 500px */
+    }
+
+    #carousel_itm {
+        display: none;
+    }
+
+     #our_world {
+        max-width: 100%;
+    }
+
+
+    #globe-canvas {
+        max-width: 50%;
+        max-height: 50%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* canvas {
+        max-width: 100% !important
+    } */
+
+    #gtext h1 {
+        font-size: 22px;
+    }
+
+    #gtext p {
+        font-size: 14px;
+    }
+    #alrt {
+        font-size: 14px;
+        padding: 0;
+    }
+}
+
+
+@media screen and (min-width: 321px) and (max-width: 780px) {
     div#globe_carousel {
         min-height: 500px;
         /* min-width: 500px; */
@@ -252,50 +324,7 @@ div#globe_carousel {
     }
 }
 
-@media screen and (max-width: 320px) {
-    div#globe_carousel {
-        min-height: 500px;
-        /* min-width: 500px */
-    }
 
-    #carousel_itm {
-        display: none;
-    }
-
-     #our_world {
-        max-width: 100%;
-    }
-
-
-    #globe-canvas {
-        max-width: 50%;
-        max-height: 50%;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* canvas {
-        max-width: 100% !important
-    } */
-
-    #gtext h1 {
-        font-size: 24px;
-    }
-
-    #gtext p {
-        font-size: 16px;
-    }
-    #alrt {
-        font-size: 16px;
-        padding: 0;
-    }
-}
-
-
-
-/* div#salute {
-    
-} */
 
 
 h2.welcome-message {

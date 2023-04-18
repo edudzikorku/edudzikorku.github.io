@@ -21,3 +21,13 @@ function showMsg() {
 }
 // Call the showMsg function every 3 seconds to create a slideshow effect
 setInterval(showMsg, 6000)
+
+
+
+// window.addEventListener('load', function() {
+//     document.getElementById('loading-spinner').style.display = 'block';
+// });
+
+// window.addEventListener('DOMContentLoaded', function() {
+//     document.getElementById('loading-spinner').style.display = 'none';
+// })
