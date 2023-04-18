@@ -138,6 +138,17 @@ div#map {
     }
 }
 
+@media screen and (max-width: 390px) {
+    #submit, #clear {
+        width: 10% !important;
+    }
+
+    #export_but {
+        top: 10px !important;
+        left: 70px !important;
+    }
+}
+
 #clear[value='Clear Text'] {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;

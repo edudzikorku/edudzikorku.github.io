@@ -233,6 +233,8 @@ div#globe_carousel {
 
     #gtext h1 {
         font-size: 24px;
+        text-align: center;
+
     }
 
     #gtext p {
@@ -335,7 +337,7 @@ h2.welcome-message {
 
 @keyframes borderRotate {
     100% {
-        --angle:  90deg;
+        --angle:  800deg;
     }
 }
 
