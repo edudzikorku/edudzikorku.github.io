@@ -243,12 +243,6 @@ div#globe_carousel {
 #our_world {
     max-width: 60%;
 }
-@media screen and (max-width: 280px) {
-    .navbar-toggler {
-        position: static;
-        margin-top: 0;
-    }
-}
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
     body {
@@ -295,7 +289,7 @@ div#globe_carousel {
     a.navbar-brand {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 20px;
         text-align: center !important;
         margin: 0 auto;
         position: absolute;
@@ -335,7 +329,7 @@ div#globe_carousel {
 }
 
 
-@media screen and (min-width: 321px) and (max-width: 780px) {
+@media screen and (min-width: 321px) and (max-width: 912px) {
     body {
         padding-top: 90px !important;
       }
@@ -381,8 +375,12 @@ div#globe_carousel {
     a.navbar-brand {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 24px;
         text-align: center !important;
+        /* margin: 0 auto;
+        position: absolute;
+        left: 50%;
+        transition: translateX(-50%); */
     }
 
     .navbar-toggler {
@@ -416,11 +414,11 @@ div#globe_carousel {
 
 }
 
-@media screen and (min-width: 781px) and (max-width: 912px) {
+/* @media screen and (min-width: 280px) and (max-width: 912px) {
     .navbar-toggler {
-        right: 0!important;
+        right: 0 !important;
     }
-}
+} */
 
 /* @media screen and (orientation: landscape) and (max-width: 780px) {
     .spec.col-12.col-sm-6.text-center {
