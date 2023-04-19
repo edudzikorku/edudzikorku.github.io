@@ -53,155 +53,157 @@
         </g>
       </svg>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
-      <a href="../../index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a href="../../index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../about.html" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../services.html" class="nav-link">Services</a>
-            </li>
-            <li class="nav-item active">
-              <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../contact.html" class="nav-link">Contact</a>
-            </li>
-          </ul>
+    <main>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
+        <a href="../../index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../services.html" class="nav-link">Services</a>
+              </li>
+              <li class="nav-item active">
+                <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../contact.html" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div class="container my-3 my-sm-5">
-      <div class="row mb-4 align-items-center flex-md-row-reverse">
+      </nav>
+      <div class="container my-3 my-sm-5">
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
+              <img src="../images/closestFacs_land.jpg" class="img-fluid" alt="Nearest Health Facilities Among Communities in Ho Municipal">  
+              <figcaption><i>Nearest health facilities among communities in Ho Municipal</i></figcaption>
+            </div>
+            <div class="col-12 col-md-6">
+              <h2 class="display-3">Problem:</h2>
+              <p>
+                Ho Municipal is home to a diverse population that includes both urban and rural communities. Unfortunately, 
+                many of these communities face significant barriers to accessing quality healthcare 
+                services. The problem is compounded by the fact that many healthcare facilities in the Municipality are 
+                concentrated in Ho, leaving rural communities with limited access to essential 
+                health services. This situation is in contravention of international regulations that state 
+                that access to essential healthcare services should be available to everyone, regardless of 
+                their geographical location or socioeconomic status.
+              </p>
+              <h2 class="display-3">Project Objective:</h2>
+              <p>
+                The objective of this project is to examine the current state of healthcare service delivery in Ho Municipal, 
+                with specific focus on the driving distances between the communities and their nearest health facilities. 
+                The study will explore the current distribution of healthcare facilities, including both public and private 
+                healthcare providers, and assess their accessibility for different communities.
+              </p>
+              <h2 class="display-3">Importance:</h2>
+              <p>
+                By ensuring equitable access to healthcare services in Ho Municipal, this project will help improve health outcomes and reduce 
+                health disparities among different communities. This is in line with the global health 
+                agenda, which seeks to promote universal health coverage and ensure that all people have 
+                access to quality healthcare services. The project's findings will be 
+                relevant not only to the current area of interest but also to other areas in Ghana and other low- and middle-income 
+                countries facing similar challenges.
+              </p>
+            </div>
+        </div>
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
           <div class="col-12 col-md-6 mb-3 mb-md-0">
-            <img src="../images/closestFacs_land.jpg" class="img-fluid" alt="Nearest Health Facilities Among Communities in Ho Municipal">  
-            <figcaption><i>Nearest health facilities among communities in Ho Municipal</i></figcaption>
+            <div class="ratio ratio-10x9">
+              <iframe src="../maps/closest_fac.html" class="img-fluid" id="a"></iframe>  
+            </div>
           </div>
           <div class="col-12 col-md-6">
-            <h2 class="display-3">Problem:</h2>
+            <h2 class="display-3">Approach:</h2>
             <p>
-              Ho Municipal is home to a diverse population that includes both urban and rural communities. Unfortunately, 
-              many of these communities face significant barriers to accessing quality healthcare 
-              services. The problem is compounded by the fact that many healthcare facilities in the Municipality are 
-              concentrated in Ho, leaving rural communities with limited access to essential 
-              health services. This situation is in contravention of international regulations that state 
-              that access to essential healthcare services should be available to everyone, regardless of 
-              their geographical location or socioeconomic status.
+              The analysis utilized two sets of vector data in 
+              ESRI shapefile format; <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/communities" target="_blank">Communities (Origins)</a> 
+              and <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/health_facilities" target="_blank">Health Facilities (Destinations)</a>. 
+              The <a href="https://geopandas.org/en/stable/" target="_blank">GeoPandas</a> Python library was used to access and 
+              preprocess the data, removing duplicates and inaccurate entries, and formatting the table 
+              headings. 
+            </p> 
+            <p>
+              To compute the distances between the Communities (Origins) and Health Facilities (Destinations), the <a href="https://openrouteservice.org/dev/#/api-docs/v2/matrix" target="_blank">Open 
+              Route Service's (ORS)</a> Distance Matrix API was utilized. The API required a list of 
+              coordinate pairs in the WGS 84 format (longitude, latitude), which were obtained from the 
+              geometry columns of the GeoDataFrames, as well as a list of indices for the origins and 
+              destinations, using the index columns in each of the GeoDataFrames.
             </p>
-            <h2 class="display-3">Project Objective:</h2>
             <p>
-              The objective of this project is to examine the current state of healthcare service delivery in Ho Municipal, 
-              with specific focus on the driving distances between the communities and their nearest health facilities. 
-              The study will explore the current distribution of healthcare facilities, including both public and private 
-              healthcare providers, and assess their accessibility for different communities.
+              Following data preprocessing, a post request was made to the ORS Distance Matrix API with the required parameters. 
+              The output contained a list of distances from each community (origin) to each health 
+              facility (destination). The origin GeoDataFrame was then iterated over to extract the 
+              minimum distance and the coordinates of their associated destinations. The extracted 
+              destination coordinates were further used to retrieve the names of the destinations.
+              A new GeoDataFrame was created using the variables generated from the previous computation, 
+              including origin name, origin latitude, origin longitude, destination name, destination 
+              latitude, destination longitude, and minimum distance. This was done to enable the 
+              construction of lines connecting each origin to its associated destination using 
+              the <a href="https://shapely.readthedocs.io/en/stable/" target="_blank">Shapely</a> Python library.
             </p>
-            <h2 class="display-3">Importance:</h2>
             <p>
-              By ensuring equitable access to healthcare services in Ho Municipal, this project will help improve health outcomes and reduce 
-              health disparities among different communities. This is in line with the global health 
-              agenda, which seeks to promote universal health coverage and ensure that all people have 
-              access to quality healthcare services. The project's findings will be 
-              relevant not only to the current area of interest but also to other areas in Ghana and other low- and middle-income 
-              countries facing similar challenges.
+              Finally, the results of the analysis were displayed using visualization tools such as 
+              <a href="https://matplotlib.org/" target="_blank">Matplotlib</a> and 
+              <a href="https://python-visualization.github.io/folium/" target="_blank">Folium</a>.
             </p>
           </div>
-      </div>
-      <div class="row mb-4 align-items-center flex-md-row-reverse">
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          <div class="ratio ratio-10x9">
-            <iframe src="../maps/closest_fac.html" class="img-fluid" id="a"></iframe>  
+        </div>
+        <!-- <hr class="mb-0"> -->
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
+          <div class="col-12 col-md-6 mb-3 mb-md-0">
+            <div class="ratio ratio-10x9">
+              <iframe src="../maps/closest_fac_dir.html"></iframe>
+            </div>
           </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <h2 class="display-3">Approach:</h2>
-          <p>
-            The analysis utilized two sets of vector data in 
-            ESRI shapefile format; <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/communities" target="_blank">Communities (Origins)</a> 
-            and <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/health_facilities" target="_blank">Health Facilities (Destinations)</a>. 
-            The <a href="https://geopandas.org/en/stable/" target="_blank">GeoPandas</a> Python library was used to access and 
-            preprocess the data, removing duplicates and inaccurate entries, and formatting the table 
-            headings. 
-          </p> 
-          <p>
-            To compute the distances between the Communities (Origins) and Health Facilities (Destinations), the <a href="https://openrouteservice.org/dev/#/api-docs/v2/matrix" target="_blank">Open 
-            Route Service's (ORS)</a> Distance Matrix API was utilized. The API required a list of 
-            coordinate pairs in the WGS 84 format (longitude, latitude), which were obtained from the 
-            geometry columns of the GeoDataFrames, as well as a list of indices for the origins and 
-            destinations, using the index columns in each of the GeoDataFrames.
-          </p>
-          <p>
-            Following data preprocessing, a post request was made to the ORS Distance Matrix API with the required parameters. 
-            The output contained a list of distances from each community (origin) to each health 
-            facility (destination). The origin GeoDataFrame was then iterated over to extract the 
-            minimum distance and the coordinates of their associated destinations. The extracted 
-            destination coordinates were further used to retrieve the names of the destinations.
-            A new GeoDataFrame was created using the variables generated from the previous computation, 
-            including origin name, origin latitude, origin longitude, destination name, destination 
-            latitude, destination longitude, and minimum distance. This was done to enable the 
-            construction of lines connecting each origin to its associated destination using 
-            the <a href="https://shapely.readthedocs.io/en/stable/" target="_blank">Shapely</a> Python library.
-          </p>
-          <p>
-            Finally, the results of the analysis were displayed using visualization tools such as 
-            <a href="https://matplotlib.org/" target="_blank">Matplotlib</a> and 
-            <a href="https://python-visualization.github.io/folium/" target="_blank">Folium</a>.
-          </p>
+          <div class="col-12 col-md-6">
+            <h2 class="display-3">Results and Conclusion:</h2>
+            <p>
+              The analysis revealed some fascinating statistics regarding the minimum distances between each community and its associated healthcare 
+              facility.
+              The data shows that the average minimum distance between each community and its associated healthcare facility is 2.88 km, with a standard 
+              deviation of 2.43 km. This means that, on average, the communities are within 2.88 km of the nearest health facility. The minimum 
+              distance between each origin and its associated destination is 0.02 km, which indicates that some 
+              communities are fortunate to have a health facility located very close to them. However, 
+              the maximum distance of 11.02 km suggests that some communities may be facing significant 
+              barriers in accessing healthcare services, as they have to travel long distances to get to 
+              the nearest health facility. This could lead to delays in treatment, increased health 
+              complications, and even mortality.
+            </p>
+            <p>
+              Additionally, the standard deviation of 2.43 km represents a significant variation in the minimum distances between 
+              communities and their associated health facilities. In fact, the standard deviation is 84% 
+              of the mean, indicating a wide spread of values around the average minimum distance. 
+            </p>
+            <p>
+              These statistics have important implications for the <a href="https://www.who.int/health-topics/universal-health-coverage#tab=tab_1" target="_blank">World Health Organization's (WHO)</a> standards and the 
+              <a href="https://www.un.org/sustainabledevelopment/health/" target="_blank">Sustainable Development Goals (SDGs)</a>. The WHO recommends that healthcare services should be available within 
+              a maximum distance of 5 km from any community. The analysis revealed that a significant number of 
+              communities in the Municipality do not meet this standard, with some healthcare facilities located more than 
+              10 km away from their associated communities. The SDGs aim to ensure that all people have access to quality healthcare services by 2030. 
+              While progress has been made towards this goal, there is still a significant amount of work to be done.
+            </p>
+            <p>
+              Overall, valuable insights have been provided into the accessibility and availability of healthcare 
+              services in the Ho Municipality. In addition, the assessment highlights areas that require attention to meet the WHO 
+              standards and SDG goals. By presenting the statistics in a clear and concise manner, the evaluation
+              hopes to raise awareness of the importance of accessible and quality healthcare for all. It also emphasizes the 
+              need for a holistic approach to healthcare service delivery that takes into account the unique needs and 
+              challenges faced by different communities.
+            </p>
+          </div>    
         </div>
       </div>
-      <!-- <hr class="mb-0"> -->
-      <div class="row mb-4 align-items-center flex-md-row-reverse">
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          <div class="ratio ratio-10x9">
-            <iframe src="../maps/closest_fac_dir.html"></iframe>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <h2 class="display-3">Results and Conclusion:</h2>
-          <p>
-            The analysis revealed some fascinating statistics regarding the minimum distances between each community and its associated healthcare 
-            facility.
-            The data shows that the average minimum distance between each community and its associated healthcare facility is 2.88 km, with a standard 
-            deviation of 2.43 km. This means that, on average, the communities are within 2.88 km of the nearest health facility. The minimum 
-            distance between each origin and its associated destination is 0.02 km, which indicates that some 
-            communities are fortunate to have a health facility located very close to them. However, 
-            the maximum distance of 11.02 km suggests that some communities may be facing significant 
-            barriers in accessing healthcare services, as they have to travel long distances to get to 
-            the nearest health facility. This could lead to delays in treatment, increased health 
-            complications, and even mortality.
-          </p>
-          <p>
-            Additionally, the standard deviation of 2.43 km represents a significant variation in the minimum distances between 
-            communities and their associated health facilities. In fact, the standard deviation is 84% 
-            of the mean, indicating a wide spread of values around the average minimum distance. 
-          </p>
-          <p>
-            These statistics have important implications for the <a href="https://www.who.int/health-topics/universal-health-coverage#tab=tab_1" target="_blank">World Health Organization's (WHO)</a> standards and the 
-            <a href="https://www.un.org/sustainabledevelopment/health/" target="_blank">Sustainable Development Goals (SDGs)</a>. The WHO recommends that healthcare services should be available within 
-            a maximum distance of 5 km from any community. The analysis revealed that a significant number of 
-            communities in the Municipality do not meet this standard, with some healthcare facilities located more than 
-            10 km away from their associated communities. The SDGs aim to ensure that all people have access to quality healthcare services by 2030. 
-            While progress has been made towards this goal, there is still a significant amount of work to be done.
-          </p>
-          <p>
-            Overall, valuable insights have been provided into the accessibility and availability of healthcare 
-            services in the Ho Municipality. In addition, the assessment highlights areas that require attention to meet the WHO 
-            standards and SDG goals. By presenting the statistics in a clear and concise manner, the evaluation
-            hopes to raise awareness of the importance of accessible and quality healthcare for all. It also emphasizes the 
-            need for a holistic approach to healthcare service delivery that takes into account the unique needs and 
-            challenges faced by different communities.
-          </p>
-        </div>    
-      </div>
-    </div>
+    </main>
     <footer class="small bg-light" id="foot">
       <div class="container py-3 py-sm-3">
         <div class="row">

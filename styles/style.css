@@ -119,6 +119,7 @@ a.navbar-brand {
     text-align: left;
 }
 
+
 h1#mont_bold {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -218,6 +219,10 @@ div#globe_carousel {
     position: relative;
 }
 
+/* .navbar-toggler {
+    display: none;
+} */
+
 @media screen and (min-width: 0px) and (max-width: 320px) {
     div#globe_carousel {
         min-height: 500px;
@@ -269,6 +274,14 @@ div#globe_carousel {
         margin-top: 8px;
         margin-right: 16px;
     }
+
+    /* .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-nav {
+        display: none;
+    } */
 
     .nav-item {
         text-align: center !important;
@@ -330,6 +343,14 @@ div#globe_carousel {
         margin-top: 8px;
         margin-right: 16px;
     }
+
+    /* .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-nav {
+        display: none;
+    } */
 
     .nav-item {
         right: 0 !important;
@@ -522,17 +543,34 @@ img#img_3 {
 }
 
 
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div.spinner-container {
+    display: grid;
+    transition: background-color var(--trans-dur);
+    place-items: center;
     height: 100vh;
+    color: var(--fg);
+    background-color: var(--bg);
+    z-index: 9999;
 }
 
+/* div.spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 9999;
+} */
+
+main {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
 
 .ip {
-	width: 4em;
-	height: 2em;
+	width: 6em;
+	height: 6em;
 }
 
 .ip__track {
@@ -549,15 +587,42 @@ img#img_3 {
 	animation-name: worm2;
 }
 
+@media(prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 90%, 5%);
+        --fg: hsl(var(--hue), 90%, 95%);
+    }
+    .ip_track {
+        stroke: hsl(var(--hue), 90%, 15%);
+    }
+}
+
 @keyframes worm1 {
-	to {
-		stroke-dashoffset: -434;
-	}
+    from {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        animation-timing-function: steps(1);
+        stroke-dashoffset: -358;
+    }
+    50.01% {
+        animation-timing-function: linear;
+        stroke-dashoffset: 358;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 @keyframes worm2 {
+    from {
+        stroke-dashoffset: 358;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
 	to {
-		stroke-dashoffset: -808;
+		stroke-dashoffset: -358;
 	}
 }
 
