@@ -286,7 +286,7 @@ div#globe_carousel {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-size: 16px;
-        text-align: center;
+        text-align: center !important;
     }
 }
 
@@ -334,7 +334,7 @@ div#globe_carousel {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-size: 16px;
-        text-align: center;
+        text-align: center !important;
     }
 }
 
