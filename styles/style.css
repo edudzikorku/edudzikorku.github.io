@@ -288,6 +288,17 @@ div#globe_carousel {
         font-size: 16px;
         text-align: center !important;
     }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
 }
 
 
@@ -336,6 +347,17 @@ div#globe_carousel {
         font-size: 16px;
         text-align: center !important;
     }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
 }
 
 @media screen and (orientation: landscape) and (max-width: 780px) {
@@ -348,6 +370,23 @@ div#globe_carousel {
         font-weight: 600;
         font-size: 16px;
         text-align: center;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+}
+
+@media screen and (min-width: 780px){
+    .dg-lg-none {
+        display: none !important;
     }
 }
 
