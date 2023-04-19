@@ -31,3 +31,8 @@ setInterval(showMsg, 6000)
 // window.addEventListener('DOMContentLoaded', function() {
 //     document.getElementById('loading-spinner').style.display = 'none';
 // })
+document.querySelector('.spinner-container').style.display = 'flex';
+
+window.addEventListener('load', function() {
+    document.querySelector('.spinner-container').style.display = 'none';
+})
