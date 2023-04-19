@@ -47,32 +47,6 @@
     }
 }
 
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 5px solid #007bff;
-    border-top-color: transparent;
-    animation: spinnerRotate 1s infinite linear;
-    /* margin: auto;
-    margin-top: calc(50% - 25px); */
-}
-
-@keyframes spinnerRotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 
 div h1.text-center.mb-sm-4.display-1 {
@@ -577,3 +551,58 @@ img#img_3 {
     font-style: italic;
     text-align: center;
   }
+
+  * {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),90%,95%);
+	--fg: hsl(var(--hue),90%,5%);
+	--trans-dur: 0.3s;
+}
+
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.ip {
+	width: 4em;
+	height: 2em;
+}
+
+.ip__track {
+	stroke: hsl(var(--hue),90%,90%);
+	transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+	animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+	animation-name: worm2;
+}
+
+@keyframes worm1 {
+	to {
+		stroke-dashoffset: -434;
+	}
+}
+
+@keyframes worm2 {
+	to {
+		stroke-dashoffset: -808;
+	}
+}
+

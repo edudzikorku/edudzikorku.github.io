@@ -245,3 +245,49 @@ input#file-input {
     display: none;
 }
 
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),90%,95%);
+	--fg: hsl(var(--hue),90%,5%);
+	--trans-dur: 0.3s;
+}
+
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.ip {
+	width: 4em;
+	height: 2em;
+}
+
+.ip__track {
+	stroke: hsl(var(--hue),90%,90%);
+	transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+	animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+	animation-name: worm2;
+}
+
+@keyframes worm1 {
+	to {
+		stroke-dashoffset: -434;
+	}
+}
+
+@keyframes worm2 {
+	to {
+		stroke-dashoffset: -808;
+	}
+}
