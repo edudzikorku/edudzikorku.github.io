@@ -214,11 +214,11 @@ div#globe_carousel {
     max-width: 60%;
 }
 
-@media screen and (min-width: 0px) and (max-width: 320px) {
-    body {
-        padding-top: 90px !important;
-    }
+.border-bottom.fixed-top {
+    position: relative;
+}
 
+@media screen and (min-width: 0px) and (max-width: 320px) {
     div#globe_carousel {
         min-height: 500px;
         /* min-width: 500px */
@@ -260,11 +260,6 @@ div#globe_carousel {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-size: 20px;
-        text-align: center !important;
-        margin: 0 auto;
-        position: absolute;
-        left: 50%;
-        transition: translateX(-50%);
     }
 
     .navbar-toggler {
@@ -272,37 +267,17 @@ div#globe_carousel {
         right: 0;
         top: 0;
         margin-top: 8px;
+        margin-right: 16px;
     }
 
-    .navbar-nav {
-        display: none;
+    .nav-item {
+        text-align: center !important;
+        right: 0 !important;
     }
-
-    .dg-lg-none .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        margin-top: 8px;
-        gap: 8px;
-    }
-
-    .navbar-toggler[aria-expanded="true"] ~ .navbar-collapse .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        align-items: center !important; 
-        margin-top: 8px;
-        gap: 8px;
-    }
-
 }
 
 
 @media screen and (min-width: 321px) and (max-width: 912px) {
-    body {
-        padding-top: 90px !important;
-      }
 
     div#globe_carousel {
         min-height: 500px;
@@ -346,11 +321,6 @@ div#globe_carousel {
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         font-size: 24px;
-        text-align: center !important;
-        /* margin: 0 auto;
-        position: absolute;
-        left: 50%;
-        transition: translateX(-50%); */
     }
 
     .navbar-toggler {
@@ -358,28 +328,13 @@ div#globe_carousel {
         right: 0;
         top: 0;
         margin-top: 8px;
+        margin-right: 16px;
     }
 
-    .navbar-nav {
-        display: none;
-    }
-
-    .dg-lg-none .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        margin-top: 8px;
-        gap: 8px;
-    }
-
-    .navbar-toggler[aria-expanded="true"] ~ .navbar-collapse .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        align-items: center !important; 
-        margin-top: 8px;
-        gap: 8px;
+    .nav-item {
+        right: 0 !important;
+        margin-right: 16px !important;
+        text-align: center;
     }
 
 }
@@ -418,11 +373,11 @@ div#globe_carousel {
     }
 } */
 
-@media screen and (min-width: 913px){
+/* @media screen and (min-width: 913px){
     .dg-lg-none {
         display: none !important;
     }
-}
+} */
 
 
 
