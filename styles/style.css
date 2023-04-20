@@ -360,49 +360,6 @@ div#globe_carousel {
 
 }
 
-/* @media screen and (min-width: 280px) and (max-width: 912px) {
-    .navbar-toggler {
-        right: 0 !important;
-    }
-} */
-
-/* @media screen and (orientation: landscape) and (max-width: 780px) {
-    .spec.col-12.col-sm-6.text-center {
-        text-align: justify !important;
-    }
-
-    a.navbar-brand {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .navbar-toggler {
-        order: 2;
-    }
-
-    .navbar-nav {
-        display: none;
-    }
-
-    .dg-lg-none .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-    }
-} */
-
-/* @media screen and (min-width: 913px){
-    .dg-lg-none {
-        display: none !important;
-    }
-} */
-
-
-
-
 h2.welcome-message {
     color: white;
     display: flex;
@@ -528,12 +485,12 @@ img#img_3 {
     text-align: center;
   }
 
-* {
+/* * {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-}
+} */
 
 :root {
 	--hue: 223;
@@ -562,11 +519,6 @@ div.spinner-container {
     background-color: #ffffff;
     z-index: 9999;
 } */
-
-main {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
 
 .ip {
 	width: 6em;

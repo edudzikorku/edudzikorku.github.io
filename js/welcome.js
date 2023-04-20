@@ -5,14 +5,6 @@ $(document).ready(function () {
         });
     });
 
-    // $(document).on("DOMContentLoaded", function() {
-    //     var bgColor = $(".spinner-container").css("background-color");
-    //     $("main").css("background-color", bgColor);
-    //     $(".spinner-container").fadeOut(300, function() {
-    //         $("main").css("opacity", "1");
-    //     });
-    // });
-
     // Define an array of welcome messages in different languages
     var msgs = [
         "Welcome!",
@@ -48,11 +40,11 @@ $(document).ready(function () {
         navbarNav.show();
     }
 
-    if ($(window).innerWidth() < 768) {
-        hideNavbarNav();
-    } else {
-        showNavbarNav();
-    }
+    // if ($(window).innerWidth() < 768) {
+    //     hideNavbarNav();
+    // } else {
+    //     showNavbarNav();
+    // }
 
     navbarToggler.on("click", () => {
         navbarNav.toggle();

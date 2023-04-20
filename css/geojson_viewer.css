@@ -245,6 +245,13 @@ input#file-input {
     display: none;
 }
 
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 :root {
 	--hue: 223;
 	--bg: hsl(var(--hue),90%,95%);
@@ -253,17 +260,25 @@ input#file-input {
 }
 
 
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div.spinner-container {
+    display: grid;
+    transition: background-color var(--trans-dur);
+    place-items: center;
     height: 100vh;
+    color: var(--fg);
+    background-color: var(--bg);
+    z-index: 9999;
 }
 
 
+main {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
 .ip {
-	width: 4em;
-	height: 2em;
+	width: 6em;
+	height: 6em;
 }
 
 .ip__track {
@@ -280,14 +295,41 @@ input#file-input {
 	animation-name: worm2;
 }
 
+@media(prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 90%, 5%);
+        --fg: hsl(var(--hue), 90%, 95%);
+    }
+    .ip_track {
+        stroke: hsl(var(--hue), 90%, 15%);
+    }
+}
+
 @keyframes worm1 {
-	to {
-		stroke-dashoffset: -434;
-	}
+    from {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        animation-timing-function: steps(1);
+        stroke-dashoffset: -358;
+    }
+    50.01% {
+        animation-timing-function: linear;
+        stroke-dashoffset: 358;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 @keyframes worm2 {
+    from {
+        stroke-dashoffset: 358;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
 	to {
-		stroke-dashoffset: -808;
+		stroke-dashoffset: -358;
 	}
 }
