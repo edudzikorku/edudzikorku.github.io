@@ -7,6 +7,10 @@
 }
 
 :root {
+    --hue: 223;
+	--bg: hsl(var(--hue),90%,95%);
+	--fg: hsl(var(--hue),90%,5%);
+	--trans-dur: 0.3s;
     --grad: linear-gradient(63deg, #262626 23%, transparent 23%) 7px 0,
         linear-gradient(63deg, transparent 73%, #262626 76%),
         linear-gradient(
@@ -47,7 +51,74 @@
     }
 }
 
+div.spinner-container {
+    display: grid;
+    transition: background-color var(--trans-dur);
+    place-items: center;
+    height: 5vh;
+    color: var(--fg);
+    /* background-color: var(--bg); */
+    margin-left: 10px;
+}
 
+.ip {
+	width: 2.5em;
+	height: 2.5em;
+}
+
+.ip__track {
+	/* stroke: #000000; */
+    stroke: hsl(var(--hue),50%,50%);
+	transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+	animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+	animation-name: worm2;
+}
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 90%, 5%);
+        --fg: hsl(var(--hue), 90%, 95%);
+    }
+    .ip_track {
+        stroke: hsl(var(--hue), 90%, 15%);
+    }
+}
+
+@keyframes worm1 {
+    from {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        animation-timing-function: steps(1);
+        stroke-dashoffset: -358;
+    }
+    50.01% {
+        animation-timing-function: linear;
+        stroke-dashoffset: 358;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes worm2 {
+    from {
+        stroke-dashoffset: 358;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+	to {
+		stroke-dashoffset: -358;
+	}
+}
 
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
@@ -224,6 +295,10 @@ div#globe_carousel {
 } */
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
+    div.spinner-container {
+        margin-right: 100px !important;
+    }
+
     div#globe_carousel {
         min-height: 500px;
         /* min-width: 500px */
@@ -291,6 +366,9 @@ div#globe_carousel {
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+    div.spinner-container {
+        margin-right: 100px !important;
+    }
 
     div#globe_carousel {
         min-height: 500px;
@@ -491,94 +569,3 @@ img#img_3 {
 	margin: 0;
 	padding: 0;
 } */
-
-:root {
-	--hue: 223;
-	--bg: hsl(var(--hue),90%,95%);
-	--fg: hsl(var(--hue),90%,5%);
-	--trans-dur: 0.3s;
-}
-
-
-div.spinner-container {
-    display: grid;
-    transition: background-color var(--trans-dur);
-    place-items: center;
-    height: 100vh;
-    color: var(--fg);
-    background-color: var(--bg);
-    z-index: 9999;
-}
-
-/* main {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-} */
-/* div.spinner-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ffffff;
-    z-index: 9999;
-} */
-
-.ip {
-	width: 6em;
-	height: 6em;
-}
-
-.ip__track {
-	stroke: hsl(var(--hue),90%,90%);
-	transition: stroke var(--trans-dur);
-}
-
-.ip__worm1,
-.ip__worm2 {
-	animation: worm1 2s linear infinite;
-}
-
-.ip__worm2 {
-	animation-name: worm2;
-}
-
-@media(prefers-color-scheme: dark) {
-    :root {
-        --bg: hsl(var(--hue), 90%, 5%);
-        --fg: hsl(var(--hue), 90%, 95%);
-    }
-    .ip_track {
-        stroke: hsl(var(--hue), 90%, 15%);
-    }
-}
-
-@keyframes worm1 {
-    from {
-        stroke-dashoffset: 0;
-    }
-    50% {
-        animation-timing-function: steps(1);
-        stroke-dashoffset: -358;
-    }
-    50.01% {
-        animation-timing-function: linear;
-        stroke-dashoffset: 358;
-    }
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes worm2 {
-    from {
-        stroke-dashoffset: 358;
-    }
-    50% {
-        stroke-dashoffset: 0;
-    }
-	to {
-		stroke-dashoffset: -358;
-	}
-}
-
