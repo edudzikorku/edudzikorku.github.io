@@ -290,7 +290,7 @@ div#globe_carousel {
 }
 
 
-@media screen and (min-width: 321px) and (max-width: 912px) {
+@media screen and (min-width: 321px) and (max-width: 991px) {
 
     div#globe_carousel {
         min-height: 500px;
@@ -528,7 +528,7 @@ img#img_3 {
     text-align: center;
   }
 
-  * {
+* {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
