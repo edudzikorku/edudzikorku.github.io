@@ -510,6 +510,10 @@ div.spinner-container {
     z-index: 9999;
 }
 
+main {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
 /* div.spinner-container {
     position: fixed;
     top: 0;
