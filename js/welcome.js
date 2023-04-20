@@ -1,8 +1,13 @@
 $(document).ready(function () {
+
+    // $(window).on("load", function() {
+    //     $(".spinner-container").fadeOut(300, function() {
+    //         $("main").css("opacity", 1);
+    //     });
+    // });
+
     $(window).on("load", function() {
-        $(".spinner-container").fadeOut(300, function() {
-            $("main").css("opacity", "1");
-        });
+        $(".spinner-container").fadeOut(3000);
     });
 
     // Define an array of welcome messages in different languages

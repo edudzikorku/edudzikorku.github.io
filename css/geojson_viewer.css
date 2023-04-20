@@ -267,14 +267,14 @@ div.spinner-container {
     height: 100vh;
     color: var(--fg);
     background-color: var(--bg);
-    z-index: 9999;
+    /* z-index: 9999; */
 }
 
-
+/* 
 main {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-}
+} */
 
 .ip {
 	width: 6em;
