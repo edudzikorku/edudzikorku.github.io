@@ -6,9 +6,21 @@ $(document).ready(function () {
     //     });
     // });
 
+    // $(window).on("load", function() {
+    //     $(".spinner-container").fadeOut(3000);
+    // });
+
+    // $("body").addClass("loaded");
+
+
     $(window).on("load", function() {
         $(".spinner-container").fadeOut(3000);
     });
+
+    // $(document).ready(function() {
+    //     $(".spinner-container").fadeOut();
+    // });
+
 
     // Define an array of welcome messages in different languages
     var msgs = [
@@ -25,14 +37,14 @@ $(document).ready(function () {
     // and update the index for the next message
     function showMsg() {
         // Get the element to display the message
-        var msgElement = $("#welcomeMessage");
+        var msgElement = msgs[currentMsgIndex];
         // Set the text to the current message
-        msgElement.innerText = msgs[currentMsgIndex];
+        $("#welcomeMessage").text(msgElement);
         // Increment the index for the next message,or return to the beginning if at the end
         currentMsgIndex = (currentMsgIndex + 1) % msgs.length;
     }
     // Call the showMsg function every 3 seconds to create a slideshow effect
-    setInterval(showMsg, 6000)
+    setInterval(showMsg, 6000);
 
     const navbarToggler = $("navbar-toggler");
     const navbarNav = $(".navbar-nav");

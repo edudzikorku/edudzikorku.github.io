@@ -267,7 +267,7 @@ div.spinner-container {
     height: 100vh;
     color: var(--fg);
     background-color: var(--bg);
-    /* z-index: 9999; */
+    z-index: 9999;
 }
 
 /* 
