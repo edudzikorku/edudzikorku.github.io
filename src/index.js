@@ -8,13 +8,9 @@ import {
   PerspectiveCamera,
   AmbientLight,
   DirectionalLight,
-  // Color,
-  Fog
-  // AxesHelper,
-  // DirectionalLightHelper,
-  // CameraHelper,
-  // PointLight,
-  // SphereGeometry,
+  Color,
+  Fog, TextureLoader, MeshBasicMaterial, PlaneGeometry,
+  Mesh
 } from "three";
 
 
@@ -31,12 +27,12 @@ const arcsData = [...Array(N).keys()].map(() => ({
 const globe = new ThreeGlobe()
     .globeImageUrl('./img/nasa_night_lights.jpg')
     .bumpImageUrl('./img/earth-topology.png')
-    .arcsData(arcsData)
-    .arcColor('color')
-    .arcDashLength(0.4)
-    .arcDashGap(3)
-    .arcDashInitialGap(() => Math.random() * 5)
-    .arcDashAnimateTime(1000)
+    // .arcsData(arcsData)
+    // .arcColor('color')
+    // .arcDashLength(0.4)
+    // .arcDashGap(3)
+    // .arcDashInitialGap(() => Math.random() * 5)
+    // .arcDashAnimateTime(1000)
 
 // Set globe size based on different viewports  
 
@@ -51,7 +47,7 @@ globe.scale.z = 1.5;
 }
 // Set up renderer
 
-const renderer = new WebGLRenderer();
+const renderer = new WebGLRenderer({ antialias: false, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('my_globe').appendChild(renderer.domElement);
 
@@ -63,7 +59,12 @@ scene.add(new AmbientLight(0xbbbbbb));
 scene.add(new DirectionalLight(0xffffff, 0.6));
 
   // Additional effects
-scene.fog = new Fog(0x535ef3, 400, 2000);
+scene.fog = new Fog(0x535ef3, 400, 2000); 
+// set up a backdrop image 
+// load image as texture 
+const textureLoader = new TextureLoader();
+const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
+scene.background = galaxyTexture;
 
 //  Setup camera 
 
@@ -120,13 +121,26 @@ tbControls.minDistance = 101;
 tbControls.rotateSpeed = 5;
 tbControls.zoomSpeep = 0.8;
 
+// mimic earth's anticlockwise rotation
+const earthRotationalVelocityKmp = 1670;
+const earthRadius = 1;
+
+// calculate rotation angle based on frame rate
+const frameRate = 60;
+const timePerFrame = 1 / frameRate; // time per frame in seconds
+// earth's rotational velocity per frame in km
+const rotationalVelocityPerFrameKph = (earthRotationalVelocityKmp * 1000 / 3600) * timePerFrame;
+// earth's rotational velocity per frame in radians
+const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadius) * (Math.PI / 180);
+
+
 
 // Kick-off renderer
 
 function animate() {
   // Frame cycle
   tbControls.update();
-  globe.rotation.y += 0.001
+  globe.rotation.y -= rotationalVelocityPerRadians;
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
 }
@@ -139,7 +153,7 @@ function handleOrientation(e) {
   if (window.innerWidth < 781 && e.matches) {
     ourWorldDiv.classList.add("col-12 col-sm-6 text-center");
   } else {
-    ourWorldDiv.classList.remove("col-12 col-sm-6 text-center");
+    ourWorldDiv.classList.remove("'col-12 col-sm-6 text-center'");
   }
 }
 
