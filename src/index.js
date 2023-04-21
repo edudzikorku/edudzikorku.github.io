@@ -14,7 +14,7 @@ import {
 } from "three";
 
 
-// Gen random  data 
+// Gen random  data
 const N = 50;
 const arcsData = [...Array(N).keys()].map(() => ({
   startLat: (Math.random() - 0.5) * 180,
@@ -34,7 +34,7 @@ const globe = new ThreeGlobe()
     // .arcDashInitialGap(() => Math.random() * 5)
     // .arcDashAnimateTime(1000)
 
-// Set globe size based on different viewports  
+// Set globe size based on different viewports
 
 if (window.innerWidth < 781) {
   globe.scale.x = 1;
@@ -51,7 +51,7 @@ const renderer = new WebGLRenderer({ antialias: false, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('my_globe').appendChild(renderer.domElement);
 
-// Setup scene 
+// Setup scene
 
 const scene = new Scene();
 scene.add(globe);
@@ -59,14 +59,14 @@ scene.add(new AmbientLight(0xbbbbbb));
 scene.add(new DirectionalLight(0xffffff, 0.6));
 
   // Additional effects
-scene.fog = new Fog(0x535ef3, 400, 2000); 
-// set up a backdrop image 
-// load image as texture 
+scene.fog = new Fog(0x535ef3, 400, 2000);
+// set up a backdrop image
+// load image as texture
 const textureLoader = new TextureLoader();
 const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
 scene.background = galaxyTexture;
 
-//  Setup camera 
+//  Setup camera
 
 const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 // camera.aspect = window.innerWidth / window.innerHeight;
@@ -114,7 +114,7 @@ function zoomInOut () {
 // };
 
 
-// Add camera controls 
+// Add camera controls
 
 const tbControls = new TrackballControls(camera, renderer.domElement);
 tbControls.minDistance = 101;
