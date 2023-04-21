@@ -223,13 +223,8 @@ div#map {
 
 @media screen and (min-width: 535px) and (max-width: 991px) {
 
-    nav {
-        z-index: 2;
-    }
-
     #map #map.leaflet-pane.leaflet-map-pane, #map-container {
         padding-top: 0px !important;
-        z-index: -1 !important;
     }
 
     #submit, #clear {
@@ -265,9 +260,9 @@ div#map {
         border: 0;
     }
 
-    #export_but, #submit_but {
+    /* #export_but, #submit_but {
         z-index: 1 !important;
-    }
+    } */
 
     #upload_but {
         left: 70px !important;
