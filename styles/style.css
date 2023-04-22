@@ -296,7 +296,6 @@ div#globe_carousel {
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
     #my_globe {
-        position: relative;
         overflow: hidden !important;
     }
 
@@ -373,7 +372,6 @@ div#globe_carousel {
 @media screen and (min-width: 321px) and (max-width: 991px) {
 
     #my_globe {
-        position: relative;
         overflow: hidden !important;
     }
 

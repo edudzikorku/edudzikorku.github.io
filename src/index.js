@@ -78,6 +78,7 @@ const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 camera.updateProjectionMatrix();
 camera.position.z = 300;
 
+
 // Handle zoom in and out
 
 globe.addEventListener('click', zoomInOut);
@@ -137,6 +138,13 @@ tbControls.zoomSpeep = 0.8;
 // const rotationalVelocityPerFrameKph = (earthRotationalVelocityKmp * 1000 / 3600) * timePerFrame;
 // // earth's rotational velocity per frame in radians
 // const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadius) * (Math.PI / 180);
+
+// update camera aspect ratio on window resize
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 
 
