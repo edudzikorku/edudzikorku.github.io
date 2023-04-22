@@ -24,10 +24,9 @@ const arcsData = [...Array(N).keys()].map(() => ({
   color: ['red', 'yellow', 'white', 'blue'][Math.round(Math.random() * 4)]
 }));
 
-const globe = new Globe()
+const globe = new ThreeGlobe()
     .globeImageUrl('./img/nasa_night_lights.jpg')
     .bumpImageUrl('./img/earth-topology.png')
-    .backgroundImageUrl('./img/galaxy_i.jpg')
     // .arcsData(arcsData)
     // .arcColor('color')
     // .arcDashLength(0.4)
@@ -37,15 +36,16 @@ const globe = new Globe()
 
 // Set globe size based on different viewports
 
-if (window.innerWidth < 781) {
+if (window.innerWidth < 991) {
   globe.scale.x = 1;
   globe.scale.y = 1;
   globe.scale.z = 1;
 } else {
-globe.scale.x = 1.5;
-globe.scale.y = 1.5;
-globe.scale.z = 1.5;
+  globe.scale.x = 1.5;
+  globe.scale.y = 1.5;
+  globe.scale.z = 1.5;
 }
+
 // Set up renderer
 
 const renderer = new WebGLRenderer({ antialias: false, alpha: true });
@@ -61,13 +61,16 @@ scene.add(new DirectionalLight(0xffffff, 0.6));
 
   // Additional effects
 scene.fog = new Fog(0x535ef3, 400, 2000);
-// set up a backdrop image
-// load image as texture
-// const textureLoader = new TextureLoader();
-// const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
-// galaxyTexture.minFilter = LinearFilter;
-// scene.background = galaxyTexture;
 
+if (window.innerWidth > 991) {
+  // set up a backdrop image
+  // load image as texture
+  const textureLoader = new TextureLoader();
+  const galaxyTexture = textureLoader.load('./img/night-sky.png');
+  scene.background = galaxyTexture;
+} else {
+  scene.background = 0x000000; 
+}
 //  Setup camera
 
 const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
