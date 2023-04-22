@@ -10,7 +10,7 @@ import {
   DirectionalLight,
   Color,
   Fog, TextureLoader, MeshBasicMaterial, PlaneGeometry,
-  Mesh
+  RepeatWrapping
 } from "three";
 
 
@@ -64,6 +64,11 @@ scene.fog = new Fog(0x535ef3, 400, 2000);
 // load image as texture
 const textureLoader = new TextureLoader();
 const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
+galaxyTexture.wrapS = RepeatWrapping;
+galaxyTexture.wrapT = RepeatWrapping;
+
+galaxyTexture.repeat.x = 1;
+galaxyTexture.repeat.y = 1;
 scene.background = galaxyTexture;
 
 //  Setup camera
@@ -122,16 +127,16 @@ tbControls.rotateSpeed = 5;
 tbControls.zoomSpeep = 0.8;
 
 // mimic earth's anticlockwise rotation
-const earthRotationalVelocityKmp = 1670;
-const earthRadius = 1;
+// const earthRotationalVelocityKmp = 1670;
+// const earthRadius = 1;
 
-// calculate rotation angle based on frame rate
-const frameRate = 60;
-const timePerFrame = 1 / frameRate; // time per frame in seconds
-// earth's rotational velocity per frame in km
-const rotationalVelocityPerFrameKph = (earthRotationalVelocityKmp * 1000 / 3600) * timePerFrame;
-// earth's rotational velocity per frame in radians
-const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadius) * (Math.PI / 180);
+// // calculate rotation angle based on frame rate
+// const frameRate = 60;
+// const timePerFrame = 1 / frameRate; // time per frame in seconds
+// // earth's rotational velocity per frame in km
+// const rotationalVelocityPerFrameKph = (earthRotationalVelocityKmp * 1000 / 3600) * timePerFrame;
+// // earth's rotational velocity per frame in radians
+// const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadius) * (Math.PI / 180);
 
 
 
@@ -140,7 +145,7 @@ const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadiu
 function animate() {
   // Frame cycle
   tbControls.update();
-  globe.rotation.y -= rotationalVelocityPerRadians;
+  globe.rotation.y -= 0.006;
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
 }
