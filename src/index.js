@@ -1,16 +1,16 @@
 import "three"
 import "three-globe";
+import Globe from "globe.gl";
 import ThreeGlobe from "three-globe";
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls.js";
-import { WebGLRenderer, Scene } from "three";
+import { WebGLRenderer, Scene, LinearFilter } from "three";
 
 import {
   PerspectiveCamera,
   AmbientLight,
   DirectionalLight,
   Color,
-  Fog, TextureLoader, MeshBasicMaterial, PlaneGeometry,
-  RepeatWrapping
+  Fog, TextureLoader, MeshBasicMaterial, PlaneGeometry
 } from "three";
 
 
@@ -24,9 +24,10 @@ const arcsData = [...Array(N).keys()].map(() => ({
   color: ['red', 'yellow', 'white', 'blue'][Math.round(Math.random() * 4)]
 }));
 
-const globe = new ThreeGlobe()
+const globe = new Globe()
     .globeImageUrl('./img/nasa_night_lights.jpg')
     .bumpImageUrl('./img/earth-topology.png')
+    .backgroundImageUrl('./img/galaxy_i.jpg')
     // .arcsData(arcsData)
     // .arcColor('color')
     // .arcDashLength(0.4)
@@ -62,14 +63,10 @@ scene.add(new DirectionalLight(0xffffff, 0.6));
 scene.fog = new Fog(0x535ef3, 400, 2000);
 // set up a backdrop image
 // load image as texture
-const textureLoader = new TextureLoader();
-const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
-galaxyTexture.wrapS = RepeatWrapping;
-galaxyTexture.wrapT = RepeatWrapping;
-
-galaxyTexture.repeat.x = 1;
-galaxyTexture.repeat.y = 1;
-scene.background = galaxyTexture;
+// const textureLoader = new TextureLoader();
+// const galaxyTexture = textureLoader.load('./img/galaxy_i.jpg');
+// galaxyTexture.minFilter = LinearFilter;
+// scene.background = galaxyTexture;
 
 //  Setup camera
 
@@ -140,11 +137,11 @@ tbControls.zoomSpeep = 0.8;
 // const rotationalVelocityPerRadians = (rotationalVelocityPerFrameKph / earthRadius) * (Math.PI / 180);
 
 // update camera aspect ratio on window resize
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+// window.addEventListener("resize", () => {
+//   camera.aspect = window.innerWidth / window.innerHeight;
+//   camera.updateProjectionMatrix();
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+// });
 
 
 
