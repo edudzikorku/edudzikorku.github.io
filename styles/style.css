@@ -295,6 +295,11 @@ div#globe_carousel {
 } */
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
+    div.container.py-3.py-sm-3 {
+        text-align: center !important;
+        background-color:lavender!important;
+    }
+
     div.spinner-container {
         margin-right: 100px !important;
     }
@@ -366,6 +371,10 @@ div#globe_carousel {
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+    div.container.py-3.py-sm-3 {
+        text-align: center !important;
+        background-color:lavender!important;
+    }
 
     div.spinner-container {
         margin-right: 100px !important;
