@@ -141,6 +141,7 @@ h2.text-center.mb-sm-4 {
 h2.display-2 {
     font-size: 23px;
     color: #696969;
+text-align: justify;
 }
 
 h2.display-3 {
