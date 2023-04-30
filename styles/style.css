@@ -308,7 +308,7 @@ figcaption#video a{
 @media screen and (min-width: 0px) and (max-width: 320px) {
     div#vid {
         display: block !important;
-        margin: 0px 0px 16px;
+        margin-top: 2px;
     }
     video {
         display: block !important;
@@ -392,7 +392,7 @@ figcaption#video a{
 @media screen and (min-width: 321px) and (max-width: 991px) {
     div#vid {
         display: block !important;
-        margin-top: 10px;
+        margin-top: 2px;
     }
 
     video {
