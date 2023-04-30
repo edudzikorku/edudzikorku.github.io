@@ -294,10 +294,29 @@ div#globe_carousel {
     display: none;
 } */
 
+div#vid {
+    display: none;
+    margin: 0px 0px 16px;
+}
+
+figcaption#video a{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #6082b6 !important;
+}
+
 @media screen and (min-width: 0px) and (max-width: 320px) {
+    div#vid {
+        display: block !important;
+        margin: 0px 0px 16px;
+    }
+    video {
+        display: block !important;
+        height: 50% !important;
+        width: 100% !important;
+    }
     div.container.py-3.py-sm-3 {
         text-align: center !important;
-        background-color:lavender!important;
     }
 
     div.spinner-container {
@@ -371,9 +390,17 @@ div#globe_carousel {
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+    div#vid {
+        display: block !important;
+        margin: 0px 0px 16px;
+    }
+
+    video {
+        height: 50% !important;
+        width: 100% !important;
+    }
     div.container.py-3.py-sm-3 {
         text-align: center !important;
-        background-color:lavender!important;
     }
 
     div.spinner-container {
@@ -447,6 +474,7 @@ div#globe_carousel {
     }
 
 }
+
 
 h2.welcome-message {
     color: white;
