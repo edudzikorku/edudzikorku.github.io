@@ -32,7 +32,7 @@ $(document).ready(function () {
   var bing_maps = L.tileLayer.bing(API_KEY, {
   type: 'AerialWithLabels'
   }).addTo(map);
-      // create a layer group
+  // create a layer group
   var baseLayers = {
       "OpenStreetMap": open_street_maps,
       "Bing Aerial": bing_maps,

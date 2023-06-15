@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seasonal Floods in Accra</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" type="image/png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/android-chrome-192x192.png">
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="../../assets/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="../../styles/sass_style.css" type="text/css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../styles/style.css" type="text/css">
+    <script src="../../js/jquery/dist/jquery.js"></script>
+    <script defer src="../../js/fontawesome-all.min.js"></script>
+    <!-- <style>
+      body {
+        padding-top: 57px;
+      }
+    </style> -->
+	</head>
+  <body>
+    <main>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
+        <a href="../../index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
+        <a>
+          <div class="spinner-container">
+            <svg class="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="https://www.w3.org/TR/SVG2/">
+              <defs>
+                <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#408ec6" />
+                  <stop offset="25%" stop-color="#7a2048" />
+                  <stop offset="50%" stop-color="#1e2761" />
+                  <stop offset="75%" stop-color="#8a307f" />
+                  <stop offset="100%" stop-color="#500472" />
+                </linearGradient>
+                <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                  <stop offset="0%" stop-color="#e23838" />
+                  <stop offset="25%" stop-color="#d71b3b" />
+                  <stop offset="50%" stop-color="#031163" />
+                  <stop offset="75%" stop-color="#f78200" />
+                  <stop offset="100%" stop-color="#37a987" />
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke-linecap="round" stroke-width="16">
+                <g class="ip__track" stroke="#ddd">
+                  <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                  <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                  </g>
+                <g stroke-dasharray="180 656">
+                  <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                  <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                </g>
+              </g>
+            </svg>
+          </div>          
+        </a>        
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="../../index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../services.html" class="nav-link">Services</a>
+              </li>
+              <li class="nav-item active">
+                <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a href="../../contact.html" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container my-3 my-sm-5">
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
+            <div>
+              <h2 class="display-3">Problem:</h2>
+              <p>
+                Accurate and up-to-date information on flood extent and dynamics is crucial for effective flood management
+                and disaster response in Accra. However, the lack of detailed and timely data hampers these efforts. Therefore, there is a need to
+                utilize remote sensing technologies, such as RAdio Detecting And Ranging (RADAR) data to address this gap and enhance our understanding of flooding patterns in Accra.  
+              </p>
+              <center>
+                <img src="../images/accra_flood_2022.jpg" class="img-fluid" alt="A taxi making its way through the flooded road at Agbogbloshie">  
+                <figcaption><i>Image source: <a href="https://www.graphic.com.gh" target="_blank">Graphic Online</a></i></figcaption>
+              </center>              
+              <h2 class="display-3">Project Objective:</h2>
+              <p>
+                The primary objective of this project is to analyze and visualize flooding in Accra, Ghana, using  RADAR remote sensing techniques.
+                The specific goals include:
+                <ol>1. Generating flood extent maps to visualize and analyze the affected areas</ol>
+                <ol>2. Quantifying the extent of flooded areas and estimating associated crop losses</ol>
+                <ol>3. Building a web application to provide an interactive exploration of the results</ol>
+              </p>
+              <h2 class="display-3">Relevance:</h2>
+              <p>
+                Accurate knowledge of flood extents and their impacts is essential for developing effective flood management strategies.
+                By understanding the areas at highest risk and the sectors most affected, policy makers and urban planners can prioritize resources and implement
+                targeted measures to reduce flood vulnerability. The development of a web application further enhances accessibility
+                to the analysis results, allowing stakeholders to interact with the data and gain valuable insights.
+              </p>
+            </div>
+        </div>
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
+          <div>
+            <h2 class="display-3">Methodology:</h2>
+            <p>
+              The study utilized RADAR data from the <a href="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-1-sar/overview" target="_blank">Copernicus Sentinel-1</a> and leveraged the capabilities of <a href="https://earthengine.google.com/" target="_blank">Google Earth Engine (GEE)</a>
+              for efficient data processing and analysis. Overall, the following steps were adopted:
+              <ul>a. Data Acquisition: Sentinel-1 data was acquired through the GEE data catalog. These radar images were collected in the 
+                Interferometric Wide Swath (IW) mode and covered the desired time period. Four different images were acquired, each capturing the study area at a specific period.
+                The first image, taken on January 05, 2020, served as the reference image or the pre-flood image, representing the baseline condition.
+                The subsequent images were captured on June 09, 2020, July 05, 2022, and October 09, 2022, allowing for the examination of the area during different flooding events.
+              </ul>
+              <ul>b. Preprocessing: The images underwent speckle filtering to enhance data quality and reduce noise.</ul>
+              <ul>c. Image Differencing: The pre-flood image was subtracted from the post-flood images for the various dates. This 
+                technique allowed for the identification of areas that experienced changes due to flooding. The resulting difference image highlighted the spatial extent
+                of flood-affected areas.
+              </ul>
+              <ul>d. Thresholding and Classification: A threshold value was applied to the difference image to classify flooded and non-flooded areas.
+                Additionally, refinement techniques incorporating slope and landcover information were employed.
+                These refinements aimed to reduce false positives and improve the precision of flood identification.
+              </ul>
+              <ul>e. Inundation Extent, Crop Loss, and Affected Built-up Area Calculation: The extent of inundation was computed by determining the area covered by flooded pixels.
+                Landcover classification information was integrated to provide a more comprehensive estimation of crop losses resulting from flooding. Similarly, the technique was utilized to estimate the area 
+                of built-up land affected by flooding. This step contributed to a better understanding of the socioeconomic impacts of flooding in the area.
+              </ul>
+            </p> 
+          </div>
+        </div>
+        <!-- <hr class="mb-0"> -->
+        <div class="row mb-4 align-items-center flex-md-row-reverse">
+          <div>
+             <!-- class="col-12 col-md-6" -->
+            <h2 class="display-3">Results and Conclusion:</h2>
+            <p>
+              The analysis yielded important results that provide insights into the extent and impact of flooding events in Accra.
+              The first examined event was the flooding on June 09, 2022. The analysis revealed a considerable flood extent of approximately
+              <b>594 hectares</b>, indicating a widespread impact on the city. Specifically, an estimated cropland area of <b>129 hectares</b>
+              were affected by flooding. This suggests potential agricultural losses and impacts on food security. Overall, these findings underline the vulnerability of both agricultural and urban sectors
+              to flooding events, emphasizing the need for proactive measures to mitigate potential losses and protect infrastructure. 
+            </p>
+            <center><img src="../images/accraFloods.jpg" class="img-fluid" alt="A taxi making its way through the flooded road at Agbogbloshie"></center>  
+            <figcaption><i>Image source: <a href="https://www.graphic.com.gh" target="_blank">Graphic Online</a></i></figcaption>
+            <p>
+              Moving on to July 05, 2022, the analysis exposed an even larger flood extent compared to the previous event. The estimated area affected by the flooding reached approximately
+              <b>800 hectares</b>, indicating a substantial increase in severity. However, the flooded cropland area was relatively smaller, standing at around
+              <b>19 hectares</b>. While this suggests a potential reduction in agricultural losses, the analysis revealed a significant impact on built-up areas, including residential and commercial zones, with approximately <b>257 hectares</b>
+              being flooded. This emphasizes the urgent need for resilient infrastructure planning and effective flood risk management strategies.
+            </p>
+            <p>
+              Finally, the analysis focused on the flooding events in October, 2022, focusing on October 09, 2022. This event exhibited the largest flood extent among the analyzed dates,
+              covering an estimated areas of approximately <b>1, 266 hectares</b>. The flooded cropland areas was relatively small, amounting to about <b>21 hectares</b>, whereas the flooded built-up extended over approximately <b>247 hectares</b>
+              These results highlight the severity and extent of flooding event, raising concerns about the resilience of urban areas in Accra.
+            </p>
+            <p>
+              To enhance accessibility and facilitate data interpretation, a web app was developed to visualize the results.
+              The app (accessible <a href="https://kedudzi007.users.earthengine.app/view/accra-floods" target="_blank">here</a>) allows users to interact with the maps, explore the flood events, and view the 
+              distribution of flooded cropland and built-up areas. This visual representation of the results enables stakeholders to gain a comprehensive understanding of the 
+              flooding events and their impacts.
+            </p>
+            <p>
+              In conclusion, the analysis has provided valuable insights into the extent and impact of flooding on different land use categories. The results reveal the severity of flooding in Accra, with significant flood extents affecting both cropland and built-up areas.
+              These findings serve as a foundation for informed decision-making processes aimed at flood mitigation, disaster preparedness, sustainable urban development. By implementing effective flood management strategies and resilient urban, Accra can strive towards minimizing the impact
+              of future flooding events and building a more resilient and sustainable city.
+            </p>
+          </div>    
+        </div>
+      </div>
+    </main>
+    <footer class="small bg-light" id="foot">
+      <div class="container py-3 py-sm-3">
+        <div class="row">
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>Quick links</h6>
+            <ul class="list-unstyled">
+              <li><a href="../../index.html">Home</a></li>
+              <li><a href="../../about.html">About</a></li>
+              <li><a href="../../services.html">Services</a></li>
+              <li><a href="../../projects.html">Projects</a></li>
+              <li><a href="../../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>Connect</h6>
+            <ul class="list-unstyled">
+              <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank"><i class="fab fa-fw fa-facebook"></i> Facebook</a></li>
+              <li><a href="https://www.github.com/edudzikorku" target="_blank"><i class="fab fa-fw fa-github"></i> Github</a></li>              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
+              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
+              <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank"><i class="fab fa-fw fa-youtube"></i> YouTube</a></li>
+              <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank"><i class="fab fa-fw fa-linkedin"></i> LinkedIn</a></li>
+            </ul>
+          </div>
+          <div class="col-13 col-sm-7 col-md-4">
+            <h6>My location</h6>
+            <address>
+              <strong>edudzi</strong><br>
+              Ex 286, Mango St.<br>
+              Digital Address:<br> VI-0507-0566<br>
+              Kpedze-V/R<br>
+              <i class="fas fa-fw fa-phone"></i> <a href="tel:+233540815367">(233) 540815367</a><br>
+              <i class="fas fa-fw fa-envelope"></i> <a href="mailto:kedudzi007@gmail.com">kedudzi007@gmail.com</a>
+            </address>
+          </div>
+        </div>
+        <ul class="list-inline mt-2 mb-0 text-center">
+          <li class="list-inline-item" id="date"></li>
+          <li class="list-inline-item">All rights reserved.</li>
+        </ul>
+      </div>
+    </footer>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/date.js"></script>
+  </body>
+</html>
