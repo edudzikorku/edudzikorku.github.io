@@ -126,6 +126,10 @@ div h1.text-center.mb-sm-4.display-1 {
     font-size: 30px;
 }
 
+body.img-background h1, body.img-background h2, body.img-background p {
+    color: white !important;
+}
+
 div h1.display-4 {
     font-size: 20px;
 }
@@ -285,7 +289,7 @@ div.alert.alert-warning.mb-3.mb-sm-5 {
 }
 
 div#globe_carousel {
-    background-color: black;
+    background-color: transparent;
     min-height: 500px;
     /* min-width: 300px; */
 }
@@ -323,6 +327,20 @@ figcaption#video a{
 }
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
+
+    img#img_2 {
+        max-width: 100% !important;
+    }
+    
+    img#img_3 {
+        max-width: 100% !important;
+    }
+    
+    #geojson {
+        max-width: 200%;
+        height: auto;
+    }
+
     #accra_floods {
         max-width: 100%;
         height: auto;
@@ -338,7 +356,8 @@ figcaption#video a{
         width: 100% !important;
     }
     div.container.py-3.py-sm-3 {
-        text-align: center !important;
+        display: flex !important;
+        /* text-align: left !important; */
     }
 
     div.spinner-container {
@@ -346,6 +365,7 @@ figcaption#video a{
     }
 
     div#globe_carousel {
+        background-color: black;
         min-height: 500px;
         /* min-width: 500px */
     }
@@ -369,7 +389,6 @@ figcaption#video a{
     /* canvas {
         max-width: 100% !important
     } */
-
     #gtext h1 {
         font-size: 22px;
     }
@@ -412,6 +431,18 @@ figcaption#video a{
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+    img#img_2 {
+        max-width: 100% !important;
+    }
+    
+    img#img_3 {
+        max-width: 100% !important;
+    }
+    #geojson {
+        width: 550px;
+        height: auto;
+    }
+
     #accra_floods {
         max-width: 100%;
         height: auto;
@@ -423,11 +454,20 @@ figcaption#video a{
     }
 
     video {
-        height: 50% !important;
-        width: 100% !important;
+        max-height: 30% !important;
+        max-width: 100% !important;
     }
+
+    footer#foot {
+        background-image: url('../img/mississipi_river_4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
     div.container.py-3.py-sm-3 {
-        text-align: center !important;
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+        grid-gap: 10px !important;
     }
 
     div.spinner-container {
@@ -437,14 +477,13 @@ figcaption#video a{
     div#globe_carousel {
         min-height: 500px;
         /* min-width: 500px; */
-        /* background-color: white; */
     }
 
     #carousel_itm {
         display: none;
     }
 
-     #our_world {
+    #our_world {
         max-width: 100%;
     }
 
@@ -453,10 +492,6 @@ figcaption#video a{
         max-width: 50%;
         max-height: 50%;
     }
-
-    /* canvas {
-        max-width: 100% !important
-    } */
 
     #gtext h1 {
         font-size: 24px;
@@ -468,8 +503,8 @@ figcaption#video a{
         font-size: 16px;
     }
     #alrt {
-        font-size: 16px;
-        padding: 0;
+        font-size: 18px;
+        padding: 4px 8px;
     }
 
     a.navbar-brand {
@@ -562,6 +597,8 @@ footer#foot {
 }
 
 
+
+
 li.nav-item  {
     color: #ffffff;
 }
@@ -583,11 +620,13 @@ img#img_1 {
 img#img_2 {
     border-radius: 30px;
     box-shadow: 0 0 20px blue;
+    max-width: 60%;
 }
 
 img#img_3 {
     border-radius: 30px;
     box-shadow: 0 0 20px brown;
+    max-width: 60%;
 }
 
 
@@ -601,36 +640,78 @@ img#img_3 {
     height: 350px;
   }
 
-  .carousel-item-dim {
+.carousel-item-dim {
     height: 250px;
   }
 
-  figcaption i {
+figcaption i {
     color: #808080;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  figure {
+figure {
     margin: 0;
     padding: 0;
     border: none;
     text-align: center;
   }
-  iframe#a {
+iframe#a {
     display: block;
     width: 100%;
     height: 100%;
   }
   
-  figcaption {
+figcaption {
     margin-top: 10px;
     font-style: italic;
     text-align: center;
   }
 
-/* * {
-	border: 0;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+.animate {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+  }
+
+.animate.active {
+    transform: translateY(0px);
+    opacity: 1;
+    transition: all 2s ease;
+  }
+
+.img-background {
+    background-image: url('../img/earth-night.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+.contact {
+    background-image: url('../img/mississipi_river_3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+.about {
+    background-image: url('../img/nasa_night_lights.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+body.about h1, body.about h2, body.about h3{
+    color: white;
+}  
+
+body.about p {
+    color: white;
+}
+
+div.row.g-0.bg-light.p-4.mb-3.mb-sm-5 {
+    background-color: transparent !important;
+}
+
+/* div#intro h2 {
+    color: white;
+}
+
+div#intro p {
+    color: white;
+    margin: 0 !important;
 } */

@@ -31,7 +31,7 @@
           }
     </style>
   </head>
-  <body>
+  <body class="img-background">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
         <a href="index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
@@ -185,19 +185,19 @@
           </div>
         </div>
       </div>
-      <div id="greet" class="container my-3 my-sm-5">
+      <div id="greet" class="container my-3 my-sm-5 animate">
         <!-- welcome-container -->
         <div id="salute" role="alert" class="bg-dark">
           <!-- class="alert alert-warning mb-3 mb-sm-5"  -->
           <h2 id="welcomeMessage" class="welcome-message">Hello...</h2>
         </div>
         <div class="row g-0 bg-light p-4 mb-3 mb-sm-5">
-          <div class="col-12 col-lg-6">
+          <div class="col-12 animate">
             <div class="row">
               <div class="col-12 col-sm-6 text-center">
                 <img src="services/images/Profile.png" class="img-fluid rounded-circle mb-4 mb-lg-0" id="img_2">
               </div>
-              <div class="col-12 col-sm-6">
+              <div class="col-12 col-sm-6" id="intro">
                 <h2>Who I am</h2>
                 <p>
                   I am a specialist in spatial data analysis, cartography, and data visualization with a passion for
@@ -205,8 +205,7 @@
                   I offer a range of services designed to help businesses, organizations, students, researchers, and individuals
                   analyze and communicate spatial data effectively.
                 </p>
-                <p>
-                  I am committed to providing clients with the highest quality service possible, working closely with them to
+                <p>I am committed to providing clients with the highest quality service possible, working closely with them to
                   understand their needs and objectives and tailoring my services to meet their specific requirements. Whether
                   you need to visualize data, illustrate relationships between locations, or provide a clear and concise picture
                   of a particular area or region, I can help you create maps and visualizations that effectively communicate your message.
@@ -215,12 +214,13 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+          <hr class="mb-4">
+          <div class="col-12 mb-4 mb-lg-0 animate">
             <div class="row">
               <div class="col-12 col-sm-6 text-center">
                 <img src="services/images/afr_rivers.jpg" class="img-fluid rounded-circle mb-4 mb-lg-0" id="img_3">
               </div>
-              <div class="col-12 col-sm-6">
+              <div class="col-12 col-sm-6" id="intro">
                 <h2>What I do</h2>
                 <p>
                   I offer a range of solutions to meet your spatial data needs.
@@ -233,58 +233,7 @@
               </div>
             </div>
           </div>
-
         </div>
-        <!-- <div class="row">
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <div class="card">
-              <div class="card-header small">Published: <time datetime="2020-10-01">01-10-2020</time></div>
-              <div class="card-body">
-                <h2 class="card-title">News item</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec ante eros. Phasellus posuere magna in nunc maximus, sed elementum tortor faucibus.</p>
-              </div>
-              <div class="card-footer d-grid">
-                <a href="#0" class="btn btn-primary">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <div class="card">
-              <div class="card-header small">Published: <time datetime="2020-10-01">01-10-2020</time></div>
-              <div class="card-body">
-                <h2 class="card-title">News item</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec ante eros. Phasellus posuere magna in nunc maximus, sed elementum tortor faucibus.</p>
-              </div>
-              <div class="card-footer d-grid">
-                <a href="#0" class="btn btn-primary">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-0 mb-lg-3 mb-xl-0">
-            <div class="card">
-              <div class="card-header small">Published: <time datetime="2020-10-01">01-10-2020</time></div>
-              <div class="card-body">
-                <h2 class="card-title">News item</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec ante eros. Phasellus posuere magna in nunc maximus, sed elementum tortor faucibus.</p>
-              </div>
-              <div class="card-footer d-grid">
-                <a href="#0" class="btn btn-primary">Read more</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card">
-              <div class="card-header small">Published: <time datetime="2020-10-01">01-10-2020</time></div>
-              <div class="card-body">
-                <h2 class="card-title">News item</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec ante eros. Phasellus posuere magna in nunc maximus, sed elementum tortor faucibus.</p>
-              </div>
-              <div class="card-footer d-grid">
-                <a href="#0" class="btn btn-primary">Read more</a>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </main>
     <footer class="small bg-light" id="foot">
@@ -340,5 +289,6 @@
     <script src="main.js"></script>
     <script src="js/welcome.js"></script>
     <script src="js/date.js"></script>
+    <script src="js/animate.js"></script>
   </body>
 </html>

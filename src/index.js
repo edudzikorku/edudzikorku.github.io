@@ -50,6 +50,7 @@ if (window.innerWidth < 991) {
 
 const renderer = new WebGLRenderer({ antialias: false, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor( 0xffffff, 0.0 );
 document.getElementById('my_globe').appendChild(renderer.domElement);
 
 // Setup scene
@@ -62,18 +63,18 @@ scene.add(new DirectionalLight(0xffffff, 0.6));
   // Additional effects
 scene.fog = new Fog(0x535ef3, 400, 2000);
 
-if (window.innerWidth > 991) {
-  // set up a backdrop image
-  // load image as texture
-  const textureLoader = new TextureLoader();
-  const galaxyTexture = textureLoader.load('./img/night-sky.png');
-  scene.background = galaxyTexture;
-} else {
-  scene.background = 0x000000; 
-}
+// if (window.innerWidth > 991) {
+//   // set up a backdrop image
+//   // load image as texture
+//   const textureLoader = new TextureLoader();
+//   const galaxyTexture = textureLoader.load('./img/night-sky.png');
+//   scene.background = galaxyTexture;
+// } else {
+//   scene.background = 0x000000; 
+// }
 //  Setup camera
 
-const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
 // camera.aspect = window.innerWidth / window.innerHeight;
 camera.updateProjectionMatrix();
 camera.position.z = 300;
