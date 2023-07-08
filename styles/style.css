@@ -120,6 +120,26 @@ div.spinner-container {
 	}
 }
 
+.img-background {
+    position: relative;
+    background-image: url('../img/earth-night.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+/* .contact {
+    background-image: url('../img/mississipi_river_3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  } */
+
+.about {
+    background-image: url('../img/nasa_night_lights.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -297,6 +317,9 @@ div#globe_carousel {
 /* #carousel_itm, #our_world {
     flex-basis: 100%;
 } */
+a#alrt {
+    display: none !important;
+}
 
 #carousel_itm {
     /* max-height: 100%; */
@@ -327,6 +350,15 @@ figcaption#video a{
 }
 
 @media screen and (min-width: 0px) and (max-width: 320px) {
+    ul#reserved {
+        color: white !important;
+        font-weight: bold;
+    }
+
+    h6 {
+        color: #000000;
+        font-weight: bold;
+    }
 
     img#img_2 {
         max-width: 100% !important;
@@ -431,6 +463,17 @@ figcaption#video a{
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+
+    ul.list-inline.mt-2.mb-0.text-center {
+        color: #000000 !important;
+        font-weight: bold;
+    }
+
+    h6 {
+        color: #000000;
+        font-weight: bold;
+    }
+
     img#img_2 {
         max-width: 100% !important;
     }
@@ -465,7 +508,7 @@ figcaption#video a{
     }
 
     div.container.py-3.py-sm-3 {
-        display: grid !important;
+        display:block !important;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
         grid-gap: 10px !important;
     }
@@ -503,7 +546,7 @@ figcaption#video a{
         font-size: 16px;
     }
     #alrt {
-        font-size: 18px;
+        font-size: 15.5px;
         padding: 4px 8px;
     }
 
@@ -672,6 +715,7 @@ figcaption {
     transform: translateY(150px);
     opacity: 0;
   }
+  
 
 .animate.active {
     transform: translateY(0px);
@@ -679,22 +723,23 @@ figcaption {
     transition: all 2s ease;
   }
 
-.img-background {
-    background-image: url('../img/earth-night.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+.transition {
+    position: relative;
+    transform: translateX(150px);
+    opacity: 0;
+    transition: all 2s ease-out;
   }
+  
+.transition:nth-of-type(even) {
+    transform: translateX(-150px);
+}
 
-.contact {
-    background-image: url('../img/mississipi_river_3.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-.about {
-    background-image: url('../img/nasa_night_lights.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+.transition.active {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: all 2s ease;
+  }  
+
 body.about h1, body.about h2, body.about h3{
     color: white;
 }  
