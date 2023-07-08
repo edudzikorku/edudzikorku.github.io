@@ -134,11 +134,11 @@ div.spinner-container {
     background-repeat: no-repeat;
   } */
 
-.about {
+/* .about {
     background-image: url('../img/nasa_night_lights.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-  }
+  } */
 
 div h1.text-center.mb-sm-4.display-1 {
     font-weight: bold;
@@ -338,18 +338,21 @@ a#alrt {
     display: none;
 } */
 
-div#vid {
-    display: none;
-    margin: 0px 0px 16px;
-}
-
-figcaption#video a{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #6082b6 !important;
-}
-
 @media screen and (min-width: 0px) and (max-width: 320px) {
+    .transition {
+        position: relative;
+        opacity: 0;
+        transition: all 2s ease-out;
+      }
+    
+    .transition:nth-of-type(odd) {
+        transform: translateX(-100px);
+    }
+
+    .transition:nth-of-type(even) {
+        transform: translateX(-100px);
+    }
+
     ul#reserved {
         color: white !important;
         font-weight: bold;
@@ -378,20 +381,23 @@ figcaption#video a{
         height: auto;
     }
 
-    div#vid {
-        display: block !important;
-        margin-top: 1px;
+    footer#foot {
+        background-image: url('../img/mississipi_river_4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
     }
-    video {
-        display: block !important;
-        height: 50% !important;
-        width: 100% !important;
-    }
+
     div.container.py-3.py-sm-3 {
         display: flex !important;
         /* text-align: left !important; */
+        flex-direction: column;
     }
 
+    ul.list-inline.mt-2.mb-0.text-center {
+        color: #000000 !important;
+        font-weight: bold;
+    }
+    
     div.spinner-container {
         margin-right: 100px !important;
     }
@@ -463,6 +469,19 @@ figcaption#video a{
 
 
 @media screen and (min-width: 321px) and (max-width: 991px) {
+    .transition {
+        position: relative;
+        opacity: 0;
+        transition: all 2s ease-out;
+      }
+    
+    .transition:nth-of-type(odd) {
+        transform: translateX(-100px);
+    }
+
+    .transition:nth-of-type(even) {
+        transform: translateX(-100px);
+    }
 
     ul.list-inline.mt-2.mb-0.text-center {
         color: #000000 !important;
@@ -491,16 +510,6 @@ figcaption#video a{
         height: auto;
     }
 
-    div#vid {
-        display: block !important;
-        margin-top: 1px;
-    }
-
-    video {
-        max-height: 30% !important;
-        max-width: 100% !important;
-    }
-
     footer#foot {
         background-image: url('../img/mississipi_river_4.png');
         background-size: cover;
@@ -508,9 +517,10 @@ figcaption#video a{
     }
 
     div.container.py-3.py-sm-3 {
-        display:block !important;
+        display: flex !important;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
         grid-gap: 10px !important;
+        flex-direction: column;
     }
 
     div.spinner-container {
@@ -725,13 +735,17 @@ figcaption {
 
 .transition {
     position: relative;
-    transform: translateX(150px);
+    transform: translateX(100px);
     opacity: 0;
     transition: all 2s ease-out;
+    overflow-x: hidden;
   }
-  
+
+/* .transition:nth-of-type(odd) {
+    transform: translateY(50px);
+} */
 .transition:nth-of-type(even) {
-    transform: translateX(-150px);
+    transform: translateX(-100px);
 }
 
 .transition.active {
@@ -752,6 +766,29 @@ div.row.g-0.bg-light.p-4.mb-3.mb-sm-5 {
     background-color: transparent !important;
 }
 
+.education {
+    color: white !important;
+    font-weight: bold;
+}
+
+#background-video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+/* #background-video {
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+} */
 /* div#intro h2 {
     color: white;
 }

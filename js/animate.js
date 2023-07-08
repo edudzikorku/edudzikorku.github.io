@@ -24,7 +24,7 @@ $(document).ready(function () {
         for(var i = 0; i < shows.length; i++) {
             var windowHeight = window.innerHeight;
             var displayTop = shows[i].getBoundingClientRect().top;
-            var displayPoint = 150;
+            var displayPoint = 100;
 
             if(displayTop < windowHeight - displayPoint) {
                 $(shows[i]).addClass('active');
