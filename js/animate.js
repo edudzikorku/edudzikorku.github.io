@@ -17,9 +17,9 @@ $(document).ready(function () {
         }
     }
 
-    $(window).on("scroll", display);
+    $(window).on("scroll", trans);
 
-    function display() {
+    function trans() {
         var shows = $(".transition");
         for(var i = 0; i < shows.length; i++) {
             var windowHeight = window.innerHeight;
