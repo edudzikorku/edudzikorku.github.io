@@ -778,7 +778,7 @@ div.row.g-0.bg-light.p-4.mb-3.mb-sm-5 {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0px;
     z-index: -1;
 }
 
