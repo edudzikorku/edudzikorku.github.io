@@ -1,164 +1,231 @@
 <!DOCTYPE html>
-<html lan="eng">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GeoJson Inspector</title>    
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/android-chrome-192x192.png">
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
-    <link rel="manifest" href="../../assets/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- <link rel="stylesheet" href="../../js/leaflet-easybutton/src/easy-button.css"></link> -->
-    <link rel="stylesheet" href="../../styles/sass_style.css" type="text/css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../styles/style.css" type="text/css">
-    <link rel="stylesheet" href="../../css/geojson_viewer.css">
-    <link rel="stylesheet" href="../../js/leaflet/dist/leaflet.css">
-    <link rel="stylesheet" href="../../js/leaflet/leaflet-draw/dist/leaflet.draw.css">
-    <link rel="stylesheet" href="../../js/leaflet.awesome-markers/dist/leaflet.awesome-markers.css"></link>
-    <script src="../../js/jquery/dist/jquery.js"></script>
-    <script src="../../js/tokml/tokml.js"></script>
-    <script defer src="../../js/fontawesome-all.min.js"></script>
-    <!-- <style>
-        body {
-          padding-top: 67px;
-        }
-    </style> -->
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
-      <a href="../../index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
-      <a>
-        <div class="spinner-container">
-          <svg class="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="https://www.w3.org/TR/SVG2/">
-            <defs>
-              <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#408ec6" />
-                <stop offset="25%" stop-color="#7a2048" />
-                <stop offset="50%" stop-color="#1e2761" />
-                <stop offset="75%" stop-color="#8a307f" />
-                <stop offset="100%" stop-color="#500472" />
-              </linearGradient>
-              <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
-                <stop offset="0%" stop-color="#e23838" />
-                <stop offset="25%" stop-color="#d71b3b" />
-                <stop offset="50%" stop-color="#031163" />
-                <stop offset="75%" stop-color="#f78200" />
-                <stop offset="100%" stop-color="#37a987" />
-              </linearGradient>
-            </defs>
-            <g fill="none" stroke-linecap="round" stroke-width="16">
-              <g class="ip__track" stroke="#ddd">
-                <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                </g>
-              <g stroke-dasharray="180 656">
-                <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-              </g>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GeoJSON Inspector — esaLab</title>
+  <meta name="description" content="Paste GeoJSON and visualise it instantly on an interactive map.">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="../../assets/favicon.ico">
+  <link rel="manifest" href="../../assets/site.webmanifest">
+  <meta name="theme-color" content="#0b0f1a">
+
+  <!-- Bootstrap (CSS only — no Leaflet conflict) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Leaflet Draw -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css">
+  <!-- Site styles -->
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    /* Full-height layout: nav → map+panel → footer */
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    main { flex: 1; display: flex; flex-direction: column; }
+
+    #viewer-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      background: var(--clr-navy);
+      z-index: 0;
+    }
+
+    #panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--clr-surface);
+      border-left: 1px solid var(--clr-border);
+      padding: 1rem;
+      gap: .75rem;
+      overflow-y: auto;
+    }
+
+    #panel h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--clr-accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 0;
+    }
+
+    #geojsontext {
+      flex: 1;
+      min-height: 180px;
+      resize: vertical;
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-text);
+      border-radius: 8px;
+      padding: .75rem;
+      font-family: var(--font-mono, monospace);
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+    #geojsontext:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+    }
+
+    #status {
+      font-size: .8rem;
+      min-height: 1.4em;
+      border-radius: 6px;
+      padding: .3rem .6rem;
+    }
+    #status.ok  { background: rgba(16,185,129,.12); color: #10b981; }
+    #status.err { background: rgba(239,68,68,.12);  color: #ef4444; }
+
+    /* Mobile: stack map above panel */
+    @media (max-width: 767.98px) {
+      #viewer-wrap { grid-template-columns: 1fr; grid-template-rows: 360px auto; }
+      #map { min-height: 360px; }
+      #panel { max-height: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../../index.html">esaLab</a>
+      <span class="spinner-container" aria-hidden="true">
+        <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#408ec6"/><stop offset="50%" stop-color="#1e2761"/><stop offset="100%" stop-color="#500472"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#e23838"/><stop offset="50%" stop-color="#031163"/><stop offset="100%" stop-color="#37a987"/>
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke-linecap="round" stroke-width="16">
+            <g class="ip__track" stroke="#ddd">
+              <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
             </g>
-          </svg>
-        </div>          
-      </a>      
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a href="../../index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../about.html" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../services.html" class="nav-link">Services</a>
-            </li>
-            <li class="nav-item active">
-              <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a href="../../contact.html" class="nav-link">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div id="map"></div>
-    <div id="text">
-      <textarea id="geojsontext" placeholder='Please enter your GeoJson String Here!
-          format: {
-          "type": "Polygon",
-          "coordinates": [
-          [[35, 10], [45, 45], [15, 40], [10, 20],
-          [35, 10]],
-          [[20, 30], [35, 35], [30, 20], [20, 30]]
-          ]}'></textarea>
-      <input type="button" id="submit" value="Submit"  class="alert alert-warning mb-3 mb-sm-5">
-      <input type="button" id="clear" value="Clear" class="alert alert-secondary mb-3 mb-sm-5">    
-    </div>
-    <div>
-      <p>__</p>
-    </div>
-    <footer class="small bg-light" id="foot">
-      <div class="container py-3 py-sm-3">
-        <div class="row">
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>Quick links</h6>
-            <ul class="list-unstyled">
-              <li><a href="../../index.html">Home</a></li>
-              <li><a href="../../about.html">About</a></li>
-              <li><a href="../../services.html">Services</a></li>
-              <li><a href="../../projects.html">Projects</a></li>
-              <li><a href="../../contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>Connect</h6>
-            <ul class="list-unstyled">
-              <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank"><i class="fab fa-fw fa-facebook"></i> Facebook</a></li>
-              <li><a href="https://www.github.com/edudzikorku" target="_blank"><i class="fab fa-fw fa-github"></i> Github</a></li>              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-              <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank"><i class="fab fa-fw fa-youtube"></i> YouTube</a></li>
-              <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank"><i class="fab fa-fw fa-linkedin"></i> LinkedIn</a></li>
-            </ul>
-          </div>
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>My location</h6>
-            <address>
-              <strong>edudzi</strong><br>
-              Ex 286, Mango St.<br>
-              Digital Address:<br> VI-0507-0566<br>
-              Kpedze-V/R<br>
-              <i class="fas fa-fw fa-phone"></i> <a href="tel:+233540815367">(233) 540815367</a><br>
-              <i class="fas fa-fw fa-envelope"></i> <a href="mailto:kedudzi007@gmail.com">kedudzi007@gmail.com</a>
-            </address>
-          </div>
-        </div>
-        <ul class="list-inline mt-2 mb-0 text-center">
-          <li class="list-inline-item" id="date"></li>
-          <li class="list-inline-item">All rights reserved.</li>
+            <g stroke-dasharray="180 656">
+              <path class="ip__worm1" stroke="url(#g1)" stroke-dashoffset="0"   d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path class="ip__worm2" stroke="url(#g2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+          </g>
+        </svg>
+      </span>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../../projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../contact.html">Contact</a></li>
         </ul>
       </div>
-    </footer>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/leaflet/dist/leaflet.js"></script>
-    <script src="../../js/leaflet/leaflet-draw/dist/leaflet.draw.js"></script>
-    <script src="../../js/leaflet-bing-layer/leaflet-bing-layer.js"></script>
-    <script src="../../js/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
-    <script src="../../js/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
-    <script src="../../js/leaflet-easybutton/src/easy-button.js"></script>
-    <script src="../../js/file-saver/dist/FileSaver.min.js"></script>
-    <script src="../../js/jszip/dist/jszip.min.js"></script>
-    <script src="../../js/shp-write/shpwrite.js"></script>
-    <script src="../../js/shpjs/dist/shp.min.js"></script>
-    <script src="../../js/geojson_viewer.js"></script>
-    <script src="../../js/date.js"></script>
-  </body>
+    </div>
+  </nav>
+
+  <main>
+    <div id="viewer-wrap">
+
+      <!-- Map -->
+      <div id="map" aria-label="Interactive GeoJSON map"></div>
+
+      <!-- Side panel -->
+      <aside id="panel" aria-label="GeoJSON input panel">
+        <h2><i class="ph ph-code" style="margin-right:.3em;"></i>GeoJSON Inspector</h2>
+
+        <textarea id="geojsontext" spellcheck="false"
+          placeholder='Paste GeoJSON here, e.g.
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [0.47, 6.61]
+    },
+    "properties": { "name": "Ho" }
+  }]
+}'></textarea>
+
+        <div id="status" class="ok" role="status" aria-live="polite">Ready — paste GeoJSON and click Submit.</div>
+
+        <div class="d-flex gap-2">
+          <button id="btn-submit" class="btn btn-primary flex-grow-1">
+            <i class="ph ph-check" style="margin-right:.3em;"></i>Submit
+          </button>
+          <button id="btn-clear" class="btn btn-outline-primary">
+            <i class="ph ph-trash" style="margin-right:.3em;"></i>Clear
+          </button>
+        </div>
+
+        <p style="font-size:.78rem; color:var(--clr-text-muted); margin:0;">
+          Supports Point, LineString, Polygon, MultiPolygon, and FeatureCollection.
+          Drawn features can be added alongside pasted data using the toolbar on the map.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="small">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Quick links</h6>
+          <ul class="list-unstyled">
+            <li><a href="../../index.html">Home</a></li><li><a href="../../about.html">About</a></li>
+            <li><a href="../../services.html">Services</a></li><li><a href="../../projects.html">Projects</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Connect</h6>
+          <ul class="list-unstyled">
+            <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank" rel="noopener"><i class="ph ph-facebook-logo footer-icon"></i> Facebook</a></li>
+            <li><a href="https://www.github.com/edudzikorku" target="_blank" rel="noopener"><i class="ph ph-github-logo footer-icon"></i> GitHub</a></li>
+            <li><a href="https://medium.com/@akpakliedudzi" target="_blank" rel="noopener"><i class="ph ph-medium-logo footer-icon"></i> Medium</a></li>
+            <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank" rel="noopener"><i class="ph ph-youtube-logo footer-icon"></i> YouTube</a></li>
+            <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank" rel="noopener"><i class="ph ph-linkedin-logo footer-icon"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Location</h6>
+          <address>
+            <strong>Akpakli Edudzi</strong><br>Butumegyabu - W/R, Ghana<br>
+            <a href="tel:+233540815367"><i class="ph ph-phone footer-icon"></i>(233) 540815367</a><br>
+            <a href="mailto:kedudzi007@gmail.com"><i class="ph ph-envelope-simple footer-icon"></i>kedudzi007@gmail.com</a>
+          </address>
+        </div>
+      </div>
+      <hr class="divider">
+      <p class="text-center mb-0" style="color:var(--clr-text-muted)">&copy; <span class="js-year"></span> Akpakli Edudzi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: Bootstrap → Leaflet → Leaflet.Draw → site.js → viewer logic -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jl/kb4FqT1NiM7lW3eR0nRFJGm3u2" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/geojson_viewer.js"></script>
+</body>
 </html>

@@ -1,263 +1,276 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>The State of Healthcare Access in Ho</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../../assets/android-chrome-192x192.png">
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
-    <link rel="manifest" href="../../assets/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="../../styles/sass_style.css" type="text/css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../styles/style.css" type="text/css">
-    <script src="../../js/jquery/dist/jquery.js"></script>
-    <script defer src="../../js/fontawesome-all.min.js"></script>
-    <!-- <style>
-      body {
-        padding-top: 57px;
-      }
-    </style> -->
-	</head>
-  <body>
-    <main>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top">
-        <a href="../../index.html" class="navbar-brand ms-auto me-auto">esaLab</a>
-        <a>
-          <div class="spinner-container">
-            <svg class="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="https://www.w3.org/TR/SVG2/">
-              <defs>
-                <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#408ec6" />
-                  <stop offset="25%" stop-color="#7a2048" />
-                  <stop offset="50%" stop-color="#1e2761" />
-                  <stop offset="75%" stop-color="#8a307f" />
-                  <stop offset="100%" stop-color="#500472" />
-                </linearGradient>
-                <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
-                  <stop offset="0%" stop-color="#e23838" />
-                  <stop offset="25%" stop-color="#d71b3b" />
-                  <stop offset="50%" stop-color="#031163" />
-                  <stop offset="75%" stop-color="#f78200" />
-                  <stop offset="100%" stop-color="#37a987" />
-                </linearGradient>
-              </defs>
-              <g fill="none" stroke-linecap="round" stroke-width="16">
-                <g class="ip__track" stroke="#ddd">
-                  <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                  <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                  </g>
-                <g stroke-dasharray="180 656">
-                  <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
-                  <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
-                </g>
-              </g>
-            </svg>
-          </div>          
-        </a>        
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../about.html" class="nav-link">About</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../services.html" class="nav-link">Services</a>
-              </li>
-              <li class="nav-item active">
-                <a href="../../projects.html" class="nav-link active" aria-current="page">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a href="../../contact.html" class="nav-link">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="container my-3 my-sm-5">
-        <div class="row mb-4 align-items-center flex-md-row-reverse">
-            <div class="col-12 col-md-6 mb-3 mb-md-0">
-              <img src="../images/closestFacs_land.jpg" class="img-fluid" alt="Nearest Health Facilities Among Communities in Ho Municipal">  
-              <figcaption><i>Nearest health facilities among communities in Ho Municipal</i></figcaption>
-            </div>
-            <div class="col-12 col-md-6">
-              <h2 class="display-3">Problem:</h2>
-              <p>
-                Ho Municipal is home to a diverse population that includes both urban and rural communities. Unfortunately, 
-                many of these communities face significant barriers to accessing quality healthcare 
-                services. The problem is compounded by the fact that many healthcare facilities in the Municipality are 
-                concentrated in Ho, leaving rural communities with limited access to essential 
-                health services. This situation is in contravention of international regulations that state 
-                that access to essential healthcare services should be available to everyone, regardless of 
-                their geographical location or socioeconomic status.
-              </p>
-              <h2 class="display-3">Project Objective:</h2>
-              <p>
-                The objective of this project is to examine the current state of healthcare service delivery in Ho Municipal, 
-                with specific focus on the driving distances between the communities and their nearest health facilities. 
-                The study will explore the current distribution of healthcare facilities, including both public and private 
-                healthcare providers, and assess their accessibility for different communities.
-              </p>
-              <h2 class="display-3">Importance:</h2>
-              <p>
-                By ensuring equitable access to healthcare services in Ho Municipal, this project will help improve health outcomes and reduce 
-                health disparities among different communities. This is in line with the global health 
-                agenda, which seeks to promote universal health coverage and ensure that all people have 
-                access to quality healthcare services. The project's findings will be 
-                relevant not only to the current area of interest but also to other areas in Ghana and other low- and middle-income 
-                countries facing similar challenges.
-              </p>
-            </div>
-        </div>
-        <div class="row mb-4 align-items-center flex-md-row-reverse">
-          <div class="col-12 col-md-6 mb-3 mb-md-0">
-            <div class="ratio ratio-10x9">
-              <iframe src="../maps/closest_fac.html" class="img-fluid" id="a"></iframe>  
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <h2 class="display-3">Approach:</h2>
-            <p>
-              The analysis utilized two sets of vector data in 
-              ESRI shapefile format; <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/communities" target="_blank">Communities (Origins)</a> 
-              and <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/health_facilities" target="_blank">Health Facilities (Destinations)</a>. 
-              The <a href="https://geopandas.org/en/stable/" target="_blank">GeoPandas</a> Python library was used to access and 
-              preprocess the data, removing duplicates and inaccurate entries, and formatting the table 
-              headings. 
-            </p> 
-            <p>
-              To compute the distances between the Communities (Origins) and Health Facilities (Destinations), the <a href="https://openrouteservice.org/dev/#/api-docs/v2/matrix" target="_blank">Open 
-              Route Service's (ORS)</a> Distance Matrix API was utilized. The API required a list of 
-              coordinate pairs in the WGS 84 format (longitude, latitude), which were obtained from the 
-              geometry columns of the GeoDataFrames, as well as a list of indices for the origins and 
-              destinations, using the index columns in each of the GeoDataFrames.
-            </p>
-            <p>
-              Following data preprocessing, a post request was made to the ORS Distance Matrix API with the required parameters. 
-              The output contained a list of distances from each community (origin) to each health 
-              facility (destination). The origin GeoDataFrame was then iterated over to extract the 
-              minimum distance and the coordinates of their associated destinations. The extracted 
-              destination coordinates were further used to retrieve the names of the destinations.
-              A new GeoDataFrame was created using the variables generated from the previous computation, 
-              including origin name, origin latitude, origin longitude, destination name, destination 
-              latitude, destination longitude, and minimum distance. This was done to enable the 
-              construction of lines connecting each origin to its associated destination using 
-              the <a href="https://shapely.readthedocs.io/en/stable/" target="_blank">Shapely</a> Python library.
-            </p>
-            <p>
-              Finally, the results of the analysis were displayed using visualization tools such as 
-              <a href="https://matplotlib.org/" target="_blank">Matplotlib</a> and 
-              <a href="https://python-visualization.github.io/folium/" target="_blank">Folium</a>.
-            </p>
-          </div>
-        </div>
-        <!-- <hr class="mb-0"> -->
-        <div class="row mb-4 align-items-center flex-md-row-reverse">
-          <div class="col-12 col-md-6 mb-3 mb-md-0">
-            <div class="ratio ratio-10x9">
-              <iframe src="../maps/closest_fac_dir.html"></iframe>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <h2 class="display-3">Results and Conclusion:</h2>
-            <p>
-              The analysis revealed some fascinating statistics regarding the minimum distances between each community and its associated healthcare 
-              facility.
-              The data shows that the average minimum distance between each community and its associated healthcare facility is 2.88 km, with a standard 
-              deviation of 2.43 km. This means that, on average, the communities are within 2.88 km of the nearest health facility. The minimum 
-              distance between each origin and its associated destination is 0.02 km, which indicates that some 
-              communities are fortunate to have a health facility located very close to them. However, 
-              the maximum distance of 11.02 km suggests that some communities may be facing significant 
-              barriers in accessing healthcare services, as they have to travel long distances to get to 
-              the nearest health facility. This could lead to delays in treatment, increased health 
-              complications, and even mortality.
-            </p>
-            <p>
-              Additionally, the standard deviation of 2.43 km represents a significant variation in the minimum distances between 
-              communities and their associated health facilities. In fact, the standard deviation is 84% 
-              of the mean, indicating a wide spread of values around the average minimum distance. 
-            </p>
-            <p>
-              These statistics have important implications for the <a href="https://www.who.int/health-topics/universal-health-coverage#tab=tab_1" target="_blank">World Health Organization's (WHO)</a> standards and the 
-              <a href="https://www.un.org/sustainabledevelopment/health/" target="_blank">Sustainable Development Goals (SDGs)</a>. The WHO recommends that healthcare services should be available within 
-              a maximum distance of 5 km from any community. The analysis revealed that a significant number of 
-              communities in the Municipality do not meet this standard, with some healthcare facilities located more than 
-              10 km away from their associated communities. The SDGs aim to ensure that all people have access to quality healthcare services by 2030. 
-              While progress has been made towards this goal, there is still a significant amount of work to be done.
-            </p>
-            <p>
-              Overall, valuable insights have been provided into the accessibility and availability of healthcare 
-              services in the Ho Municipality. In addition, the assessment highlights areas that require attention to meet the WHO 
-              standards and SDG goals. By presenting the statistics in a clear and concise manner, the evaluation
-              hopes to raise awareness of the importance of accessible and quality healthcare for all. It also emphasizes the 
-              need for a holistic approach to healthcare service delivery that takes into account the unique needs and 
-              challenges faced by different communities.
-            </p>
-          </div>    
-        </div>
-      </div>
-    </main>
-    <footer class="small bg-light" id="foot">
-      <div class="container py-3 py-sm-3">
-        <div class="row">
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>Quick links</h6>
-            <ul class="list-unstyled">
-              <li><a href="../../index.html">Home</a></li>
-              <li><a href="../../about.html">About</a></li>
-              <li><a href="../../services.html">Services</a></li>
-              <li><a href="../../projects.html">Projects</a></li>
-              <li><a href="../../contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <!-- <div class="col-13 col-sm-7 col-md-4">
-            <h6>Information</h6>
-            <ul class="list-unstyled">
-              <li><a href="#0">Legal information</a></li>
-              <li><a href="#0">Job opportunities</a></li>
-              <li><a href="#0">Frequently Asked Questions</a></li>
-            </ul>
-          </div> -->
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>Connect</h6>
-            <ul class="list-unstyled">
-              <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank"><i class="fab fa-fw fa-facebook"></i> Facebook</a></li>
-              <li><a href="https://www.github.com/edudzikorku" target="_blank"><i class="fab fa-fw fa-github"></i> Github</a></li>              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-              <li><a href="https://medium.com/@akpakliedudzi" target="_blank"><i class="fab fa-fw fa-medium"></i> Medium</a></li>
-              <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank"><i class="fab fa-fw fa-youtube"></i> YouTube</a></li>
-              <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank"><i class="fab fa-fw fa-linkedin"></i> LinkedIn</a></li>
-            </ul>
-          </div>
-          <div class="col-13 col-sm-7 col-md-4">
-            <h6>My location</h6>
-            <address>
-              <strong>edudzi</strong><br>
-              Ex 286, Mango St.<br>
-              Digital Address:<br> VI-0507-0566<br>
-              Kpedze-V/R<br>
-              <i class="fas fa-fw fa-phone"></i> <a href="tel:+233540815367">(233) 540815367</a><br>
-              <i class="fas fa-fw fa-envelope"></i> <a href="mailto:kedudzi007@gmail.com">kedudzi007@gmail.com</a>
-            </address>
-          </div>
-        </div>
-        <ul class="list-inline mt-2 mb-0 text-center">
-          <li class="list-inline-item" id="date"></li>
-          <li class="list-inline-item">All rights reserved.</li>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Access in Ho — esaLab</title>
+  <meta name="description" content="Spatial analysis of healthcare facility access in Ho Municipal, Ghana.">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="../../assets/favicon.ico">
+  <link rel="manifest" href="../../assets/site.webmanifest">
+  <meta name="theme-color" content="#0b0f1a">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    .doc-body h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: var(--clr-accent-2);
+      margin-top: 2.5rem;
+      margin-bottom: .75rem;
+    }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .stat-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+    .stat-card .value { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.6rem; color: var(--clr-accent-2); }
+    .stat-card .label { font-size: .8rem; color: var(--clr-text-muted); margin-top: .25rem; }
+    .map-frame { border-radius: 12px; overflow: hidden; border: 1px solid var(--clr-border); }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../../index.html">esaLab</a>
+      <span class="spinner-container" aria-hidden="true">
+        <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#408ec6"/><stop offset="50%" stop-color="#1e2761"/><stop offset="100%" stop-color="#500472"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#e23838"/><stop offset="50%" stop-color="#031163"/><stop offset="100%" stop-color="#37a987"/>
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke-linecap="round" stroke-width="16">
+            <g class="ip__track" stroke="#ddd">
+              <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+            <g stroke-dasharray="180 656">
+              <path class="ip__worm1" stroke="url(#g1)" stroke-dashoffset="0"   d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path class="ip__worm2" stroke="url(#g2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+          </g>
+        </svg>
+      </span>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../../projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../contact.html">Contact</a></li>
         </ul>
       </div>
-    </footer>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/date.js"></script>
-  </body>
+    </div>
+  </nav>
+
+  <main>
+    <article class="container section-gap doc-body" style="max-width:860px;">
+
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="background:transparent; font-size:.85rem;">
+          <li class="breadcrumb-item"><a href="../../projects.html" style="color:var(--clr-accent)">Projects</a></li>
+          <li class="breadcrumb-item active" style="color:var(--clr-text-muted)">Healthcare Access in Ho</li>
+        </ol>
+      </nav>
+
+      <h1 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(1.6rem,3.5vw,2.4rem); color:var(--clr-heading); line-height:1.25;">
+        Assessing Access to Healthcare Facilities in Ho Municipal, Ghana
+      </h1>
+      <p style="color:var(--clr-text-muted); font-size:.9rem; margin-top:.5rem;">
+        GeoPandas &nbsp;·&nbsp; Open Route Service API &nbsp;·&nbsp; Folium &nbsp;·&nbsp; Shapely
+      </p>
+
+      <hr class="divider">
+
+      <!-- Opening image -->
+      <figure class="my-4">
+        <img src="../images/closestFacs_land.jpg" class="img-fluid w-100 rounded"
+             style="max-height:400px; object-fit:cover; border:1px solid var(--clr-border);"
+             alt="Map of nearest health facilities among communities in Ho Municipal">
+        <figcaption>Nearest health facilities among communities in Ho Municipal.</figcaption>
+      </figure>
+
+      <h2>Problem</h2>
+      <p>
+        Ho Municipal is home to a diverse population spanning both urban and rural communities.
+        Many of these communities face significant barriers to accessing quality healthcare, compounded
+        by the concentration of facilities in Ho town — leaving rural populations with limited access
+        to essential services. This contravenes international standards stating that essential healthcare
+        should be available to all, regardless of geographical location or socioeconomic status.
+      </p>
+
+      <h2>Project Objective</h2>
+      <p>
+        This project examines the current state of healthcare service delivery in Ho Municipal, with
+        specific focus on driving distances between communities and their nearest health facilities.
+        The study explores the distribution of both public and private healthcare providers and assesses
+        their accessibility for different communities.
+      </p>
+
+      <h2>Importance</h2>
+      <p>
+        By ensuring equitable access to healthcare services in Ho Municipal, this project helps improve
+        health outcomes and reduce disparities. This aligns with the global health agenda promoting
+        universal health coverage. Findings are also relevant to other areas of Ghana and low- and
+        middle-income countries facing similar challenges.
+      </p>
+
+      <h2>Approach</h2>
+
+      <div class="row g-4 align-items-start my-2">
+        <div class="col-12 col-md-6">
+          <div class="map-frame ratio" style="--bs-aspect-ratio:90%;">
+            <iframe src="../maps/closest_fac.html" title="Closest facility map" loading="lazy"></iframe>
+          </div>
+          <p class="mt-2" style="font-size:.85rem; color:var(--clr-text-muted); text-align:center;">Interactive map — community-to-facility links</p>
+        </div>
+        <div class="col-12 col-md-6">
+          <p>
+            The analysis used two vector datasets in ESRI Shapefile format:
+            <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/communities" target="_blank" rel="noopener">Communities (Origins)</a>
+            and
+            <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities/tree/main/data/health_facilities" target="_blank" rel="noopener">Health Facilities (Destinations)</a>.
+            <a href="https://geopandas.org/en/stable/" target="_blank" rel="noopener">GeoPandas</a>
+            was used to access and preprocess the data — removing duplicates, correcting inaccurate entries,
+            and formatting table headings.
+          </p>
+          <p>
+            Driving distances were computed using the
+            <a href="https://openrouteservice.org/dev/#/api-docs/v2/matrix" target="_blank" rel="noopener">Open Route Service (ORS) Distance Matrix API</a>,
+            which required coordinate pairs in WGS 84 format extracted from the GeoDataFrame geometry
+            columns. The minimum distance from each community to any facility was then extracted, with
+            associated destination coordinates used to retrieve facility names.
+          </p>
+          <p>
+            A new GeoDataFrame was constructed containing origin name, origin coordinates, destination
+            name, destination coordinates, and minimum distance. Lines connecting each origin to its
+            nearest destination were built using
+            <a href="https://shapely.readthedocs.io/en/stable/" target="_blank" rel="noopener">Shapely</a>,
+            and results were visualised with
+            <a href="https://matplotlib.org/" target="_blank" rel="noopener">Matplotlib</a> and
+            <a href="https://python-visualization.github.io/folium/" target="_blank" rel="noopener">Folium</a>.
+          </p>
+        </div>
+      </div>
+
+      <h2>Results and Conclusion</h2>
+
+      <!-- Key stats -->
+      <div class="stat-grid reveal">
+        <div class="stat-card">
+          <div class="value">2.88 km</div>
+          <div class="label">Average minimum distance</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">2.43 km</div>
+          <div class="label">Standard deviation</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">0.02 km</div>
+          <div class="label">Minimum distance</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">11.02 km</div>
+          <div class="label">Maximum distance</div>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-start mt-2">
+        <div class="col-12 col-md-6">
+          <p>
+            While the average minimum distance of 2.88 km seems reasonable, the standard deviation of
+            2.43 km — representing 84% of the mean — indicates a wide spread. Some communities are
+            fortunately close (as little as 0.02 km), while others must travel up to 11.02 km to reach
+            the nearest facility, creating serious barriers to timely care.
+          </p>
+          <p>
+            The
+            <a href="https://www.who.int/health-topics/universal-health-coverage#tab=tab_1" target="_blank" rel="noopener">WHO</a>
+            recommends healthcare services be available within 5 km of any community. A significant
+            number of communities in Ho Municipal fail to meet this standard. These findings highlight
+            the need for a holistic approach to healthcare delivery and support the
+            <a href="https://www.un.org/sustainabledevelopment/health/" target="_blank" rel="noopener">SDG</a>
+            goal of universal health access by 2030.
+          </p>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="map-frame ratio" style="--bs-aspect-ratio:90%;">
+            <iframe src="../maps/closest_fac_dir.html" title="Origin-destination direction map" loading="lazy"></iframe>
+          </div>
+          <p class="mt-2" style="font-size:.85rem; color:var(--clr-text-muted); text-align:center;">Origin-destination routing</p>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-3 mt-4">
+        <a href="https://github.com/edudzikorku/Assessing-Access-to-Healthcare-Facilities"
+           class="btn btn-primary" target="_blank" rel="noopener">
+          <i class="ph ph-github-logo" style="margin-right:.4em;"></i>View on GitHub
+        </a>
+        <a href="../../projects.html" class="btn btn-outline-primary">
+          <i class="ph ph-arrow-left" style="margin-right:.4em;"></i>Back to Projects
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="small">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Quick links</h6>
+          <ul class="list-unstyled">
+            <li><a href="../../index.html">Home</a></li><li><a href="../../about.html">About</a></li>
+            <li><a href="../../services.html">Services</a></li><li><a href="../../projects.html">Projects</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Connect</h6>
+          <ul class="list-unstyled">
+            <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank" rel="noopener"><i class="ph ph-facebook-logo footer-icon"></i> Facebook</a></li>
+            <li><a href="https://www.github.com/edudzikorku" target="_blank" rel="noopener"><i class="ph ph-github-logo footer-icon"></i> GitHub</a></li>
+            <li><a href="https://medium.com/@akpakliedudzi" target="_blank" rel="noopener"><i class="ph ph-medium-logo footer-icon"></i> Medium</a></li>
+            <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank" rel="noopener"><i class="ph ph-youtube-logo footer-icon"></i> YouTube</a></li>
+            <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank" rel="noopener"><i class="ph ph-linkedin-logo footer-icon"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Location</h6>
+          <address>
+            <strong>Akpakli Edudzi</strong><br>Butumegyabu - W/R, Ghana<br>
+            <a href="tel:+233540815367"><i class="ph ph-phone footer-icon"></i>(233) 540815367</a><br>
+            <a href="mailto:kedudzi007@gmail.com"><i class="ph ph-envelope-simple footer-icon"></i>kedudzi007@gmail.com</a>
+          </address>
+        </div>
+      </div>
+      <hr class="divider">
+      <p class="text-center mb-0" style="color:var(--clr-text-muted)">&copy; <span class="js-year"></span> Akpakli Edudzi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>  
+  
+  <script src="../../js/site.js"></script>
+</body>
 </html>
