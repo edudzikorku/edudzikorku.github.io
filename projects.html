@@ -206,6 +206,9 @@
     .tag-spatial  { background: rgba(59,130,246,0.12); color: var(--clr-accent); }
     .tag-tool     { background: rgba(168,85,247,0.12); color: #c084fc; }
     .tag-ee       { background: rgba(234,179,8,0.12);  color: #facc15; }
+    .tag-ml       { background: rgba(239,68,68,0.12);  color: #ef4444; }
+    .tag-geo-ai   { background: rgba(16,185,129,0.12); color: var(--clr-accent-2); }
+    .tag-dl       { background: rgba(239,68,68,0.12);  color: #ef4444; } 
   </style>
 </head>
 <body>
@@ -376,8 +379,17 @@
     const pillsEl = document.getElementById("filter-pills");
 
     /* Tag label map */
-    const TAG_LABELS = { remote: "Remote Sensing", spatial: "Spatial Analysis", tool: "Tool", ee: "Earth Engine" };
-    const TAG_CLASS = { remote: "tag-remote", spatial: "tag-spatial", tool: "tag-tool", ee: "tag-ee" };
+    const TAG_LABELS = { remote: "Remote Sensing", spatial: "Spatial Analysis", tool: "Tool", ee: "Earth Engine" }
+                          // ml: "Machine Learning", "geo-ai": "GeoAI", dl: "Deep Learning"};
+    const TAG_CLASS = { remote: "tag-remote", spatial: "tag-spatial", tool: "tag-tool", ee: "tag-ee" }
+                        // ml: "tag-ml", "geo-ai": "tag-geo-ai", dl: "tag-dl"};
+
+    function getButtonIcon(ctaText) {
+      if (ctaText && ctaText.toLowerCase().includes("github")) return '<i class="ph ph-github-logo" style="margin-right:.4em;"></i>';
+      if (ctaText && ctaText.toLowerCase().includes("demo"))   return '<i class="ph ph-display"></i>';
+      return '';
+
+    }
 
     /* Filter + sort logic */
     function getFiltered() {
@@ -422,6 +434,7 @@
         const tagHTML = p.tags.map(t =>
           `<span class="project-tag ${TAG_CLASS[t]}">${TAG_LABELS[t]}</span>`
         ).join("");
+        const buttonIcon = getButtonIcon(p.cta);
         return `
           <div class="col-12 col-md-6 reveal is-visible">
             <article class="project-card h-100">
@@ -431,7 +444,7 @@
                 <h2>${p.title}</h2>
                 <p>${p.desc}</p>
                 <a href="${p.href}" target="${p.target}" rel="noopener"
-                   class="btn btn-primary btn-sm mt-1">${p.cta}</a>
+                   class="btn btn-primary btn-sm mt-1">${buttonIcon}${p.cta}</a>
               </div>
             </article>
           </div>`;

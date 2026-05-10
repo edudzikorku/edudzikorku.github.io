@@ -1,4 +1,14 @@
-[
+[{
+    "title": "Soil Organic Carbon (SOC) prediction API",
+    "desc": "An API for predicting soil organic carbon (SOC) content using machine learning models trained on soil data. The API allows users to input soil parameters and receive SOC predictions. This is a valuable to for soil health assessment and management.",
+    "img": "projects/images/soc_api.jpg",
+    "imgAlt": "SOC prediction API diagram",
+    "href": "https://github.com/edudzikorku/soc-predictor.git",
+    "target": "_blank",
+    "cta": "Explore on GitHub",
+    "tags": ["spatial", "remote", "tool"],
+    "date": "2025-06-01"
+  },
   {
     "title": "Uncovering the Patterns of Seasonal Floods in Accra, Ghana",
     "desc": "Explores flood extent and impact in Accra across three key dates using remote sensing data. Features estimating flooded cropland and built-up area to inform flood management and urban planning.",
