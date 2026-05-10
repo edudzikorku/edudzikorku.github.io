@@ -366,18 +366,18 @@
     let currentPage = 1;
     let activeCategory = "all";
 
-    const searchEl   = document.getElementById("proj-search");
-    const sortEl     = document.getElementById("proj-sort");
-    const perpageEl  = document.getElementById("proj-perpage");
-    const gridEl     = document.getElementById("proj-grid");
-    const paginEl    = document.getElementById("proj-pagination");
-    const countEl    = document.getElementById("proj-count");
-    const emptyEl    = document.getElementById("proj-empty");
-    const pillsEl    = document.getElementById("filter-pills");
+    const searchEl = document.getElementById("proj-search");
+    const sortEl = document.getElementById("proj-sort");
+    const perpageEl = document.getElementById("proj-perpage");
+    const gridEl = document.getElementById("proj-grid");
+    const paginEl = document.getElementById("proj-pagination");
+    const countEl = document.getElementById("proj-count");
+    const emptyEl = document.getElementById("proj-empty");
+    const pillsEl = document.getElementById("filter-pills");
 
     /* Tag label map */
     const TAG_LABELS = { remote: "Remote Sensing", spatial: "Spatial Analysis", tool: "Tool", ee: "Earth Engine" };
-    const TAG_CLASS  = { remote: "tag-remote", spatial: "tag-spatial", tool: "tag-tool", ee: "tag-ee" };
+    const TAG_CLASS = { remote: "tag-remote", spatial: "tag-spatial", tool: "tag-tool", ee: "tag-ee" };
 
     /* Filter + sort logic */
     function getFiltered() {
@@ -399,23 +399,23 @@
 
     /* Render */
     function render() {
-      const filtered   = getFiltered();
-      const total      = filtered.length;
+      const filtered = getFiltered();
+      const total = filtered.length;
       const perpageVal = perpageEl.value;
-      const perPage    = perpageVal === "all" ? total : parseInt(perpageVal);
+      const perPage = perpageVal === "all" ? total : parseInt(perpageVal);
       const totalPages = perPage > 0 ? Math.max(1, Math.ceil(total / perPage)) : 1;
 
       if (currentPage > totalPages) currentPage = totalPages;
 
       const start = (currentPage - 1) * perPage;
-      const page  = perpageVal === "all" ? filtered : filtered.slice(start, start + perPage);
+      const page = perpageVal === "all" ? filtered : filtered.slice(start, start + perPage);
 
       /* count label */
       countEl.textContent = `${total} project${total !== 1 ? "s" : ""}`;
 
       /* empty state */
-      emptyEl.style.display  = total === 0 ? "block" : "none";
-      gridEl.style.display   = total === 0 ? "none"  : "";
+      emptyEl.style.display = total === 0 ? "block" : "none";
+      gridEl.style.display = total === 0 ? "none"  : "";
 
       /* cards */
       gridEl.innerHTML = page.map(p => {
