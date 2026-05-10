@@ -1,11 +1,5 @@
-/* ============================================================
-   esaLab — main.css
-   Single source of truth for all styles.
-   Bootstrap 5 is loaded via CDN (link tag in HTML).
-   This file only contains: tokens, custom components, overrides.
-   ============================================================ */
-
-/* ── 1. Design Tokens ───────────────────────────────────────── */
+/* Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 :root {
   /* Brand palette */
   --clr-bg:        #0b0f1a;
@@ -28,13 +22,8 @@
   --r5: #5da183; --r6: #1d96b9; --r7: #1c61c2; --r8: #ee692c;
 
   /* Typography */
-  /* Change all typography to Poppins or Helvetica Neue for a more modern and clean look. */
-  --font-display: 'Poppins', 'Helvetica Neue', sans-serif;
-  --font-body:    'Poppins', 'Helvetica Neue', sans-serif;
-
-  /* --font-display: 'Syne', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace; */
+  --font-display: 'Poppins', sans-serif;
+  --font-body:    'Poppins', sans-serif;
 
   /* Spacing */
   --nav-h: 62px;
@@ -59,10 +48,6 @@
   }
 }
 
-/* ── 2. Fonts (Google Fonts web import) ──────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-/* ── 3. Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -83,13 +68,13 @@ body {
 
 img, video { max-width: 100%; height: auto; display: block; }
 
-p { text-align: justify; }
+p { text-align: left; }
 p a { color: var(--clr-accent); }
 p a:hover { text-decoration: underline; }
 
 strong { font-weight: 700; }
 
-/* ── 4. Navigation ───────────────────────────────────────────── */
+/* Navigation */
 .navbar {
   height: var(--nav-h);
   background: rgba(10, 22, 40, 0.92) !important;
@@ -134,7 +119,7 @@ strong { font-weight: 700; }
   border-radius: 2px;
 }
 
-/* ── 5. Loading Spinner (navbar SVG) ─────────────────────────── */
+/* Loading Spinner (navbar SVG) */
 .spinner-container {
   display: grid;
   place-items: center;
@@ -164,7 +149,7 @@ strong { font-weight: 700; }
   to   { stroke-dashoffset: -358; }
 }
 
-/* ── 6. Page Hero (shared) ────────────────────────────────────── */
+/*  Page Hero (shared) */
 .page-hero {
   padding: calc(var(--section-gap) * 0.8) 0 var(--section-gap);
   text-align: center;
@@ -182,7 +167,7 @@ strong { font-weight: 700; }
   margin: 1rem auto 0;
 }
 
-/* ── 7. Home — Globe hero ─────────────────────────────────────── */
+/* Home - Globe hero  */
 #globe-hero {
   position: relative;
   min-height: 520px;
@@ -229,7 +214,7 @@ strong { font-weight: 700; }
 .globe-carousel .carousel-item { height: 280px; }
 .globe-carousel .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ── 8. Welcome banner (home) ─────────────────────────────────── */
+/* Welcome banner (home) */
 #welcome-banner {
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
@@ -258,8 +243,8 @@ strong { font-weight: 700; }
 @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
 @keyframes border-rotate { to { --angle: 800deg; } }
 
-/* ── 9. Profile / intro cards ─────────────────────────────────── */
-.intro-card {
+/* Profile / intro cards  */
+.intro-card { 
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: 16px;
@@ -277,7 +262,7 @@ strong { font-weight: 700; }
   margin: 0 auto 1.5rem;
 }
 
-/* ── 10. Services page ────────────────────────────────────────── */
+/* Services page */
 .service-row {
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
@@ -301,7 +286,7 @@ strong { font-weight: 700; }
   margin-bottom: 0.75rem;
 }
 
-/* ── 11. Projects page ────────────────────────────────────────── */
+/* Projects page */
 .project-card {
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
@@ -328,7 +313,7 @@ strong { font-weight: 700; }
 }
 .project-card-body p { font-size: 0.9rem; color: var(--clr-text-muted); }
 
-/* ── 12. About page ───────────────────────────────────────────── */
+/* About page */
 body.about-page { background: var(--clr-bg); }
 
 #background-video {
@@ -366,7 +351,7 @@ body.about-page { background: var(--clr-bg); }
   font-size: 1.05rem;
 }
 
-/* ── 13. Contact page ─────────────────────────────────────────── */
+/* Contact page */
 .contact-card {
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
@@ -406,7 +391,7 @@ body.about-page { background: var(--clr-bg); }
   border: 1px solid var(--clr-border);
 }
 
-/* ── 14. Footer ───────────────────────────────────────────────── */
+/* Footer */
 footer {
   background: var(--clr-surface) !important;
   border-top: 1px solid var(--clr-border);
@@ -429,7 +414,7 @@ footer address { font-style: normal; color: var(--clr-text-muted); }
 
 .footer-icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; margin-right: 0.3em; }
 
-/* ── 15. Buttons ──────────────────────────────────────────────── */
+/* Buttons */
 .btn-primary {
   background: var(--clr-accent) !important;
   border-color: var(--clr-accent) !important;
@@ -447,7 +432,7 @@ footer address { font-style: normal; color: var(--clr-text-muted); }
   color: #fff !important;
 }
 
-/* ── 16. Scroll-reveal animations ─────────────────────────────── */
+/* Scroll-reveal animations */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -471,7 +456,7 @@ footer address { font-style: normal; color: var(--clr-text-muted); }
 .reveal:nth-child(3), .reveal-slide:nth-child(3) { transition-delay: 0.2s; }
 .reveal:nth-child(4), .reveal-slide:nth-child(4) { transition-delay: 0.3s; }
 
-/* ── 17. Utility / misc ───────────────────────────────────────── */
+/* Utility / misc */
 .text-accent   { color: var(--clr-accent) !important; }
 .text-accent-2 { color: var(--clr-accent-2) !important; }
 .section-gap   { padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
@@ -479,11 +464,12 @@ footer address { font-style: normal; color: var(--clr-text-muted); }
 
 figcaption { font-size: 0.8rem; color: var(--clr-text-muted); margin-top: 0.5rem; text-align: center; font-style: italic; }
 
-/* ── 18. Responsive ───────────────────────────────────────────── */
+/* Responsive */
 @media (max-width: 991.98px) {
   #globe-hero { min-height: 420px; }
   .globe-carousel { max-width: 100%; }
   .globe-text h1 { font-size: clamp(1.25rem, 5vw, 1.8rem); }
+
 }
 
 @media (max-width: 767.98px) {
@@ -497,3 +483,11 @@ figcaption { font-size: 0.8rem; color: var(--clr-text-muted); margin-top: 0.5rem
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Rearrange the footer on mobile for better flow and arrange all on the same row*/
+@media (max-width: 575.98px) {
+  footer .container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  footer .row { display: flex; flex-direction: column; gap: 1.5rem; }
+}
+
+
