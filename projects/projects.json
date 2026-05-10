@@ -1,6 +1,6 @@
 [{
     "title": "Soil Organic Carbon (SOC) prediction API",
-    "desc": "An API for predicting soil organic carbon (SOC) content using machine learning models trained on soil data. The API allows users to input soil parameters and receive SOC predictions. This is a valuable to for soil health assessment and management.",
+    "desc": "An API for predicting soil organic carbon (SOC) content using machine learning models trained on soil data. The API allows users to input soil parameters and receive SOC predictions. This is a valuable tool for soil health assessment and management.",
     "img": "projects/images/soc_api.jpg",
     "imgAlt": "SOC prediction API diagram",
     "href": "https://github.com/edudzikorku/soc-predictor.git",
