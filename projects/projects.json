@@ -15,7 +15,7 @@
     "img": "projects/images/climateAction.png",
     "imgAlt": "Flood extent map of Accra",
     "href": "projects/documents/flooding_in_accra.html",
-    "target": "_self",
+    "target": "_self"
     "cta": "Read more",
     "tags": ["ee", "remote"],
     "date": "2023-05-10"
