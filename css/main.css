@@ -479,7 +479,7 @@ figcaption { font-size: 0.8rem; color: var(--clr-text-muted); margin-top: 0.5rem
 }
 
 .navbar-toggler-icon::before {
-  content: "≡"; 
+  content: "\2630"; 
   color: blue;   
   font-size: 1.5rem;
 }
