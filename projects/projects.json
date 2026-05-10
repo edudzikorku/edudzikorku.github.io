@@ -1,13 +1,13 @@
 [
   {
-    "title": "Uncovering the Dynamics of Seasonal Floods in Accra, Ghana",
-    "desc": "Explores flood extent and impact in Accra across three key dates using remote sensing data — estimating flooded cropland and built-up area to inform flood management and urban planning.",
+    "title": "Uncovering the Patterns of Seasonal Floods in Accra, Ghana",
+    "desc": "Explores flood extent and impact in Accra across three key dates using remote sensing data. Features estimating flooded cropland and built-up area to inform flood management and urban planning.",
     "img": "projects/images/climateAction.png",
     "imgAlt": "Flood extent map of Accra",
     "href": "projects/documents/flooding_in_accra.html",
     "target": "_self",
     "cta": "Read more",
-    "tags": ["remote"],
+    "tags": ["ee", "remote"],
     "date": "2023-05-10"
   },
   {
