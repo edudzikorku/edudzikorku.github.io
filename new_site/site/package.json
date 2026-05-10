@@ -1,0 +1,24 @@
+{
+  "name": "esalab-portfolio",
+  "version": "2.0.0",
+  "description": "esaLab — Geocomputing portfolio by Akpakli Edudzi",
+  "scripts": {
+    "dev": "webpack --config webpack.config.js --mode development --watch",
+    "build": "webpack --config webpack.config.js --mode production",
+    "serve": "npx http-server . -p 3000 -o"
+  },
+  "dependencies": {
+    "globe.gl": "^2.27.3",
+    "three": "^0.184.0",
+    "three-globe": "^2.45.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
+  }
+}

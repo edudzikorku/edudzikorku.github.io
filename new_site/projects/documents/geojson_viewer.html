@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GeoJSON Inspector - esaLab</title>
+  <meta name="description" content="Paste GeoJSON and visualise it instantly on an interactive map.">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="../../assets/favicon.ico">
+  <link rel="manifest" href="../../assets/site.webmanifest">
+  <meta name="theme-color" content="#0b0f1a">
+
+  <!-- Bootstrap (CSS only — no Leaflet conflict) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Leaflet Draw -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css">
+  <!-- Site styles -->
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    /* Full-height layout: nav → map+panel → footer */
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    main { flex: 1; display: flex; flex-direction: column; }
+
+    #viewer-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      background: var(--clr-navy);
+      z-index: 0;
+    }
+
+    #panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--clr-surface);
+      border-left: 1px solid var(--clr-border);
+      padding: 1rem;
+      gap: .75rem;
+      overflow-y: auto;
+    }
+
+    #panel h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--clr-accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 0;
+    }
+
+    #geojsontext {
+      flex: 1;
+      min-height: 180px;
+      resize: vertical;
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      color: var(--clr-text);
+      border-radius: 8px;
+      padding: .75rem;
+      font-family: var(--font-mono, monospace);
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+    #geojsontext:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.2);
+    }
+
+    #status {
+      font-size: .8rem;
+      min-height: 1.4em;
+      border-radius: 6px;
+      padding: .3rem .6rem;
+    }
+    #status.ok  { background: rgba(16,185,129,.12); color: #10b981; }
+    #status.err { background: rgba(239,68,68,.12);  color: #ef4444; }
+
+    /* Mobile: stack map above panel */
+    @media (max-width: 767.98px) {
+      #viewer-wrap { grid-template-columns: 1fr; grid-template-rows: 360px auto; }
+      #map { min-height: 360px; }
+      #panel { max-height: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../../index.html">esaLab</a>
+      <span class="spinner-container" aria-hidden="true">
+        <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#408ec6"/><stop offset="50%" stop-color="#1e2761"/><stop offset="100%" stop-color="#500472"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#e23838"/><stop offset="50%" stop-color="#031163"/><stop offset="100%" stop-color="#37a987"/>
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke-linecap="round" stroke-width="16">
+            <g class="ip__track" stroke="#ddd">
+              <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+            <g stroke-dasharray="180 656">
+              <path class="ip__worm1" stroke="url(#g1)" stroke-dashoffset="0"   d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path class="ip__worm2" stroke="url(#g2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+          </g>
+        </svg>
+      </span>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../../projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div id="viewer-wrap">
+
+      <!-- Map -->
+      <div id="map" aria-label="Interactive GeoJSON map"></div>
+
+      <!-- Side panel -->
+      <aside id="panel" aria-label="GeoJSON input panel">
+        <h2><i class="ph ph-code" style="margin-right:.3em;"></i>GeoJSON Inspector</h2>
+
+        <textarea id="geojsontext" spellcheck="false"
+          placeholder='Paste GeoJSON here, e.g.
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [0.47, 6.61]
+    },
+    "properties": { "name": "Ho" }
+  }]
+}'></textarea>
+
+        <div id="status" class="ok" role="status" aria-live="polite">Ready - paste <b>GeoJSON</b> and click <b>Submit</b>.</div>
+
+        <div class="d-flex gap-2">
+          <button id="btn-submit" class="btn btn-primary flex-grow-1">
+            <i class="ph ph-check" style="margin-right:.3em;"></i>Submit
+          </button>
+          <button id="btn-clear" class="btn btn-outline-primary">
+            <i class="ph ph-trash" style="margin-right:.3em;"></i>Clear
+          </button>
+        </div>
+
+        <p style="font-size:.78rem; color:var(--clr-text-muted); margin:0;">
+          Supports Point, LineString, Polygon, MultiPolygon, and FeatureCollection.
+          Drawn features can be added alongside pasted data using the toolbar on the map.
+          Use the <b>upload</b> button (left side of map) to load a .geojson file, and the <b>export</b> button below it
+          to save features as CSV, KML, GeoJSON, or Shapefile. The layer switcher (top-right) lets you change the base map.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="small">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Quick links</h6>
+          <ul class="list-unstyled">
+            <li><a href="../../index.html">Home</a></li><li><a href="../../about.html">About</a></li>
+            <li><a href="../../services.html">Services</a></li><li><a href="../../projects.html">Projects</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Connect</h6>
+          <ul class="list-unstyled">
+            <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank" rel="noopener"><i class="ph ph-facebook-logo footer-icon"></i> Facebook</a></li>
+            <li><a href="https://www.github.com/edudzikorku" target="_blank" rel="noopener"><i class="ph ph-github-logo footer-icon"></i> GitHub</a></li>
+            <li><a href="https://medium.com/@akpakliedudzi" target="_blank" rel="noopener"><i class="ph ph-medium-logo footer-icon"></i> Medium</a></li>
+            <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank" rel="noopener"><i class="ph ph-youtube-logo footer-icon"></i> YouTube</a></li>
+            <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank" rel="noopener"><i class="ph ph-linkedin-logo footer-icon"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Location</h6>
+          <address>
+            <strong>Akpakli Edudzi</strong><br>Butumegyabu - W/R, Ghana<br>
+            <a href="tel:+233540815367"><i class="ph ph-phone footer-icon"></i>(233) 540815367</a><br>
+            <a href="mailto:kedudzi007@gmail.com"><i class="ph ph-envelope-simple footer-icon"></i>kedudzi007@gmail.com</a>
+          </address>
+        </div>
+      </div>
+      <hr class="divider">
+      <p class="text-center mb-0" style="color:var(--clr-text-muted)">&copy; <span class="js-year"></span> Akpakli Edudzi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: Bootstrap → Leaflet → Leaflet.Draw → shp-write → site.js → viewer logic -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jl/kb4FqT1NiM7lW3eR0nRFJGm3u2" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <!-- shp-write: enables Shapefile export -->
+  <script src="https://cdn.jsdelivr.net/npm/shp-write@0.3.2/shpwrite.js"></script>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/geojson_viewer.js"></script>
+</body>
+</html>

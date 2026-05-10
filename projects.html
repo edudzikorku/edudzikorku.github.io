@@ -19,10 +19,198 @@
   <link rel="stylesheet"
         href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
   <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    /* ── Project controls toolbar ── */
+    .projects-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .projects-toolbar .search-wrap {
+      position: relative;
+      flex: 1 1 200px;
+      min-width: 160px;
+    }
+    .projects-toolbar .search-wrap i {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--clr-text-muted);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+    .projects-toolbar input[type="search"] {
+      width: 100%;
+      padding: 0.45rem 0.9rem 0.45rem 2.2rem;
+      background: var(--clr-surface-2);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+      color: var(--clr-text);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .projects-toolbar input[type="search"]:focus {
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+    .projects-toolbar input[type="search"]::placeholder { color: var(--clr-text-muted); }
+
+    .projects-toolbar select {
+      padding: 0.45rem 2rem 0.45rem 0.75rem;
+      background: var(--clr-surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.6rem center;
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+      color: var(--clr-text);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      white-space: nowrap;
+    }
+    .projects-toolbar select:focus { border-color: var(--clr-accent); }
+
+    .projects-count {
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    /* Per-page row */
+    .per-page-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      margin-top: 1.5rem;
+    }
+    .per-page-row select {
+      padding: 0.25rem 1.75rem 0.25rem 0.6rem;
+      background: var(--clr-surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.4rem center;
+      border: 1px solid var(--clr-border);
+      border-radius: 6px;
+      color: var(--clr-text);
+      font-size: 0.8rem;
+      font-family: var(--font-body);
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Pagination */
+    .pagination-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 2.5rem;
+    }
+    .pg-btn {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 0.5rem;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+      color: var(--clr-text-muted);
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      line-height: 1;
+    }
+    .pg-btn:hover:not(:disabled) {
+      background: var(--clr-surface-2);
+      border-color: rgba(255,255,255,0.18);
+      color: var(--clr-heading);
+    }
+    .pg-btn.active {
+      background: var(--clr-accent);
+      border-color: var(--clr-accent);
+      color: #fff;
+    }
+    .pg-btn:disabled { opacity: 0.3; cursor: default; }
+    .pg-ellipsis {
+      color: var(--clr-text-muted);
+      font-size: 0.85rem;
+      padding: 0 0.2rem;
+      line-height: 36px;
+    }
+
+    /* Category filter pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .pill {
+      padding: 0.3rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: var(--font-body);
+      border: 1px solid var(--clr-border);
+      background: var(--clr-surface);
+      color: var(--clr-text-muted);
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .pill:hover { border-color: rgba(255,255,255,0.2); color: var(--clr-heading); }
+    .pill.active {
+      background: rgba(59,130,246,0.15);
+      border-color: var(--clr-accent);
+      color: var(--clr-accent);
+    }
+
+    /* Empty state */
+    .projects-empty {
+      display: none;
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--clr-text-muted);
+    }
+    .projects-empty i { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
+    .projects-empty p { font-size: 0.9rem; margin: 0; }
+
+    /* Project card tag */
+    .project-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      margin-right: 0.35rem;
+      margin-top: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .tag-remote   { background: rgba(16,185,129,0.12); color: var(--clr-accent-2); }
+    .tag-spatial  { background: rgba(59,130,246,0.12); color: var(--clr-accent); }
+    .tag-tool     { background: rgba(168,85,247,0.12); color: #c084fc; }
+    .tag-ee       { background: rgba(234,179,8,0.12);  color: #facc15; }
+  </style>
 </head>
 <body>
 
-  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <!-- Navigation  -->
   <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">esaLab</a>
@@ -73,91 +261,59 @@
         <p class="lead">Selected geocomputing and spatial analysis projects.</p>
       </div>
 
-      <!-- Project grid — only real entries, no empty placeholders -->
-      <div class="row g-4">
-
-        <!-- Project 1 -->
-        <div class="col-12 col-md-6 reveal">
-          <article class="project-card h-100">
-            <img src="projects/images/climateAction.png" class="project-card-img" alt="Flood extent map of Accra">
-            <div class="project-card-body">
-              <h2>Uncovering the Dynamics of Seasonal Floods in Accra, Ghana</h2>
-              <p>
-                This work explores flood extent and impact in Accra across three key dates using remote
-                sensing data — estimating flooded cropland and built-up area to inform flood management
-                and urban planning.
-              </p>
-              <a href="projects/documents/flooding_in_accra.html" target="_self" rel="noopener" class="btn btn-primary btn-sm mt-1">Read more</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="col-12 col-md-6 reveal">
-          <article class="project-card h-100">
-            <img src="projects/images/GeoJSON.png" class="project-card-img" alt="GeoJSON Inspector screenshot">
-            <div class="project-card-body">
-              <h2>GeoJSON Inspector</h2>
-              <p>
-                A browser tool for visualising
-                <a href="https://datatracker.ietf.org/wg/geojson/charter/" target="_blank" rel="noopener">GeoJSON</a>
-                data on a map — paste data, view instantly, draw custom features alongside existing data. No setup required.
-              </p>
-              <a href="projects/documents/geojson_viewer.html" target="_blank" rel="noopener" class="btn btn-primary btn-sm mt-1">Try it</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="col-12 col-md-6 reveal">
-          <article class="project-card h-100">
-            <img src="projects/images/origin_dest_direction.GIF" class="project-card-img" alt="Origin-destination routing animation">
-            <div class="project-card-body">
-              <h2>Assessing Access to Healthcare Facilities in Ho Municipal</h2>
-              <p>
-                Examining spatial access to healthcare in Ghana's Ho Municipal, where limited rural
-                access contributes to health outcome disparities between urban and rural populations.
-              </p>
-              <a href="projects/documents/healthcare_in_ho.html" target="_self" rel="noopener" class="btn btn-primary btn-sm mt-1">Read more</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="col-12 col-md-6 reveal">
-          <article class="project-card h-100">
-            <img src="projects/videos/split_panel.gif" class="project-card-img" alt="Split-panel land cover app">
-            <div class="project-card-body">
-              <h2>Visualising Landcover Classes in Ho - Split Panel App on Earth Engine</h2>
-              <p>
-                A web app enabling toggle between landcover classification and satellite imagery,
-                with zoom, pan, legend, and transparency controls — directly in the browser via
-                Google Earth Engine.
-              </p>
-              <a href="https://kedudzi007.users.earthengine.app/view/land-cover-2020---ho-municipal"
-                 target="_blank" rel="noopener" class="btn btn-primary btn-sm mt-1">Explore</a>
-            </div>
-          </article>
-        </div>
-
-        <!-- Future project placeholder — shown with a "coming soon" state -->
-        <div class="col-12 col-md-6 reveal">
-          <article class="project-card h-100 d-flex align-items-center justify-content-center"
-                   style="min-height:240px; border-style:dashed;">
-            <div class="project-card-body text-center">
-              <i class="ph ph-plus-circle" style="font-size:2rem; color:var(--clr-text-muted);"></i>
-              <p class="mt-2" style="color:var(--clr-text-muted); font-size:0.875rem;">
-                New project coming soon
-              </p>
-            </div>
-          </article>
-        </div>
-
+      <!-- Category filter pills -->
+      <div class="filter-pills" id="filter-pills" role="group" aria-label="Filter by category">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="remote">Remote Sensing</button>
+        <button class="pill" data-cat="spatial">Spatial Analysis</button>
+        <button class="pill" data-cat="tool">Tools</button>
+        <button class="pill" data-cat="ee">Earth Engine</button>
       </div>
+
+      <!-- Controls toolbar -->
+      <div class="projects-toolbar">
+        <div class="search-wrap">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="search" id="proj-search" placeholder="Search projects…" autocomplete="off" />
+        </div>
+        <select id="proj-sort" aria-label="Sort projects">
+          <option value="default">Default order</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+        <span class="projects-count" id="proj-count" aria-live="polite"></span>
+      </div>
+
+      <!-- Project grid  -->
+      <div class="row g-4" id="proj-grid" aria-live="polite" aria-label="Project list"></div>
+
+      <!-- Empty state -->
+      <div class="projects-empty" id="proj-empty" aria-live="polite">
+        <i class="ph ph-folder-open"></i>
+        <p>No projects match your search.</p>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-wrap" id="proj-pagination" aria-label="Pagination"></div>
+
+      <!-- Per-page -->
+      <div class="per-page-row">
+        Show
+        <select id="proj-perpage" aria-label="Projects per page">
+          <option value="4" selected>4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="all">All</option>
+        </select>
+        per page
+      </div>
+
     </div>
   </main>
 
-  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <!-- Footer  -->
   <footer class="small">
     <div class="container py-4">
       <div class="row g-4">
@@ -202,5 +358,179 @@
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jl/kb4FqT1NiM7lW3eR0nRFJGm3u2"
           crossorigin="anonymous"></script>
   <script src="js/site.js"></script>
+
+  <script>
+  (() => {
+    /* State */
+    let PROJECTS = [];
+    let currentPage = 1;
+    let activeCategory = "all";
+
+    const searchEl   = document.getElementById("proj-search");
+    const sortEl     = document.getElementById("proj-sort");
+    const perpageEl  = document.getElementById("proj-perpage");
+    const gridEl     = document.getElementById("proj-grid");
+    const paginEl    = document.getElementById("proj-pagination");
+    const countEl    = document.getElementById("proj-count");
+    const emptyEl    = document.getElementById("proj-empty");
+    const pillsEl    = document.getElementById("filter-pills");
+
+    /* Tag label map */
+    const TAG_LABELS = { remote: "Remote Sensing", spatial: "Spatial Analysis", tool: "Tool", ee: "Earth Engine" };
+    const TAG_CLASS  = { remote: "tag-remote", spatial: "tag-spatial", tool: "tag-tool", ee: "tag-ee" };
+
+    /* Filter + sort logic */
+    function getFiltered() {
+      const q = searchEl.value.trim().toLowerCase();
+      let list = PROJECTS.filter(p => {
+        const catMatch = activeCategory === "all" || p.tags.includes(activeCategory);
+        const searchMatch = !q || p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        return catMatch && searchMatch;
+      });
+
+      const sort = sortEl.value;
+      if (sort === "name-asc")  list.sort((a, b) => a.title.localeCompare(b.title));
+      if (sort === "name-desc") list.sort((a, b) => b.title.localeCompare(a.title));
+      if (sort === "newest")    list.sort((a, b) => b.date.localeCompare(a.date));
+      if (sort === "oldest")    list.sort((a, b) => a.date.localeCompare(b.date));
+
+      return list;
+    }
+
+    /* Render */
+    function render() {
+      const filtered   = getFiltered();
+      const total      = filtered.length;
+      const perpageVal = perpageEl.value;
+      const perPage    = perpageVal === "all" ? total : parseInt(perpageVal);
+      const totalPages = perPage > 0 ? Math.max(1, Math.ceil(total / perPage)) : 1;
+
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const start = (currentPage - 1) * perPage;
+      const page  = perpageVal === "all" ? filtered : filtered.slice(start, start + perPage);
+
+      /* count label */
+      countEl.textContent = `${total} project${total !== 1 ? "s" : ""}`;
+
+      /* empty state */
+      emptyEl.style.display  = total === 0 ? "block" : "none";
+      gridEl.style.display   = total === 0 ? "none"  : "";
+
+      /* cards */
+      gridEl.innerHTML = page.map(p => {
+        const tagHTML = p.tags.map(t =>
+          `<span class="project-tag ${TAG_CLASS[t]}">${TAG_LABELS[t]}</span>`
+        ).join("");
+        return `
+          <div class="col-12 col-md-6 reveal is-visible">
+            <article class="project-card h-100">
+              <img src="${p.img}" class="project-card-img" alt="${p.imgAlt}" loading="lazy">
+              <div class="project-card-body">
+                <div>${tagHTML}</div>
+                <h2>${p.title}</h2>
+                <p>${p.desc}</p>
+                <a href="${p.href}" target="${p.target}" rel="noopener"
+                   class="btn btn-primary btn-sm mt-1">${p.cta}</a>
+              </div>
+            </article>
+          </div>`;
+      }).join("");
+
+      /* pagination */
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      if (totalPages <= 1) { paginEl.innerHTML = ""; return; }
+
+      const pages = [];
+      if (totalPages <= 7) {
+        for (let i = 1; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        if (currentPage > 3) pages.push("…");
+        for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) pages.push(i);
+        if (currentPage < totalPages - 2) pages.push("…");
+        pages.push(totalPages);
+      }
+
+      let html = `<button class="pg-btn" data-pg="${currentPage - 1}" ${currentPage === 1 ? "disabled" : ""}
+                    aria-label="Previous page"><i class="ph ph-caret-left"></i></button>`;
+      for (const p of pages) {
+        if (p === "…") {
+          html += `<span class="pg-ellipsis">…</span>`;
+        } else {
+          html += `<button class="pg-btn${p === currentPage ? " active" : ""}" data-pg="${p}"
+                     aria-label="Page ${p}" ${p === currentPage ? 'aria-current="page"' : ""}>${p}</button>`;
+        }
+      }
+      html += `<button class="pg-btn" data-pg="${currentPage + 1}" ${currentPage === totalPages ? "disabled" : ""}
+                 aria-label="Next page"><i class="ph ph-caret-right"></i></button>`;
+      paginEl.innerHTML = html;
+    }
+
+    function goToPage(p) {
+      currentPage = p;
+      render();
+      document.getElementById("proj-grid").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    /* Event listeners */
+    searchEl.addEventListener("input",  () => { currentPage = 1; render(); });
+    sortEl.addEventListener("change",   () => { currentPage = 1; render(); });
+    perpageEl.addEventListener("change",() => { currentPage = 1; render(); });
+
+    pillsEl.addEventListener("click", e => {
+      const pill = e.target.closest(".pill");
+      if (!pill) return;
+      pillsEl.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      activeCategory = pill.dataset.cat;
+      currentPage = 1;
+      render();
+    });
+
+    paginEl.addEventListener("click", e => {
+      const btn = e.target.closest(".pg-btn");
+      if (!btn || btn.disabled) return;
+      goToPage(parseInt(btn.dataset.pg));
+    });
+
+    /* Loading state */
+    function showLoading() {
+      gridEl.innerHTML = `
+        <div class="col-12 text-center py-5" id="proj-loading">
+          <div class="spinner-border spinner-border-sm text-secondary mb-3" role="status" aria-hidden="true"></div>
+          <p style="color:var(--clr-text-muted); font-size:0.875rem;">Loading projects…</p>
+        </div>`;
+    }
+
+    function showError(msg) {
+      gridEl.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <i class="ph ph-warning-circle" style="font-size:2rem; color:var(--clr-text-muted); display:block; margin-bottom:0.75rem;"></i>
+          <p style="color:var(--clr-text-muted); font-size:0.875rem;">${msg}</p>
+        </div>`;
+    }
+
+    /* Init: fetch projects.json */
+    showLoading();
+    fetch("projects/projects.json")
+      .then(res => {
+        if (!res.ok) throw new Error(`Could not load projects.json (${res.status})`);
+        return res.json();
+      })
+      .then(data => {
+        PROJECTS = data;
+        render();
+      })
+      .catch(err => {
+        console.error(err);
+        showError("Projects could not be loaded. Make sure projects/projects.json exists and you are running a local server.");
+      });
+  })();
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.map
+.DS_Store
+Thumbs.db
+.env
+.env.local
+esalab-v2/
+_old_/
+maps/ucc_map.html
+css/_main_.css
+.qodo/
+.vscode/
+README.md
