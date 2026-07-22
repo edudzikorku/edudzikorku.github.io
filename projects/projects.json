@@ -2,7 +2,7 @@
   {
     "title": "GhanaPostGPS Converter",
     "desc": "A web-based tool for converting GhanaPostGPS codes into geographic coordinates (latitude and longitude). This tool allows users to input a GhanaPostGPS code to retrieve its corresponding coordinates. Additionally, users can upload a CSV file containing multiple GhanaPostGPS codes and download a file with the corresponding latitude and longitude values.",
-    "img": "projects/images/gh_post_gps.png",
+    "img": "projects/images/gh_post_gps_converter.png",
     "imgAlt": "GhanaPostGPS Logo",
     "href": "projects/documents/ghanapostgps-tool.html",
     "target": "_self",
