@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GhanaPostGPS Coordinate Converter - esaLab</title>
+  <meta name="description" content="Convert GhanaPostGPS digital addresses to latitude/longitude — single codes or a full CSV, plotted live on a map.">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="../../assets/favicon.ico">
+  <link rel="manifest" href="../../assets/site.webmanifest">
+  <meta name="theme-color" content="#0b0f1a">
+
+  <!-- Bootstrap (CSS only — no Leaflet conflict) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <!-- Monospace face for digital-address / coordinate readouts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Site styles -->
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <style>
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    main { flex: 1; display: flex; flex-direction: column; }
+
+    #gpg-viewer-wrap {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    #gpg-map {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      background: var(--clr-navy);
+      z-index: 0;
+    }
+
+    #gpg-panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--clr-surface);
+      border-left: 1px solid var(--clr-border);
+      padding: 1rem;
+      gap: .75rem;
+      overflow-y: auto;
+    }
+
+    #gpg-panel h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--clr-accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin: 0;
+    }
+
+    .gpg-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--clr-border); margin-bottom: .25rem; }
+    .gpg-tab {
+      font-family: 'Poppins', sans-serif; font-weight: 600; font-size: .8rem;
+      color: var(--clr-text-muted); background: none; border: none; padding: .5rem 0;
+      cursor: pointer; border-bottom: 2px solid transparent;
+    }
+    .gpg-tab.active { color: var(--clr-accent); border-bottom-color: var(--clr-accent); }
+
+    .gpg-mode { display: none; flex-direction: column; gap: .6rem; }
+    .gpg-mode.active { display: flex; }
+
+    #gpg-codes {
+      min-height: 130px; resize: vertical;
+      background: var(--clr-surface-2); border: 1px solid var(--clr-border); color: var(--clr-text);
+      border-radius: 8px; padding: .75rem; font-family: 'IBM Plex Mono', monospace; font-size: .8rem; line-height: 1.5;
+    }
+    #gpg-codes:focus { outline: none; border-color: var(--clr-accent); box-shadow: 0 0 0 3px rgba(59,130,246,.2); }
+
+    #gpg-status {
+      font-size: .8rem; min-height: 1.4em; border-radius: 6px; padding: .3rem .6rem;
+    }
+    #gpg-status.ok  { background: rgba(16,185,129,.12); color: #10b981; }
+    #gpg-status.err { background: rgba(239,68,68,.12);  color: #ef4444; }
+    #gpg-status.idle{ background: transparent; color: var(--clr-text-muted); }
+
+    .gpg-progress-track { height: 6px; background: var(--clr-surface-2); border-radius: 4px; overflow: hidden; border: 1px solid var(--clr-border); }
+    .gpg-progress-fill { height: 100%; width: 0%; background: var(--clr-accent); transition: width .2s; }
+    .gpg-progress-text { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; color: var(--clr-text-muted); margin-top: .3rem; }
+
+    select.gpg-select {
+      background: var(--clr-surface-2); border: 1px solid var(--clr-border); color: var(--clr-text);
+      border-radius: 8px; padding: .5rem .6rem; font-size: .85rem; width: 100%;
+    }
+    select.gpg-select:focus { outline: none; border-color: var(--clr-accent); }
+
+    .gpg-hint { font-size: .75rem; color: var(--clr-text-muted); margin: 0; }
+
+    /* Results table, full width beneath the map+panel */
+    #gpg-results table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    #gpg-results thead th {
+      text-align: left; color: var(--clr-text-muted); font-weight: 600; text-transform: uppercase;
+      font-size: .7rem; letter-spacing: .05em; padding: .5rem .6rem; border-bottom: 1px solid var(--clr-border);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    #gpg-results tbody td { padding: .5rem .6rem; border-bottom: 1px solid var(--clr-border); font-family: 'IBM Plex Mono', monospace; }
+    #gpg-results tbody tr:hover { background: var(--clr-surface-2); }
+    .gpg-status-found { color: #10b981; }
+    .gpg-status-bad { color: #ef4444; }
+    .gpg-table-scroll { max-height: 380px; overflow: auto; border: 1px solid var(--clr-border); border-radius: 8px; }
+
+    @media (max-width: 767.98px) {
+      #gpg-viewer-wrap { grid-template-columns: 1fr; grid-template-rows: 320px auto; }
+      #gpg-map { min-height: 320px; }
+      #gpg-panel { max-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../../index.html">esaLab</a>
+      <span class="spinner-container" aria-hidden="true">
+        <svg class="ip" viewBox="0 0 256 128" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#408ec6"/><stop offset="50%" stop-color="#1e2761"/><stop offset="100%" stop-color="#500472"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#e23838"/><stop offset="50%" stop-color="#031163"/><stop offset="100%" stop-color="#37a987"/>
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke-linecap="round" stroke-width="16">
+            <g class="ip__track" stroke="#ddd">
+              <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+            <g stroke-dasharray="180 656">
+              <path class="ip__worm1" stroke="url(#g1)" stroke-dashoffset="0"   d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+              <path class="ip__worm2" stroke="url(#g2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+            </g>
+          </g>
+        </svg>
+      </span>
+      <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../../projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div id="gpg-viewer-wrap">
+
+      <!-- Map -->
+      <div id="gpg-map" aria-label="Map of geocoded GhanaPostGPS addresses"></div>
+
+      <!-- Side panel -->
+      <aside id="gpg-panel" aria-label="GhanaPostGPS conversion panel">
+        <h2><i class="ph ph-map-pin" style="margin-right:.3em;"></i>GhanaPostGPS Converter</h2>
+
+        <div class="gpg-tabs">
+          <button class="gpg-tab active" data-mode="single">Single / multiple</button>
+          <button class="gpg-tab" data-mode="batch">Batch CSV</button>
+        </div>
+
+        <!-- Single / multiple codes -->
+        <div class="gpg-mode active" id="gpg-mode-single">
+          <textarea id="gpg-codes" spellcheck="false" placeholder="Paste GhanaPostGPS codes, one per line, e.g.&#10;GA-183-8899&#10;AK-039-5028&#10;WS-234-1122"></textarea>
+          <div class="d-flex gap-2">
+            <button id="gpg-btn-lookup" class="btn btn-primary flex-grow-1">
+              <i class="ph ph-map-pin-line" style="margin-right:.3em;"></i>Look up
+            </button>
+            <button id="gpg-btn-clear-single" class="btn btn-outline-primary">
+              <i class="ph ph-trash" style="margin-right:.3em;"></i>Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Batch CSV -->
+        <div class="gpg-mode" id="gpg-mode-batch">
+          <label class="gpg-hint" for="gpg-csv-file"><b>Upload a CSV</b></label>
+          <input type="file" id="gpg-csv-file" accept=".csv" class="form-control form-control-sm">
+          <div id="gpg-column-row" style="display:none;">
+            <label class="gpg-hint" for="gpg-code-column"><b>Column with the GPS code</b></label>
+            <select id="gpg-code-column" class="gpg-select"></select>
+          </div>
+          <button id="gpg-btn-batch" class="btn btn-primary" disabled>
+            <i class="ph ph-table" style="margin-right:.3em;"></i>Add coordinates
+          </button>
+        </div>
+
+        <div id="gpg-status" class="idle" role="status" aria-live="polite">Ready - paste codes or upload a CSV, then run the conversion.</div>
+
+        <div id="gpg-progress-wrap" style="display:none;">
+          <div class="gpg-progress-track"><div class="gpg-progress-fill" id="gpg-progress-fill"></div></div>
+          <div class="gpg-progress-text" id="gpg-progress-text"></div>
+        </div>
+
+        <button id="gpg-btn-download" class="btn btn-outline-primary" disabled>
+          <i class="ph ph-download-simple" style="margin-right:.3em;"></i>Download CSV
+        </button>
+
+        <p class="gpg-hint">
+          Looks up each code against the public GhanaPostGPS service, one at a time with a short pause between
+          requests. Repeated codes are only looked up once. Codes that can't be found still appear in the
+          results with empty coordinates and a status note.
+        </p>
+      </aside>
+    </div>
+
+    <!-- Results table, full width -->
+    <section class="container py-4" id="gpg-results" aria-label="Conversion results">
+      <div class="gpg-table-scroll">
+        <table id="gpg-table" style="display:none;">
+          <thead id="gpg-table-head"></thead>
+          <tbody id="gpg-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="small">
+    <div class="container py-4">
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Quick links</h6>
+          <ul class="list-unstyled">
+            <li><a href="../../index.html">Home</a></li><li><a href="../../about.html">About</a></li>
+            <li><a href="../../services.html">Services</a></li><li><a href="../../projects.html">Projects</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Connect</h6>
+          <ul class="list-unstyled">
+            <li><a href="https://web.facebook.com/profile.php?id=100006233115264" target="_blank" rel="noopener"><i class="ph ph-facebook-logo footer-icon"></i> Facebook</a></li>
+            <li><a href="https://www.github.com/edudzikorku" target="_blank" rel="noopener"><i class="ph ph-github-logo footer-icon"></i> GitHub</a></li>
+            <li><a href="https://medium.com/@akpakliedudzi" target="_blank" rel="noopener"><i class="ph ph-medium-logo footer-icon"></i> Medium</a></li>
+            <li><a href="https://www.youtube.com/channel/UCBEPx7Txo1U0AwKj_ad24aA" target="_blank" rel="noopener"><i class="ph ph-youtube-logo footer-icon"></i> YouTube</a></li>
+            <li><a href="https://www.linkedin.com/in/edudzi-akpakli-229761121" target="_blank" rel="noopener"><i class="ph ph-linkedin-logo footer-icon"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <h6>Location</h6>
+          <address>
+            <strong>Akpakli Edudzi</strong><br>Butumegyabu - W/R, Ghana<br>
+            <a href="tel:+233540815367"><i class="ph ph-phone footer-icon"></i>(233) 540815367</a><br>
+            <a href="mailto:kedudzi007@gmail.com"><i class="ph ph-envelope-simple footer-icon"></i>kedudzi007@gmail.com</a>
+          </address>
+        </div>
+      </div>
+      <hr class="divider">
+      <p class="text-center mb-0" style="color:var(--clr-text-muted)">&copy; <span class="js-year"></span> Akpakli Edudzi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: Bootstrap → Leaflet → PapaParse → site.js → tool logic -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="../../js/site.js"></script>
+  <script src="../../js/ghanapostgps.js"></script>
+</body>
+</html>

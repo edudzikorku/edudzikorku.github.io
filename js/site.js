@@ -1,14 +1,10 @@
-/**
- * site.js — shared logic for all esaLab pages
- * No jQuery. No dependencies. Vanilla ES6.
- */
 
-// ── Copyright year 
+//  Copyright year 
 document.querySelectorAll(".js-year").forEach((el) => {
   el.textContent = new Date().getFullYear();
 });
 
-// ── Scroll-reveal: .reveal and .reveal-slide 
+//  Scroll-reveal: .reveal and .reveal-slide 
 const revealEls = document.querySelectorAll(".reveal, .reveal-slide");
 
 if (revealEls.length) {
